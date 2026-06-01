@@ -1,0 +1,18 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"../scss/styles.scss",
+		"../scss/_base.scss",
+		"../scss/_classes.scss",
+		"../scss/_header.scss"
+	],
+	"sourcesContent": [
+		"@import 'base';\r\n@import 'classes';\r\n@import 'header';",
+		"* {\r\n    box-sizing: border-box;\r\n    font-family: \"roboto\", serif;\r\n}",
+		".title-large {\r\n\r\n    font-size: 3.5rem;\r\n    font-weight: 450;\r\n    color: #fff;\r\n    background-color: #00000099;\r\n    text-align: center;\r\n    padding: 1.75rem 0 1.75rem;\r\n    text-shadow: (0 0 1.5rem #000000);\r\n    border-bottom: 1px solid #000;\r\n    background-image: linear-gradient( to top right, transparent 2%, #ff0000aa 5%, #ffff00aa 8%, #00ff00aa 11%, #0000ffaa 14%, #ff00ffaa 17%, transparent 20%, transparent 80%, #ff0000aa 83%, #ffff00aa 86%, #00ff00aa 89%, #0000ffaa 92%, #ff00ffaa 95%, transparent 98%);\r\n\r\n\r\n}\r\n\r\n.body-text-medium-topshadow {\r\n\r\n    font-size: 1.125rem;\r\n    font-weight: 350;\r\n    color: #000011;\r\n    background-color: #fff;\r\n    text-align: center;\r\n    padding: 1.75rem 0.5rem 0.75rem;\r\n    text-shadow: (0.4rem 0.4rem 0.25rem #00000033);\r\n    background-image: linear-gradient( 180deg, #00000066, transparent 2%);\r\n\r\n}",
+		"#header-top {\r\n\r\n    height: 100vh;\r\n\r\n    \r\n}"
+	],
+	"names": [],
+	"mappings": ";ACAA,AAAA,CAAC,CAAC;EACE,UAAU,EAAE,UAAU;EACtB,WAAW,EAAE,eAAe;CAC/B;;;ACHD,AAAA,YAAY,CAAC;EAET,SAAS,EAAE,MAAM;EACjB,WAAW,EAAE,GAAG;EAChB,KAAK,EAAE,IAAI;EACX,gBAAgB,EAAE,SAAS;EAC3B,UAAU,EAAE,MAAM;EAClB,OAAO,EAAE,iBAAiB;EAC1B,WAAW,EAAG,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO;EAChC,aAAa,EAAE,cAAc;EAC7B,gBAAgB,EAAE,oPAAqP;CAG1Q;;;AAED,AAAA,2BAA2B,CAAC;EAExB,SAAS,EAAE,QAAQ;EACnB,WAAW,EAAE,GAAG;EAChB,KAAK,EAAE,OAAO;EACd,gBAAgB,EAAE,IAAI;EACtB,UAAU,EAAE,MAAM;EAClB,OAAO,EAAE,sBAAsB;EAC/B,WAAW,EAAG,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,SAAS;EAC7C,gBAAgB,EAAE,kDAAmD;CAExE;;;AC1BD,AAAA,WAAW,CAAC;EAER,MAAM,EAAE,KAAK;CAGhB"
+}
