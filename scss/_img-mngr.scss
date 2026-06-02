@@ -1,0 +1,130 @@
+#image-manager-top {
+
+    width: 100%;
+    height: fit-content;
+    margin: 1rem 0;
+
+
+    #image-manager-wrapper {
+
+        #image-manager-controls {
+
+            #image-manager-controls-size {
+                
+                padding: 0.75rem 0.75rem;
+
+                fieldset {
+
+                    border-radius: 0.75rem;
+                    border: 1px solid #727063;
+                    
+                    legend {
+                        text-align: center;
+                        font-weight: 450;
+                        background-color: #d1cdb7;
+                        padding: 0.4rem 1rem 0.3rem;
+                        border: 2px solid #999685;
+                        border-radius: 0.25rem;
+                    }
+
+                    #image-manager-size-buttons {
+
+                        display: grid;
+                        grid-template-columns: 1fr 2fr 1fr 3fr 1fr 2fr;
+                        grid-template-rows: 1fr;
+                        padding-top: 1rem;
+                        padding-bottom: 0.625rem;
+
+                        input {
+
+                            width: fit-content;
+                            height: fit-content;
+                            align-self: center;
+                            justify-self: right;
+                        }
+
+                        label {
+
+                            width: fit-content;
+                            height: fit-content;
+                            align-self: center;
+                            justify-self: left;
+                            padding-left: 0.5rem;
+                        }
+                    }
+                }
+            }
+
+            #image-manager-controls-orientation {
+                
+                padding: 0.75rem 0.75rem;
+
+                fieldset {
+
+                    border-radius: 0.75rem;
+                    border: 1px solid #727063;
+                    
+                    legend {
+                        text-align: center;
+                        font-weight: 450;
+                        background-color: #d1cdb7;
+                        padding: 0.4rem 1rem 0.3rem;
+                        border: 2px solid #999685;
+                        border-radius: 0.25rem;
+                    }
+
+                    #image-manager-orientation-buttons {
+
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 3fr 1fr 1fr 2fr 1fr;
+                        grid-template-rows: 1fr;
+                        padding-top: 1rem;
+                        padding-bottom: 0.625rem;
+
+                        #image-landscape-radiobutton {
+
+                            width: fit-content;
+                            height: fit-content;
+                            align-self: center;
+                            grid-column-start: 2;
+                            grid-column-end: 3;
+                            justify-self: right;
+                        }
+
+                        #image-portrait-radiobutton {
+
+                            width: fit-content;
+                            height: fit-content;
+                            align-self: center;
+                            grid-column-start: 5;
+                            grid-column-end: 6;
+                            justify-self: right;
+                        }
+
+                        #landscape-radio-label {
+
+                            width: fit-content;
+                            height: fit-content;
+                            align-self: center;
+                            grid-column-start: 3;
+                            grid-column-end: 4;
+                            justify-self: left;
+                            padding-left: 0.5rem;
+                        }
+
+                        #portrait-radio-label {
+
+                            width: fit-content;
+                            height: fit-content;
+                            align-self: center;
+                            grid-column-start: 6;
+                            grid-column-end: 7;
+                            justify-self: left;
+                            padding-left: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

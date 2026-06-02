@@ -24,33 +24,105 @@
   <body>
     <main>
       <div>
-        <div id="header-top">
+
+        <div id="header-top"><!-- HEADER -->
+
           <div id="header-wrapper">
             <div id="header-title-top" class="title-large">
               <div id="header-title-wrapper"><span id="header-title-text">WELCOME</span></div>
             </div>
             <div id="header-intro-top">
-              <div id="header-intro-wrapper" class="body-text-medium-topshadow"><span id="header-intro-text">This project displays random pictures from Lorem Picsum.<br><br>It keeps a list of email addresses that you have entered and allows you to assign any number of images to each email address.<br><br>The images attached to each address are displayed in the gallery below. There are options to select the size and orientation of the current random image before assigning it.<br><br>This project demonstrates the use of arrays in JavaScript.<br><br>To begin, enter a valid email address below.<br><br><em><strong>( Note: please do not enter live email addresses into this demo! )</strong></em></span></div>
+              <div id="header-intro-wrapper" class="body-text-medium-topshadow"><span id="header-intro-text">This web page displays random images from Lorem Picsum.<br><br>It keeps a list of email addresses that you have entered and allows you to assign any number of images to each email address.<br><br>The image panel displays the current random image with options to select size and orientation and a button to assign the image to the currently selected email address. Images attached to each address are displayed in the gallery below.<br><br>This project demonstrates the use of arrays in JavaScript.<br><br>To begin, enter a valid email address below.<br><br><em><strong>( Note: please do not enter live email addresses into this demo! )</strong></em></span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="address-manager-top"><!-- EMAIL ADDRESS LIST MANAGER -->
+
+          <div id="address-manager-wrapper">
+
+            <div id="address-manager-input">
+              <div id="address-manager-form-wrapper">
+
+                <form id="address-manager-form" action="#" method="get" onsubmit="event.preventDefault();">
+                  <div id="address-manager-email-input" class="reqd-field email-input">
+                    <label for="email-address" class="visually-hidden">Email address</label>
+                    <input pattern="([^@\s]+@[^@\s]+\.[^@\s]+)" title="Example: name123@anywhere.com" type="email" id="emailaddress" name="email-address" placeholder="*email address..." required minlength="7" maxlength="64" size="26" autocomplete="off">
+                  </div>
+                  <button id="address-manager-submit-button" type="submit" form="address-manager-form">
+                    ADD TO LIST
+                  </button>
+                </form>
+
+              </div>
+            </div>
+
+            <div id="address-manager-list-wrapper">
+
+              <div class="address-manager-email-display" id="email-1"><button type="button">doofus@blahblah.co.uk</button></div>
+              <div class="address-manager-email-display" id="email-2"><button>doofus2@blahblah.co.uk</button></div>
+              <div class="address-manager-email-display" id="email-3"><button>doofus3@blahblah.co.uk</button></div>
+              <div class="address-manager-email-display" id="email-4"><button>doofus4@blahblah.co.uk</button></div>
+              <div class="address-manager-email-display" id="email-5"><button>doofus5@blahblah.co.uk</button></div>
+              <div class="address-manager-email-display" id="email-6"><button>doofus6@blahblah.co.uk</button></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="image-manager-top">
+          <div id="image-manager-wrapper">
+            <div id="image-manager-controls">
+              <form id="image-manager-controls-size" action="#" onsubmit="event.preventDefault();">
+                <fieldset>
+                  <legend>SELECT IMAGE SIZE:</legend>
+                  <div id="image-manager-size-buttons">
+                    <input type="radio" id="image-small-radiobutton" name="image-size" value="small"/>
+                    <label for="image-small-radiobutton">Small</label>
+
+                    <input checked type="radio" id="image-medium-radiobutton" name="image-size" value="medium"/>
+                    <label for="image-medium-radiobutton">Medium</label>
+
+                    <input type="radio" id="image-large-radiobutton" name="image-size" value="large"/>
+                    <label for="image-large-radiobutton">Large</label>
+                  </div>
+                </fieldset>
+              </form>
+              <form id="image-manager-controls-orientation" action="#" onsubmit="event.preventDefault();">
+                <fieldset>
+                  <legend>SELECT ORIENTATION:</legend>
+                  <div id="image-manager-orientation-buttons">
+
+                    <input checked type="radio" id="image-landscape-radiobutton" name="image-orientation" value="landscape"/>
+                    <label id="landscape-radio-label" for="image-landscape-radiobutton">Landscape</label>
+
+                    <input type="radio" id="image-portrait-radiobutton" name="image-orientation" value="portrait"/>
+                    <label id="portrait-radio-label" for="image-portrait-radiobutton">Portrait</label>
+
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+            <div id="image-manager-display"></div>
+          </div>
+        </div>
+
+        <div id="gallery-top">
+          <div id="gallery-wrappper">
+            <div id="gallery-current-email"></div>
+            <div id="gallery-slideshow">
+              <div><img src="img/test-image-1.png"/></div>
+              <div><img src="img/test-image-2.png"/></div>
+              <div><img src="img/test-image-3.png"/></div>
+              <div><img src="img/test-image-4.png"/></div>
             </div>
           </div>
         </div>
 
       </div>
-
-      <div id="address-manager-top">
-
-        <div id="address-manager-wrapper">
-          <div id="address-manager-input">
-            <div id="address-manager-form-wrapper">
-            </div>
-          </div>
-          <div id="address-manager-list-wrapper">
-          </div>
-        </div>
-
-        </div>
-      </div>
-
     </main>
     <script type="text/javascript" src="js/jquery-4.0.0.min.js"></script>
     <script type="text/javascript" src="js/array-project.js"></script>

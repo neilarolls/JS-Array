@@ -1,0 +1,66 @@
+#address-manager-top {
+
+    height: fit-content;
+    padding: 2rem 0;
+    align-items: center;
+    background-color: rgb(137, 140, 168);
+
+    #address-manager-wrapper {
+
+        width: 100%;
+        padding: 0 0.75rem;
+        text-align: center;
+
+        #address-manager-input {
+
+            #address-manager-form-wrapper {
+
+                padding-bottom: 1rem;
+
+                #address-manager-form {
+                    
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 4fr 2fr 6fr;
+                    justify-items: center;
+
+                    #address-manager-email-input {
+
+                        grid-row-start: 1;
+                        grid-row-end: 2;
+
+                        input {
+                            height: 2rem;
+                            font-size: 1rem;
+                            outline: none;
+                            border: 1px solid rgb(102, 102, 102);
+                            border-radius: 0.2rem;
+                        }
+                    }
+
+                    #address-manager-submit-button {
+
+                        grid-row-start: 3;
+                        grid-row-end: 4;
+                        border: 1px solid rgb(102, 102, 102);
+                        border-radius: 0.2rem;
+
+                    }
+
+                }
+
+            }
+        }
+
+        #address-manager-list-wrapper {
+            
+            width: 100%;
+            height: 16rem;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+            background-color: white;
+            color: #000011;
+            border-top: 0.67px solid #000011;
+        }
+    }
+}

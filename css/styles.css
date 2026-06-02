@@ -2,9 +2,23 @@
 * {
   box-sizing: border-box;
   font-family: "roboto", serif;
+  overflow-x: clip;
 }
 
-/* line 1, ../../../JS Array/scss/_classes.scss */
+/* line 2, ../../../JS Array/scss/_classes.scss */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* line 16, ../../../JS Array/scss/_classes.scss */
 .title-large {
   font-size: 3.5rem;
   font-weight: 450;
@@ -15,9 +29,10 @@
   text-shadow: 0 0 1.5rem #000000;
   border-bottom: 1px solid #000;
   background-image: linear-gradient(to top right, transparent 2%, #ff0000aa 5%, #ffff00aa 8%, #00ff00aa 11%, #0000ffaa 14%, #ff00ffaa 17%, transparent 20%, transparent 80%, #ff0000aa 83%, #ffff00aa 86%, #00ff00aa 89%, #0000ffaa 92%, #ff00ffaa 95%, transparent 98%);
+  box-shadow: 0 1rem 0.1rem 0.1rem #00000044;
 }
 
-/* line 16, ../../../JS Array/scss/_classes.scss */
+/* line 31, ../../../JS Array/scss/_classes.scss */
 .body-text-medium-topshadow {
   font-size: 1.125rem;
   font-weight: 350;
@@ -25,13 +40,200 @@
   background-color: #fff;
   text-align: center;
   padding: 1.75rem 0.5rem 0.75rem;
-  text-shadow: 0.4rem 0.4rem 0.25rem #00000033;
-  background-image: linear-gradient(180deg, #00000066, transparent 2%);
+  text-shadow: 0.1rem 0.1rem 0.07rem #00000033;
 }
 
 /* line 1, ../../../JS Array/scss/_header.scss */
 #header-top {
-  height: 100vh;
+  height: fit-content;
+}
+
+/* line 1, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top {
+  height: fit-content;
+  padding: 2rem 0;
+  align-items: center;
+  background-color: #898ca8;
+}
+
+/* line 8, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper {
+  width: 100%;
+  padding: 0 0.75rem;
+  text-align: center;
+}
+
+/* line 16, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper {
+  padding-bottom: 1rem;
+}
+
+/* line 20, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr 2fr 6fr;
+  justify-items: center;
+}
+
+/* line 27, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-email-input {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+/* line 32, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-email-input input {
+  height: 2rem;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid #666666;
+  border-radius: 0.2rem;
+}
+
+/* line 41, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-submit-button {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  border: 1px solid #666666;
+  border-radius: 0.2rem;
+}
+
+/* line 55, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper #address-manager-list-wrapper {
+  width: 100%;
+  height: 16rem;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  background-color: white;
+  color: #000011;
+  border-top: 0.67px solid #000011;
+}
+
+/* line 1, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top {
+  width: 100%;
+  height: fit-content;
+  margin: 1rem 0;
+}
+
+/* line 12, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-size {
+  padding: 0.75rem 0.75rem;
+}
+
+/* line 16, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-size fieldset {
+  border-radius: 0.75rem;
+  border: 1px solid #727063;
+}
+
+/* line 21, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-size fieldset legend {
+  text-align: center;
+  font-weight: 450;
+  background-color: #d1cdb7;
+  padding: 0.4rem 1rem 0.3rem;
+  border: 2px solid #999685;
+  border-radius: 0.25rem;
+}
+
+/* line 30, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-size fieldset #image-manager-size-buttons {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 3fr 1fr 2fr;
+  grid-template-rows: 1fr;
+  padding-top: 1rem;
+  padding-bottom: 0.625rem;
+}
+
+/* line 38, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-size fieldset #image-manager-size-buttons input {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  justify-self: right;
+}
+
+/* line 46, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-size fieldset #image-manager-size-buttons label {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  justify-self: left;
+  padding-left: 0.5rem;
+}
+
+/* line 58, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation {
+  padding: 0.75rem 0.75rem;
+}
+
+/* line 62, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset {
+  border-radius: 0.75rem;
+  border: 1px solid #727063;
+}
+
+/* line 67, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset legend {
+  text-align: center;
+  font-weight: 450;
+  background-color: #d1cdb7;
+  padding: 0.4rem 1rem 0.3rem;
+  border: 2px solid #999685;
+  border-radius: 0.25rem;
+}
+
+/* line 76, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset #image-manager-orientation-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr 1fr 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  padding-top: 1rem;
+  padding-bottom: 0.625rem;
+}
+
+/* line 84, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset #image-manager-orientation-buttons #image-landscape-radiobutton {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: right;
+}
+
+/* line 94, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset #image-manager-orientation-buttons #image-portrait-radiobutton {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  grid-column-start: 5;
+  grid-column-end: 6;
+  justify-self: right;
+}
+
+/* line 104, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset #image-manager-orientation-buttons #landscape-radio-label {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: left;
+  padding-left: 0.5rem;
+}
+
+/* line 115, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset #image-manager-orientation-buttons #portrait-radio-label {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  grid-column-start: 6;
+  grid-column-end: 7;
+  justify-self: left;
+  padding-left: 0.5rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
