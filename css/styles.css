@@ -26,13 +26,12 @@
   color: #fff;
   background-color: #000000;
   text-align: center;
-  padding: 1.75rem 0 1.75rem;
   text-shadow: 0 0 1.5rem #000000;
   border-bottom: 1px solid #000;
   width: 100%;
 }
 
-/* line 32, ../../../JS Array/scss/_classes.scss */
+/* line 31, ../../../JS Array/scss/_classes.scss */
 .body-text-medium {
   font-size: 1.125rem;
   font-weight: 350;
