@@ -1,3 +1,4 @@
+// To hide form labels.
 
 .visually-hidden {
 
@@ -13,22 +14,22 @@
   
 }
 
-.title-large {
-
-    font-size: 3.5rem;
+.header-title {
+    position: absolute;
+    font-size: 3rem;
     font-weight: 450;
     color: #fff;
-    background-color: #00000099;
+    background-color: #000000;
     text-align: center;
     padding: 1.75rem 0 1.75rem;
     text-shadow: (0 0 1.5rem #000000);
     border-bottom: 1px solid #000;
-    background-image: linear-gradient( to top right, transparent 2%, #ff0000aa 5%, #ffff00aa 8%, #00ff00aa 11%, #0000ffaa 14%, #ff00ffaa 17%, transparent 20%, transparent 80%, #ff0000aa 83%, #ffff00aa 86%, #00ff00aa 89%, #0000ffaa 92%, #ff00ffaa 95%, transparent 98%);
-    box-shadow: 0 1rem 0.1rem 0.1rem #00000044;
+    width: 100%;
+    // background-image: linear-gradient( to top right, transparent 2%, #ff0000aa 5%, #ffff00aa 8%, #00ff00aa 11%, #0000ffaa 14%, #ff00ffaa 17%, transparent 20%, transparent 80%, #ff0000aa 83%, #ffff00aa 86%, #00ff00aa 89%, #0000ffaa 92%, #ff00ffaa 95%, transparent 98%);
 
 }
 
-.body-text-medium-topshadow {
+.body-text-medium {
 
     font-size: 1.125rem;
     font-weight: 350;

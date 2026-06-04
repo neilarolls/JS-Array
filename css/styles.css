@@ -5,7 +5,7 @@
   overflow-x: clip;
 }
 
-/* line 2, ../../../JS Array/scss/_classes.scss */
+/* line 3, ../../../JS Array/scss/_classes.scss */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -18,22 +18,22 @@
   border: 0;
 }
 
-/* line 16, ../../../JS Array/scss/_classes.scss */
-.title-large {
-  font-size: 3.5rem;
+/* line 17, ../../../JS Array/scss/_classes.scss */
+.header-title {
+  position: absolute;
+  font-size: 3rem;
   font-weight: 450;
   color: #fff;
-  background-color: #00000099;
+  background-color: #000000;
   text-align: center;
   padding: 1.75rem 0 1.75rem;
   text-shadow: 0 0 1.5rem #000000;
   border-bottom: 1px solid #000;
-  background-image: linear-gradient(to top right, transparent 2%, #ff0000aa 5%, #ffff00aa 8%, #00ff00aa 11%, #0000ffaa 14%, #ff00ffaa 17%, transparent 20%, transparent 80%, #ff0000aa 83%, #ffff00aa 86%, #00ff00aa 89%, #0000ffaa 92%, #ff00ffaa 95%, transparent 98%);
-  box-shadow: 0 1rem 0.1rem 0.1rem #00000044;
+  width: 100%;
 }
 
-/* line 31, ../../../JS Array/scss/_classes.scss */
-.body-text-medium-topshadow {
+/* line 32, ../../../JS Array/scss/_classes.scss */
+.body-text-medium {
   font-size: 1.125rem;
   font-weight: 350;
   color: #000011;
@@ -46,6 +46,22 @@
 /* line 1, ../../../JS Array/scss/_header.scss */
 #header-top {
   height: fit-content;
+  overflow: hidden;
+}
+
+/* line 8, ../../../JS Array/scss/_header.scss */
+#header-top #header-wrapper #header-title-top {
+  height: calc((100vw * 0.5625));
+}
+
+/* line 12, ../../../JS Array/scss/_header.scss */
+#header-top #header-wrapper #header-title-top #header-title-wrapper {
+  width: 80%;
+  position: absolute;
+  top: calc((100vw * 0.5625) * 0.3);
+  left: 10%;
+  z-index: 1;
+  overflow: visible;
 }
 
 /* line 1, ../../../JS Array/scss/_addr-mngr.scss */

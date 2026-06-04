@@ -1,5 +1,23 @@
 #header-top {
 
     height: fit-content;
+    overflow: hidden;
     
+    #header-wrapper {
+
+        #header-title-top {
+
+            height: calc((100vw * 0.5625));
+
+            #header-title-wrapper {
+                
+                width: 80%;
+                position: absolute;
+                top: calc((100vw * 0.5625) * 0.3);
+                left: 10%;
+                z-index: 1;
+                overflow: visible;
+            }
+        }
+    }
 }
