@@ -1,13 +1,13 @@
 #address-manager-top {
 
+    position: absolute;
     height: fit-content;
-    padding: 2rem 0;
     align-items: center;
     background-color: rgb(137, 140, 168);
 
     #address-manager-wrapper {
 
-        width: 100%;
+        width: 100vw;
         padding: 0 0.75rem;
         text-align: center;
 

@@ -2,7 +2,7 @@
 * {
   box-sizing: border-box;
   font-family: "roboto", serif;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 /* line 3, ../../../JS Array/scss/_classes.scss */
@@ -31,7 +31,7 @@
   width: 100%;
 }
 
-/* line 31, ../../../JS Array/scss/_classes.scss */
+/* line 32, ../../../JS Array/scss/_classes.scss */
 .body-text-medium {
   font-size: 1.125rem;
   font-weight: 350;
@@ -40,6 +40,12 @@
   text-align: center;
   padding: 1.75rem 0.5rem 0.75rem;
   text-shadow: 0.1rem 0.1rem 0.07rem #00000033;
+}
+
+/* line 43, ../../../JS Array/scss/_classes.scss */
+.body-text-small {
+  font-size: 0.875rem;
+  text-shadow: none;
 }
 
 /* line 1, ../../../JS Array/scss/_header.scss */
@@ -51,9 +57,10 @@
 /* line 8, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-title-top {
   height: calc((100vw * 0.5625));
+  overflow: hidden;
 }
 
-/* line 12, ../../../JS Array/scss/_header.scss */
+/* line 13, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-title-top #header-title-wrapper {
   width: 80%;
   position: absolute;
@@ -65,15 +72,15 @@
 
 /* line 1, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top {
+  position: absolute;
   height: fit-content;
-  padding: 2rem 0;
   align-items: center;
   background-color: #898ca8;
 }
 
 /* line 8, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper {
-  width: 100%;
+  width: 100vw;
   padding: 0 0.75rem;
   text-align: center;
 }
@@ -203,7 +210,7 @@
 /* line 76, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset #image-manager-orientation-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr 3fr 1fr 1fr 2fr 1fr;
+  grid-template-columns: 0.7fr 1fr 3fr 1fr 1fr 2fr 1fr;
   grid-template-rows: 1fr;
   padding-top: 1rem;
   padding-bottom: 0.625rem;

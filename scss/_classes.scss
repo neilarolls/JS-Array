@@ -15,6 +15,7 @@
 }
 
 .header-title {
+
     position: absolute;
     font-size: 3rem;
     font-weight: 450;
@@ -37,4 +38,10 @@
     text-align: center;
     padding: 1.75rem 0.5rem 0.75rem;
     text-shadow: (0.1rem 0.1rem 0.07rem #00000033);
+}
+
+.body-text-small {
+
+    font-size: 0.875rem;
+    text-shadow: none;
 }
