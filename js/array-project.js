@@ -1,27 +1,6 @@
 $(document).ready( function() {
 
-    // getBannerHeight() returns a banner height depending on viewport height.
-    // 150px base, 200px @ 600 and 250px @ 720
-
-    // function getBannerHeight() {
-
-    //     let currentHeight = window.innerHeight;
-
-    //     if (currentHeight < 600) {
-    //         return 150;
-    //     } else if (currentHeight < 720) {
-    //         return 200;
-    //     } else {
-    //         return 250;
-    //     }
-    // }
-
-    // This section loads the first banner image - this involves adding an img element
-    // to the banner with appropriate sizing and effects parameters in the Lorum Picsum
-    // url. I've given the header containers absolute positioning and adjust the text
-    // body top value here as well.
-
-    
+    // Initialise array
     const imageLinks = Array.from([
 
         {
@@ -42,19 +21,32 @@ $(document).ready( function() {
     ]);
 
 
+// -------------------------------------------------------------------------------------
+// This section loads and swaps the banner image - this involves adding/removing an img
+// element with appropriate sizing and effects parameters in the Lorum Picsum url.
+// I've given all the containers absolute positioning and adjust all sections' top
+// values here too.
+// -------------------------------------------------------------------------------------
+
+
     const firstHeaderTitle = document.getElementById("header-title-top");
     const firstHeaderIntro = document.getElementById("header-intro-top");
     const firstAddressTop = document.getElementById("address-manager-top");
     const firstImageMngrTop = document.getElementById("image-manager-top");
     const firstGalleryTop = document.getElementById("gallery-top");
     const firstCurrentWidth = window.innerWidth;
-
+    const maxBannerHeight = 300;
     let firstCalculatedHeight = Math.ceil(firstCurrentWidth * 0.5625);
-    let firstIntroHeight = firstHeaderIntro.clientHeight;
-    let firstAddressHeight = firstAddressTop.clientHeight;
-    let firstImgMngrHeight = firstImageMngrTop.clientHeight;
 
+    // if (firstCalculatedHeight > maxBannerHeight) {
+    //     firstCalculatedHeight = maxBannerHeight;
+    // }
+
+    const firstIntroHeight = firstHeaderIntro.clientHeight;
+    const firstAddressHeight = firstAddressTop.clientHeight;
+    const firstImgMngrHeight = firstImageMngrTop.clientHeight;
     let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
+    let selectedAddress = "";
 
     $(firstHeaderIntro).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight}px`});
 
@@ -64,7 +56,11 @@ $(document).ready( function() {
 
     $(firstGalleryTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
 
-    firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+    firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+
+
+// Positions the sections, calculates a new image seed, then fades the current image
+// before loading the new image. Finally the new image seed replaces the old one.
 
     function changeHeader() {
 
@@ -76,6 +72,11 @@ $(document).ready( function() {
         const currentWidth = window.innerWidth;
         
         let calculatedHeight = Math.ceil(currentWidth * 0.5625);
+
+        // if (calculatedHeight > maxBannerHeight) {
+        //     calculatedHeight = maxBannerHeight;
+        // }
+
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = imageMngrTop.clientHeight;
@@ -94,18 +95,20 @@ $(document).ready( function() {
 
             $("#banner-image").remove();
 
-            headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+            headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
             currentBannerImageSeed = imageSeed;
 
         });
     }
-    
-    const changeHeaderImage = setInterval(changeHeader, 5000);
+
+    const changeHeaderImage = setInterval(changeHeader, 15000);
+
+// This function handles updating the top positions of the sections and the
+// size of the banner image as the display changes size or orientation.
 
     function updateHeader() {
 
-        // const headerTitle = document.getElementById("header-title-top");
         const headerIntro = document.getElementById("header-intro-top");
         const addressTop = document.getElementById("address-manager-top");
         const imageMngrTop = document.getElementById("image-manager-top");
@@ -113,10 +116,14 @@ $(document).ready( function() {
         const currentWidth = window.innerWidth;
 
         let calculatedHeight = Math.ceil(currentWidth * 0.5625);
+
+        // if (calculatedHeight > maxBannerHeight) {
+        //     calculatedHeight = maxBannerHeight;
+        // }
+
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = imageMngrTop.clientHeight;
-        // let galleryHeight = galleryTop.clientHeight;
 
 
         $(headerIntro).css({"position":"absolute","left":"0","top":`${calculatedHeight}px`});
@@ -127,56 +134,137 @@ $(document).ready( function() {
 
         $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
 
-        $("#banner-image").css({"src":`https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight} style="position:absolute;top:0;left:0;z-index:0;width:100vw;">`});
+        $("#banner-image").css({"src":`https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp`, "style":"position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;"});
 
     }
 
     window.addEventListener('resize', updateHeader);
 
-    // This section adds email addresses to a list, stored in an array of objects.
-    // The objects have the email address and an object with strings representing the
-    // pictures assigned to it. On loading there is a button to add an address,
-    // only valid addresses are allowed. In the scrollable list of addresses clicking
-    // on one selects it, changing the current address which triggers the gallery to update.
+
+// -------------------------------------------------------------------------------------
+// This section adds email addresses to a list, stored in an array of objects.
+// The objects have the email address and an object with strings representing the
+// pictures assigned to it. On loading there is a button to add an address, only
+// valid and unique addresses are allowed. In the scrollable list of addresses clicking
+// on one selects it, changing the current address which triggers the gallery to update.
+// -------------------------------------------------------------------------------------
 
 
-    console.log(imageLinks);
+    // Checks the address passed to it isn't already a button, hence not unique.
+    // Returns true if there is no match.
+
+    function isUnique(idString) {
+
+        let test = document.getElementById(idString);
+
+        if (test) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     // Adds each email address as a button in #address-manager-list-wrapper.
 
-    function displayLinks() {
+    function displayLinks(update = "new") {
 
+        // Get the address list wrapper.
         const addressList = document.getElementById("address-manager-list-wrapper");
 
-        // If an email exists in the array...
+        // If an address exists in the array...
         if (imageLinks.length > 0) {
 
-            // Get the number of objects within the array.
+            // Get the number of objects in the array.
             let arrayLength = imageLinks.length;
 
-            // Iterate through the objects and create a button for each.
-            for (let i = 0; i < arrayLength; i++) {
+            let addressText = "";
+            let imageCount = 0;
+            let buttonText = "";
 
-                // Gets the address and stores it.
-                let addressText = imageLinks[i]["address"];
+            if (update === "new") {
 
-                // Gets the number of images attached to the address.
-                let imageCount = Object.keys(imageLinks[i].images).length;
+                // Iterate through the objects and create a button for each.
 
-                // Builds the string for the button text.
-                let buttonText = addressText + " (" + `${imageCount})`;
+                for (let i = 0; i < arrayLength; i++) {
 
-                // Inserts the html at the end of the div. The div is given a unique id containing the email address.
-                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="${addressText}"><button type="button">${buttonText}</button></div>`);
+                    // Gets the address and stores it.
+                    addressText = imageLinks[i]["address"];
 
-                console.log(addressText);
-                console.log(imageCount);
-                console.log(buttonText);
+                    // Gets the number of images attached to the address.
+                    imageCount = Object.keys(imageLinks[i].images).length;
+
+                    // Builds the string for the button text.
+                    buttonText = addressText + " (" + `${imageCount})`;
+
+                    // Inserts the html at the end of the div. The div is given a unique id containing the email address. The button gets only the email address as an id.
+                    // This means an event handler on the button returns the email address string which is the key for the array object it represents. selectedAddress can
+                    // be set directly to this value after making the visual change showing button selection.
+                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button id="${addressText}" type="button">${buttonText}</button></div>`);
+
+                    // console.log(addressText);
+                    // console.log(imageCount);
+                    // console.log(buttonText);
+
+                }
+
+            } else if (update === "addaddress") {
+
+                    // Creates a button for a newly added address.
+
+
+                    // Gets the last address in the array and stores it.
+                    addressText = imageLinks[arrayLength - 1]["address"];
+
+                    // Builds the string for the button text.
+                    buttonText = addressText + " (0)";
+
+                    // Inserts the html at the end of the div. (see above also)
+                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button id="${addressText}" type="button">${buttonText}</button></div>`);
+
             }
         }
     }
 
-    displayLinks();
+    displayLinks("new");
+
+    // This sections initiates an event listener on the form to accept new email addresses.
+    // It then adds a new object to the imageLinks array with the supplied email address
+    // and no images attached.
+
+    // Get Submit button.
+    const formElement = document.getElementById("address-manager-form");
+
+    // Initiate event listener.
+    formElement.addEventListener("submit", function(e) {
+
+        // Stop the automated submission and refresh.
+        e.preventDefault();
+
+        // Get email string from event object.
+        const emailValue = e.target["email-address"].value;
+
+        // Add the address to the imageLinks array only if it
+        // is not an existing address. Otherwise display an
+        // error message.
+
+        if (isUnique(emailValue)) {
+
+            // Creates the new entry in imageLinks.
+            imageLinks.push({"address":emailValue});
+
+            // Updates the address display.
+            displayLinks("addaddress");
+
+        } else {
+
+            // Show an alert dialogue.
+            window.alert(["That address has already been entered."]);
+        }
+
+        // Reset email input
+        formElement.reset();
+
+    });
 });
 
 

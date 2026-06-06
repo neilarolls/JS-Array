@@ -31,18 +31,18 @@
   width: 100%;
 }
 
-/* line 32, ../../../JS Array/scss/_classes.scss */
+/* line 31, ../../../JS Array/scss/_classes.scss */
 .body-text-medium {
   font-size: 1.125rem;
   font-weight: 350;
   color: #000011;
   background-color: #fff;
   text-align: center;
-  padding: 1.75rem 0.5rem 0.75rem;
+  padding: 1.75rem 0.5rem 1.75rem;
   text-shadow: 0.1rem 0.1rem 0.07rem #00000033;
 }
 
-/* line 43, ../../../JS Array/scss/_classes.scss */
+/* line 42, ../../../JS Array/scss/_classes.scss */
 .body-text-small {
   font-size: 0.875rem;
   text-shadow: none;
@@ -70,6 +70,19 @@
   overflow: visible;
 }
 
+/* line 24, ../../../JS Array/scss/_header.scss */
+#header-top #header-wrapper #header-intro-top {
+  width: 100vw;
+  justify-items: center;
+}
+
+/* line 29, ../../../JS Array/scss/_header.scss */
+#header-top #header-wrapper #header-intro-top #header-intro-wrapper {
+  min-width: 280px;
+  max-width: 600px;
+  text-align: center;
+}
+
 /* line 1, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top {
   position: absolute;
@@ -81,7 +94,7 @@
 /* line 8, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper {
   width: 100vw;
-  padding: 0.75rem;
+  padding: 0.75rem 0;
   text-align: center;
 }
 
@@ -107,6 +120,7 @@
 
 /* line 33, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-email-input input {
+  padding: 0.3rem 0.5rem;
   height: 2rem;
   font-size: 1rem;
   outline: none;
@@ -115,25 +129,25 @@
   align-self: center;
 }
 
-/* line 43, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 44, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-submit-button {
   grid-row-start: 2;
   grid-row-end: 3;
   border: 1px solid #666666;
   border-radius: 0.35rem;
   width: 60%;
+  max-width: 14rem;
   height: 2rem;
   align-self: center;
 }
 
-/* line 60, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 62, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-list-wrapper {
   width: 100%;
   height: 16rem;
   padding: 1rem 0;
   background-color: white;
   color: #000011;
-  border-radius: 0.2rem;
 }
 
 /* line 1, ../../../JS Array/scss/_img-mngr.scss */
@@ -214,7 +228,7 @@
 /* line 76, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-controls #image-manager-controls-orientation fieldset #image-manager-orientation-buttons {
   display: grid;
-  grid-template-columns: 0.7fr 1fr 3fr 1fr 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr 10fr 1fr 1fr 3fr 1fr;
   grid-template-rows: 1fr;
   padding-top: 1rem;
   padding-bottom: 0.625rem;

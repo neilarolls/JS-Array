@@ -8,7 +8,7 @@
     #address-manager-wrapper {
 
         width: 100vw;
-        padding: 0.75rem;
+        padding: 0.75rem 0;
         text-align: center;
 
         #address-manager-input {
@@ -31,6 +31,7 @@
                         grid-row-end: 2;
 
                         input {
+                            padding: 0.3rem 0.5rem;
                             height: 2rem;
                             font-size: 1rem;
                             outline: none;
@@ -47,6 +48,7 @@
                         border: 1px solid rgb(102, 102, 102);
                         border-radius: 0.35rem;
                         width: 60%;
+                        max-width: 14rem;
                         height: 2rem;
                         align-self: center;
 
@@ -64,8 +66,6 @@
             padding: 1rem 0;
             background-color: white;
             color: #000011;
-            border-radius: 0.2rem;
-
         }
     }
 }

@@ -20,5 +20,18 @@
                 overflow: visible;
             }
         }
+
+        #header-intro-top {
+
+            width: 100vw;
+            justify-items: center;
+
+            #header-intro-wrapper {
+
+                min-width: 280px;
+                max-width: 600px;
+                text-align: center;
+            }
+        }
     }
 }

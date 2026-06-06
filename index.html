@@ -32,7 +32,7 @@
               <div id="header-title-wrapper"><span id="header-title-text">WELCOME</span></div>
             </div>
             <div id="header-intro-top">
-              <div id="header-intro-wrapper" class="body-text-medium"><span id="header-intro-text">This web page displays random images from Lorem Picsum.<br><br>It keeps a list of email addresses that you have entered and allows you to assign any number of images to each email address.<br><br>The image panel displays the current random image with options to select size and orientation and a button to assign the image to the currently selected email address. Images attached to each address are displayed in the gallery below.<br><br>This project demonstrates the use of arrays in JavaScript.<br><br>To begin, enter a valid email address below.<br><br><em><strong class="body-text-small">( Note: please do not enter live email addresses into this demo! )</strong></em></span></div>
+              <div id="header-intro-wrapper" class="body-text-medium"><span id="header-intro-text">This web page displays random images from Lorem Picsum.<br><br>It keeps a list of email addresses that you have entered and allows you to assign any number of images to each email address.<br><br>The image panel displays the current random image with a button to toggle greyscale, a blur level slider and a button to assign the image to the currently selected email address. Images attached to each address are displayed in the gallery.<br><br>This project demonstrates the use of arrays in JavaScript.<br><br>To begin, enter a valid email address below.<br><br><em><strong class="body-text-small">( Note: please do not enter live email addresses into this demo! )</strong></em></span></div>
             </div>
           </div>
 
@@ -45,10 +45,10 @@
             <div id="address-manager-input">
               <div id="address-manager-form-wrapper">
 
-                <form id="address-manager-form" action="#" method="get" onsubmit="event.preventDefault();">
+                <form id="address-manager-form" action="#" method="get">
                   <div id="address-manager-email-input" class="reqd-field email-input">
                     <label for="email-address" class="visually-hidden">Email address</label>
-                    <input pattern="([^@\s]+@[^@\s]+\.[^@\s]+)" title="Example: name123@anywhere.com" type="email" id="emailaddress" name="email-address" placeholder="*email address..." required minlength="7" maxlength="64" size="26" autocomplete="off">
+                    <input pattern="([^@\s]+@[^@\s]+\.[^@\s]+)" title="Example: user@domain.com" type="email" id="email-address-input" name="email-address" placeholder="email address..." required minlength="7" maxlength="64" size="26" autocomplete="off">
                   </div>
                   <button id="address-manager-submit-button" type="submit" form="address-manager-form">
                     ADD TO LIST
