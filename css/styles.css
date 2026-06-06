@@ -22,7 +22,7 @@
 .header-title {
   position: absolute;
   font-size: 3rem;
-  font-weight: 450;
+  font-weight: 250;
   color: #fff;
   background-color: #000000;
   text-align: center;
@@ -31,18 +31,24 @@
   width: 100%;
 }
 
-/* line 31, ../../../JS Array/scss/_classes.scss */
+@media (min-width: 768px) {
+  /* line 17, ../../../JS Array/scss/_classes.scss */
+  .header-title {
+    font-size: calc((100vw / 768px) + 32px);
+  }
+}
+
+/* line 36, ../../../JS Array/scss/_classes.scss */
 .body-text-medium {
   font-size: 1.125rem;
   font-weight: 350;
   color: #000011;
   background-color: #fff;
   text-align: center;
-  padding: 1.75rem 0.5rem 1.75rem;
   text-shadow: 0.1rem 0.1rem 0.07rem #00000033;
 }
 
-/* line 42, ../../../JS Array/scss/_classes.scss */
+/* line 46, ../../../JS Array/scss/_classes.scss */
 .body-text-small {
   font-size: 0.875rem;
   text-shadow: none;
@@ -64,7 +70,7 @@
 #header-top #header-wrapper #header-title-top #header-title-wrapper {
   width: 80%;
   position: absolute;
-  top: calc((100vw * 0.5625) * 0.3);
+  top: calc((100vw * 0.5625) * 0.38);
   left: 10%;
   z-index: 1;
   overflow: visible;
@@ -78,6 +84,7 @@
 
 /* line 29, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-intro-top #header-intro-wrapper {
+  padding: 1.75rem 0.5rem 1.75rem;
   min-width: 280px;
   max-width: 600px;
   text-align: center;

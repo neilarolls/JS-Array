@@ -6,20 +6,39 @@ $(document).ready( function() {
         {
             "address":    "random@company.com",
             "images": {
-                "url1":   "https://picsum.photos/seed/68416414/500/280",
-                "url2":   "https://picsum.photos/seed/07235622/500/280"
+                "image-1": {
+
+                    "url":          "https://picsum.photos/seed/68416414/500/280",
+                    "blur-effect":  "?blur=3"
+                }
+                ,
+                "image-2": {
+
+                    "url":          "https://picsum.photos/seed/07235622/500/280",
+                    "greyscale-effect":  "?grayscale"
+                }
             }
         }
         ,
         {
             "address":    "info@institution.gov",
             "images": {
-                "url1":   "https://picsum.photos/seed/68713524/500/280",
-                "url2":   "https://picsum.photos/seed/68435354/500/280"
+                "image-1": {
+
+                    "url":          "https://picsum.photos/seed/68713524/500/280",
+                    "blur-effect":  "?blur=1"
+                }
+                ,
+                "image-2": {
+
+                    "url":          "https://picsum.photos/seed/68435354/500/280"
+                }
             }
+
         }
     ]);
 
+    console.log(imageLinks);
 
 // -------------------------------------------------------------------------------------
 // This section loads and swaps the banner image - this involves adding/removing an img
@@ -109,6 +128,7 @@ $(document).ready( function() {
 
     function updateHeader() {
 
+        const titleText = document.getElementById("header-title-wrapper");
         const headerIntro = document.getElementById("header-intro-top");
         const addressTop = document.getElementById("address-manager-top");
         const imageMngrTop = document.getElementById("image-manager-top");
@@ -125,6 +145,9 @@ $(document).ready( function() {
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = imageMngrTop.clientHeight;
 
+        const newFontSize = (currentWidth / 768) + 2;
+
+        $(titleText).css({"font-size":`${newFontSize}rem`});
 
         $(headerIntro).css({"position":"absolute","left":"0","top":`${calculatedHeight}px`});
 
@@ -150,7 +173,7 @@ $(document).ready( function() {
 // -------------------------------------------------------------------------------------
 
 
-    // Checks the address passed to it isn't already a button, hence not unique.
+    // Checks if the address passed to it is already a button, hence not unique.
     // Returns true if there is no match.
 
     function isUnique(idString) {
@@ -209,7 +232,7 @@ $(document).ready( function() {
 
             } else if (update === "addaddress") {
 
-                    // Creates a button for a newly added address.
+                    // Creates a button for a newly added address...
 
 
                     // Gets the last address in the array and stores it.
@@ -228,8 +251,8 @@ $(document).ready( function() {
     displayLinks("new");
 
     // This sections initiates an event listener on the form to accept new email addresses.
-    // It then adds a new object to the imageLinks array with the supplied email address
-    // and no images attached.
+    // When an address is submitted the event listener adds a new object to the imageLinks
+    // array with the supplied email address and no images attached.
 
     // Get Submit button.
     const formElement = document.getElementById("address-manager-form");
