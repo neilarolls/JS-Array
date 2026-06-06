@@ -3,12 +3,12 @@
     position: absolute;
     height: fit-content;
     align-items: center;
-    background-color: rgb(137, 140, 168);
+    background-color: rgb(79, 118, 177);
 
     #address-manager-wrapper {
 
         width: 100vw;
-        padding: 0 0.75rem;
+        padding: 0.75rem;
         text-align: center;
 
         #address-manager-input {
@@ -21,11 +21,12 @@
                     
                     display: grid;
                     grid-template-columns: 1fr;
-                    grid-template-rows: 4fr 2fr 6fr;
+                    grid-template-rows: 1fr 1fr;
                     justify-items: center;
 
                     #address-manager-email-input {
 
+                        padding: 0.75rem 0;
                         grid-row-start: 1;
                         grid-row-end: 2;
 
@@ -34,16 +35,20 @@
                             font-size: 1rem;
                             outline: none;
                             border: 1px solid rgb(102, 102, 102);
-                            border-radius: 0.2rem;
+                            border-radius: 0.35rem;
+                            align-self: center;
                         }
                     }
 
                     #address-manager-submit-button {
 
-                        grid-row-start: 3;
-                        grid-row-end: 4;
+                        grid-row-start: 2;
+                        grid-row-end: 3;
                         border: 1px solid rgb(102, 102, 102);
-                        border-radius: 0.2rem;
+                        border-radius: 0.35rem;
+                        width: 60%;
+                        height: 2rem;
+                        align-self: center;
 
                     }
 
@@ -56,11 +61,11 @@
             
             width: 100%;
             height: 16rem;
-            padding-top: 1rem;
-            margin-top: 0.5rem;
+            padding: 1rem 0;
             background-color: white;
             color: #000011;
-            border-top: 0.67px solid #000011;
+            border-radius: 0.2rem;
+
         }
     }
 }

@@ -21,6 +21,26 @@ $(document).ready( function() {
     // url. I've given the header containers absolute positioning and adjust the text
     // body top value here as well.
 
+    
+    const imageLinks = Array.from([
+
+        {
+            "address":    "random@company.com",
+            "images": {
+                "url1":   "https://picsum.photos/seed/68416414/500/280",
+                "url2":   "https://picsum.photos/seed/07235622/500/280"
+            }
+        }
+        ,
+        {
+            "address":    "info@institution.gov",
+            "images": {
+                "url1":   "https://picsum.photos/seed/68713524/500/280",
+                "url2":   "https://picsum.photos/seed/68435354/500/280"
+            }
+        }
+    ]);
+
 
     const firstHeaderTitle = document.getElementById("header-title-top");
     const firstHeaderIntro = document.getElementById("header-intro-top");
@@ -56,8 +76,6 @@ $(document).ready( function() {
         const currentWidth = window.innerWidth;
         
         let calculatedHeight = Math.ceil(currentWidth * 0.5625);
-        console.log(currentWidth);
-        console.log(calculatedHeight);
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = imageMngrTop.clientHeight;
@@ -115,29 +133,50 @@ $(document).ready( function() {
 
     window.addEventListener('resize', updateHeader);
 
+    // This section adds email addresses to a list, stored in an array of objects.
+    // The objects have the email address and an object with strings representing the
+    // pictures assigned to it. On loading there is a button to add an address,
+    // only valid addresses are allowed. In the scrollable list of addresses clicking
+    // on one selects it, changing the current address which triggers the gallery to update.
+
+
+    console.log(imageLinks);
+
+    // Adds each email address as a button in #address-manager-list-wrapper.
+
+    function displayLinks() {
+
+        const addressList = document.getElementById("address-manager-list-wrapper");
+
+        // If an email exists in the array...
+        if (imageLinks.length > 0) {
+
+            // Get the number of objects within the array.
+            let arrayLength = imageLinks.length;
+
+            // Iterate through the objects and create a button for each.
+            for (let i = 0; i < arrayLength; i++) {
+
+                // Gets the address and stores it.
+                let addressText = imageLinks[i]["address"];
+
+                // Gets the number of images attached to the address.
+                let imageCount = Object.keys(imageLinks[i].images).length;
+
+                // Builds the string for the button text.
+                let buttonText = addressText + " (" + `${imageCount})`;
+
+                // Inserts the html at the end of the div. The div is given a unique id containing the email address.
+                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="${addressText}"><button type="button">${buttonText}</button></div>`);
+
+                console.log(addressText);
+                console.log(imageCount);
+                console.log(buttonText);
+            }
+        }
+    }
+
+    displayLinks();
 });
 
-// This section adds email addresses to a list, stored in an array of objects.
-// The objects have the email address and an array of strings representing the
-// pictures assigned to it. On loading there is a button to add an address,
-// only valid addresses are allowed. In the scrollable list of addresses clicking
-// on one selects it, changing the current address which triggers the gallery to update.
-
-
-const imageLinks = Array.from([
-
-  {
-
-    address: "random@company.com",
-    images: [
-      {
-        url1: "https://picsum.photos/seed/68416414/500/280",
-        url2: "https://picsum.photos/seed/07235622/500/280"
-      }
-    ]
-  }
-
-]);
-
-console.log(imageLinks);
 
