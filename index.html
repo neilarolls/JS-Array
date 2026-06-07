@@ -68,36 +68,22 @@
 
         <div id="image-manager-top"><!-- IMAGE MANAGER -->
           <div id="image-manager-wrapper">
-            <div id="image-manager-controls">
-              <form id="image-manager-controls-size" action="#" onsubmit="event.preventDefault();">
+            <div id="image-manager-controls-wrapper">
+
+              <form id="image-manager-controls" action="#" onsubmit="event.preventDefault();">
                 <fieldset>
-                  <legend>SELECT IMAGE SIZE:</legend>
-                  <div id="image-manager-size-buttons">
-                    <input type="radio" id="image-small-radiobutton" name="image-size" value="small"/>
-                    <label for="image-small-radiobutton">Small</label>
-
-                    <input checked type="radio" id="image-medium-radiobutton" name="image-size" value="medium"/>
-                    <label for="image-medium-radiobutton">Medium</label>
-
-                    <input type="radio" id="image-large-radiobutton" name="image-size" value="large"/>
-                    <label for="image-large-radiobutton">Large</label>
+                  <legend>SELECT EFFECTS:</legend>
+                  <div id="image-manager-greyscale-button">
+                    <input class="toggle-button" type="button" id="image-greyscale-toggle" name="image-greyscale-toggle" value=""/>
+                    <label id="greyscale-toggle-label" for="image-greyscale-toggle">GREYSCALE</label>
+                  </div>
+                  <div id="image-manager-blur-slider">
+                    <input class="slider" type="range" id="blur-slider" name="blur-slider" min="0" max="10" step="1" value="0"/>
+                    <label id="blur-slider-label" for="blur-slider">BLUR</label>
                   </div>
                 </fieldset>
               </form>
-              <form id="image-manager-controls-orientation" action="#" onsubmit="event.preventDefault();">
-                <fieldset>
-                  <legend>SELECT ORIENTATION:</legend>
-                  <div id="image-manager-orientation-buttons">
 
-                    <input checked type="radio" id="image-landscape-radiobutton" name="image-orientation" value="landscape"/>
-                    <label id="landscape-radio-label" for="image-landscape-radiobutton">Landscape</label>
-
-                    <input type="radio" id="image-portrait-radiobutton" name="image-orientation" value="portrait"/>
-                    <label id="portrait-radio-label" for="image-portrait-radiobutton">Portrait</label>
-
-                  </div>
-                </fieldset>
-              </form>
             </div>
             <div id="image-manager-display"></div>
           </div>

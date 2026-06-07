@@ -62,10 +62,16 @@
         #address-manager-list-wrapper {
             
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             height: 16rem;
             padding: 1rem 0;
             background-color: white;
             color: #000011;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
         }
     }
 }
