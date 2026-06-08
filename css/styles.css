@@ -154,7 +154,7 @@
 /* line 8, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper {
   width: 100vw;
-  padding: 2rem 0;
+  padding: 1rem 0 2rem;
   text-align: center;
 }
 
@@ -239,12 +239,6 @@
   font-size: 1.125rem;
   font-weight: 450;
   padding: 0.625rem 0 0.625rem 0;
-}
-
-/* line 25, ../../../JS Array/scss/_img-mngr.scss */
-#image-manager-top #image-manager-wrapper #image-manager-display img {
-  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
-  border: 1px solid black;
 }
 
 /*# sourceMappingURL=styles.css.map */

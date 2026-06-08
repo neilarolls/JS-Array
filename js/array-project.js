@@ -366,19 +366,23 @@ $(document).ready( function() {
 // These refresh the image or add the current image to the selected address.
 //-------------------------------------------------------------------------------------------
 
-    // Set image dimensions. It displays a square image 90% of the page width.
-    let imageSize = Math.ceil(window.innerWidth * 0.9);
+    // Set image dimensions. It displays a 16:9 image 70% of the page width.
+    let imageWidth = Math.ceil(window.innerWidth * 0.7);
+    let imageHeight = Math.ceil(window.innerWidth * 0.39375);
 
     // Generate a new random seed.
     let currentImageManagerSeed = Math.random().toString(36).substring(2, 9);
 
-    // Get image container and header text container, plus buttons.
-    const imageContainer = document.getElementById("image-manager-display");
+    // Get image containers and header text container, plus buttons.
+    const imageWrapper = document.getElementById("image-wrapper");
     const imageContainerHeader = document.getElementById("image-manager-header-bar");
     const refreshButton = document.getElementById("image-manager-refresh-button-wrapper");
 
     // Insert image element into the image container.
-    imageContainer.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageSize}/${imageSize}.webp">`);
+    imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageWidth}/${imageHeight}.webp">`);
+
+    // Make the container match the image size.
+    $(imageWrapper).css({"width":`${imageWidth + 8}px`,"height":`${imageHeight + 8}px`});
 
     // Get image element.
     let currentImageElement = document.getElementById("current-random-image");
@@ -391,7 +395,7 @@ $(document).ready( function() {
     // I've also co-opted it to maintain a consistent position for the refresh and assign buttons.
     const imageManagerSelectedUpdate = setInterval( function () {
 
-        // The IMDisplay flag is set when a button is selected in the address manager.
+        // The updateIMDisplay flag is set when a button is selected in the address manager.
         if (updateIMDisplay) {
             
             imageContainerHeader.textContent = "";
@@ -418,17 +422,21 @@ $(document).ready( function() {
         // Stop the automated behaviour.
         e.preventDefault();
 
-        // Set image dimensions. It displays a square image 90% of the page width.
-        let newImageSize = Math.ceil(window.innerWidth * 0.9);
+        // Set image dimensions. It displays a 16:9 image 70% of the page width.
+        let newImageWidth = Math.ceil(window.innerWidth * 0.7);
+        let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
+
+        // Make the container match the image size.
+        $(imageWrapper).css({"width":`${newImageWidth + 8}px`,"height":`${newImageHeight + 8}px`});
 
         // Generate a new random seed.
         let newImageManagerSeed = Math.random().toString(36).substring(2, 9);
 
-        // Add new image element with new seed.
-        imageContainer.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageSize}/${newImageSize}.webp">`);
-
         // Remove the current image element from the display container.
         $(currentImageElement).remove();
+
+        // Add new image element with new seed.
+        imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
 
         // Update global variables.
         currentImageElement = document.getElementById("current-random-image");
