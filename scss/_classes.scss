@@ -37,10 +37,10 @@
 
     font-size: 1.125rem;
     font-weight: 350;
-    color: #000011;
+    color: #000011aa;
     background-color: #fff;
     text-align: center;
-    text-shadow: (0.1rem 0.1rem 0.07rem #00000033);
+    text-shadow: (0.07rem 0.07rem 0.1rem #00000066);
 }
 
 .body-text-small {
@@ -60,6 +60,7 @@
     border: 2px solid #336baa;
     border-radius: 0.5rem;
     margin: 0.625rem;
+    letter-spacing: -1px;
 }
 
 .btn-selected {
@@ -74,19 +75,43 @@
     border-radius: 0.5rem;
     margin: 0.625rem;
     box-shadow: 0 0 0.5rem #11111188;
+    letter-spacing: -1px;
 }
 
-.toggle-button {
+.refresh-button {
+    position: absolute;
+    color: transparent;
+    background-color: transparent;
+    display: block;
+
+
+    button {
+
+        border: none;
+        color: transparent;
+        background-color: transparent;
+        filter: drop-shadow( 0 0 0.05rem #000000);
+
+        img {
+
+        color: transparent;
+        background-color: transparent;
+
+        }
+    }
+
+}
+// .toggle-button {
     
-    border: 3px solid rgb(21, 46, 92);
-    border-radius: 1rem;
-    background-color: white;
-}
+//     border: 3px solid rgb(21, 46, 92);
+//     border-radius: 1rem;
+//     background-color: white;
+// }
 
-.slider {
+// .slider {
 
-    font-size: 1.5rem;
-    width: 15rem;
-    height: 100%;
-}
+//     font-size: 1.5rem;
+//     width: 15rem;
+//     height: 100%;
+// }
 

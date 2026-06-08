@@ -8,7 +8,7 @@ $(document).ready( function() {
             "images": {
                 "image-1": {
 
-                    "url":          "https://picsum.photos/seed/68416414/500/280",
+                    "url":          "https://picsum.photos/seed/98416414/500/280",
                     "blur-effect":  "?blur=3"
                 }
                 ,
@@ -31,7 +31,7 @@ $(document).ready( function() {
                 ,
                 "image-2": {
 
-                    "url":          "https://picsum.photos/seed/68435354/500/280"
+                    "url":          "https://picsum.photos/seed/38435354/500/280"
                 }
             }
 
@@ -54,32 +54,23 @@ $(document).ready( function() {
     const firstAddressTop = document.getElementById("address-manager-top");
     const firstImageMngrTop = document.getElementById("image-manager-top");
     const firstGalleryTop = document.getElementById("gallery-top");
+
     const firstCurrentWidth = window.innerWidth;
-    // const maxBannerHeight = 300;
-    let firstCalculatedHeight = Math.ceil(firstCurrentWidth * 0.5625);
-
-    // if (firstCalculatedHeight > maxBannerHeight) {
-    //     firstCalculatedHeight = maxBannerHeight;
-    // }
-
+    const firstCalculatedHeight = Math.ceil(firstCurrentWidth * 0.5625);
     const firstIntroHeight = firstHeaderIntro.clientHeight;
     const firstAddressHeight = firstAddressTop.clientHeight;
     const firstImgMngrHeight = firstImageMngrTop.clientHeight;
     const firstNewFontSize = (firstCurrentWidth / 768) + 2;
+
     let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
     let selectedAddress = "";
-
+    let updateIMDisplay = false;
 
     $(firstTitleText).css({"font-size":`${firstNewFontSize}rem`});
-
     $(firstHeaderIntro).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight}px`});
-
     $(firstAddressTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight}px`});
-
     $(firstImageMngrTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight}px`});
-
     $(firstGalleryTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
-
     firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
 
@@ -94,30 +85,19 @@ $(document).ready( function() {
         const addressTop = document.getElementById("address-manager-top");
         const imageMngrTop = document.getElementById("image-manager-top");
         const galleryTop = document.getElementById("gallery-top");
+
         const currentWidth = window.innerWidth;
-        
         let calculatedHeight = Math.ceil(currentWidth * 0.5625);
-
-        // if (calculatedHeight > maxBannerHeight) {
-        //     calculatedHeight = maxBannerHeight;
-        // }
-
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = imageMngrTop.clientHeight;
-
         const newFontSize = (currentWidth / 768) + 2;
-
-        $(titleText).css({"font-size":`${newFontSize}rem`});
-
         const imageSeed = Math.random().toString(36).substring(2, 9);
 
+        $(titleText).css({"font-size":`${newFontSize}rem`});
         $(headerIntro).css({"position":"absolute","left":"0","top":`${calculatedHeight}px`});
-
         $(addressTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight}px`});
-
         $(imageMngrTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight}px`});
-
         $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
 
         $("#banner-image").fadeOut(200, () => {
@@ -131,6 +111,7 @@ $(document).ready( function() {
         });
     }
 
+    // Call the changeHeader function every 15 seconds.
     const changeHeaderImage = setInterval(changeHeader, 15000);
 
 // This function handles updating the top positions of the sections and the
@@ -143,34 +124,25 @@ $(document).ready( function() {
         const addressTop = document.getElementById("address-manager-top");
         const imageMngrTop = document.getElementById("image-manager-top");
         const galleryTop = document.getElementById("gallery-top");
+
         const currentWidth = window.innerWidth;
-
         let calculatedHeight = Math.ceil(currentWidth * 0.5625);
-
-        // if (calculatedHeight > maxBannerHeight) {
-        //     calculatedHeight = maxBannerHeight;
-        // }
-
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = imageMngrTop.clientHeight;
-
         const newFontSize = (currentWidth / 768) + 2;
 
         $(titleText).css({"font-size":`${newFontSize}rem`});
-
         $(headerIntro).css({"position":"absolute","left":"0","top":`${calculatedHeight}px`});
-
         $(addressTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight}px`});
-
         $(imageMngrTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight}px`});
-
         $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
 
         $("#banner-image").css({"src":`https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp`, "style":"position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;"});
 
     }
 
+    // Call the updateHeader function on resize or orientation change.
     window.addEventListener('resize', updateHeader);
 
 
@@ -213,7 +185,7 @@ $(document).ready( function() {
             let addressText = "";
             let imageCount = 0;
             let buttonText = "";
-            let newButton = "";
+            let newButton;
 
             if (update === "new") {
 
@@ -221,24 +193,24 @@ $(document).ready( function() {
 
                 for (let i = 0; i < arrayLength; i++) {
 
-                    // Gets the address and stores it.
+                    // Gets the indexed address.
                     addressText = imageLinks[i]["address"];
 
                     // Gets the number of images attached to the address.
                     imageCount = Object.keys(imageLinks[i].images).length;
 
                     // Builds the string for the button text.
-                    buttonText = addressText + " <br> " + `${imageCount} images assigned`;
+                    buttonText = addressText.substring(0,16) + "...<br>" + `${imageCount} images assigned`;
 
-                    // Inserts the html at the end of the div. The div is given a unique id containing the email address. The button gets only the email address as an id.
-                    // This means an event handler on the button returns the email address string which is the key for the array object it represents. selectedAddress can
-                    // be set to this value after making the visual change showing button selection.
-                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
+                    // Inserts the html at the end of the div. The div and btn are given a unique id containing the email address.
+                    // This means an event handler on the button returns the email address string which is the key for the array object it represents.
+                    // selectedAddress is set to this value after making the visual change showing button selection.
+                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
 
                     // Gets the button just created.
                     newButton = document.getElementById(`btn${addressText}`);
 
-                    // Add event listener on new button.
+                    // Add click event listener on new button. This functions to select that button.
                     newButton.addEventListener("click", (e) => {
 
                         // Suppress any default behaviour.
@@ -266,14 +238,16 @@ $(document).ready( function() {
                             newlySelected.classList.add("btn-selected");
 
                             selectedAddress = newAddress;
+                            updateIMDisplay = true;
 
                         } else {
 
-                            // At first no buttons are selected
+                            // At first no buttons are selected so no need to deselect a button.
                             newlySelected.classList.remove("btn-not-selected");
                             newlySelected.classList.add("btn-selected");
 
                             selectedAddress = newAddress;
+                            updateIMDisplay = true;
                         }
                     });
 
@@ -288,15 +262,15 @@ $(document).ready( function() {
                 addressText = imageLinks[arrayLength - 1]["address"];
 
                 // Builds the string for the button text.
-                buttonText = addressText + " <br> 0 images assigned";
+                buttonText = addressText.substring(0,16) + "...<br>0 images assigned";
 
-                // Inserts the html at the end of the div. (see above also)
-                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
+                // Inserts the html at the end of the div. (see previous branch also)
+                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
 
                 // Gets the button just created.
                 newButton = document.getElementById(`btn${addressText}`);
 
-                // Add event listener on new button.
+                // Add click event listener on new button.
                 newButton.addEventListener("click", (e) => {
 
                     // Suppress any default behaviour.
@@ -324,6 +298,7 @@ $(document).ready( function() {
                         newlySelected.classList.add("btn-selected");
 
                         selectedAddress = newAddress;
+                        updateIMDisplay = true;
 
                     } else {
 
@@ -332,6 +307,7 @@ $(document).ready( function() {
                         newlySelected.classList.add("btn-selected");
 
                         selectedAddress = newAddress;
+                        updateIMDisplay = true;
                     }
                 });
 
@@ -341,9 +317,12 @@ $(document).ready( function() {
 
     displayLinks("new");
 
+
+    //-------------------------------------------------------------------------------------------
     // This sections initiates an event listener on the form to accept new email addresses.
     // When an address is submitted the event listener adds a new object to the imageLinks
     // array with the supplied email address and no images attached.
+    //-------------------------------------------------------------------------------------------
 
     // Get Submit button.
     const formElement = document.getElementById("address-manager-form");
@@ -357,7 +336,7 @@ $(document).ready( function() {
         // Get email string from event object.
         const emailValue = e.target["email-address"].value;
 
-        // Add the address to the imageLinks array only if it
+        // Adds the address to the imageLinks array only if it
         // is not an existing address. Otherwise display an
         // error message.
 
@@ -379,6 +358,84 @@ $(document).ready( function() {
         formElement.reset();
 
     });
+
+
+//-------------------------------------------------------------------------------------------
+// This section handles the image selection display. At the top is the current email address.
+// Below that a random image is displayed with two buttons overlaying in the top right corner.
+// These refresh the image or add the current image to the selected address.
+//-------------------------------------------------------------------------------------------
+
+    // Set image dimensions. It displays a square image 90% of the page width.
+    let imageSize = Math.ceil(window.innerWidth * 0.9);
+
+    // Generate a new random seed.
+    let currentImageManagerSeed = Math.random().toString(36).substring(2, 9);
+
+    // Get image container and header text container, plus buttons.
+    const imageContainer = document.getElementById("image-manager-display");
+    const imageContainerHeader = document.getElementById("image-manager-header-bar");
+    const refreshButton = document.getElementById("image-manager-refresh-button-wrapper");
+
+    // Insert image element into the image container.
+    imageContainer.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageSize}/${imageSize}.webp">`);
+
+    // Get image element.
+    let currentImageElement = document.getElementById("current-random-image");
+
+    // Set the header text.
+    imageContainerHeader.insertAdjacentText("beforeend",`Selected Email Address: none`);
+
+
+    // This interval timed function updates the selected email displayed in the header area.
+    // I've also co-opted it to maintain a consistent position for the refresh and assign buttons.
+    const imageManagerSelectedUpdate = setInterval( function () {
+
+        // The IMDisplay flag is set when a button is selected in the address manager.
+        if (updateIMDisplay) {
+            
+            imageContainerHeader.textContent = "";
+
+            imageContainerHeader.insertAdjacentText("beforeend",`Selected Email Address: ${selectedAddress}`);
+
+            updateIMDisplay = false;
+
+        }
+
+        let imageWidth = document.getElementById("current-random-image").clientWidth;
+        let imageTopOffset = imageContainerHeader.offsetHeight + 20;
+        let imageRightOffset = ((window.innerWidth - imageWidth) / 2) + 16;
+
+        $(refreshButton).css({"top":`${imageTopOffset}px`});
+        $(refreshButton).css({"right":`${imageRightOffset}px`});
+
+    }, 20);
+
+    // Event listener on the refresh button which replaces the image seed 
+    // 
+    refreshButton.addEventListener("click", function (e) {
+
+        // Stop the automated behaviour.
+        e.preventDefault();
+
+        // Set image dimensions. It displays a square image 90% of the page width.
+        let newImageSize = Math.ceil(window.innerWidth * 0.9);
+
+        // Generate a new random seed.
+        let newImageManagerSeed = Math.random().toString(36).substring(2, 9);
+
+        // Add new image element with new seed.
+        imageContainer.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageSize}/${newImageSize}.webp">`);
+
+        // Remove the current image element from the display container.
+        $(currentImageElement).remove();
+
+        // Update global variables.
+        currentImageElement = document.getElementById("current-random-image");
+
+    });
+
 });
 
 
+                            // updateIMDisplay = true;

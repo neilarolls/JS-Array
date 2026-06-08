@@ -32,7 +32,7 @@
               <div id="header-title-wrapper"><span id="header-title-text">WELCOME</span></div>
             </div>
             <div id="header-intro-top">
-              <div id="header-intro-wrapper" class="body-text-medium"><span id="header-intro-text">This web page displays random images from Lorem Picsum.<br><br>It keeps a list of email addresses that you have entered and allows you to assign any number of images to each email address.<br><br>The image panel displays the current random image with a button to toggle greyscale, a blur level slider and a button to assign the image to the currently selected email address. Images attached to each address are displayed in the gallery.<br><br>This project demonstrates the use of arrays in JavaScript.<br><br>To begin, enter a valid email address below.<br><br><em><strong class="body-text-small">( Note: please do not enter live email addresses into this demo! )</strong></em></span></div>
+              <div id="header-intro-wrapper" class="body-text-medium"><span id="header-intro-text">This web page displays random images from Lorem Picsum.<br><br>It keeps a list of email addresses that you have entered and allows you to assign any number of images to each email address.<br><br>The image panel displays the current random image with a button to assign it to the currently selected email address and another to load a new random image.<br><br>Images attached to each address are displayed in the gallery.<br><br>This project demonstrates the use of arrays in JavaScript.<br><br>To begin, enter a valid email address below.<br><br><em><strong class="body-text-small">( Note: please do not enter live email addresses into this demo! )</strong></em></span></div>
             </div>
           </div>
 
@@ -68,24 +68,11 @@
 
         <div id="image-manager-top"><!-- IMAGE MANAGER -->
           <div id="image-manager-wrapper">
-            <div id="image-manager-controls-wrapper">
-
-              <form id="image-manager-controls" action="#" onsubmit="event.preventDefault();">
-                <fieldset>
-                  <legend>SELECT EFFECTS:</legend>
-                  <div id="image-manager-greyscale-button">
-                    <input class="toggle-button" type="button" id="image-greyscale-toggle" name="image-greyscale-toggle" value=""/>
-                    <label id="greyscale-toggle-label" for="image-greyscale-toggle">GREYSCALE</label>
-                  </div>
-                  <div id="image-manager-blur-slider">
-                    <input class="slider" type="range" id="blur-slider" name="blur-slider" min="0" max="10" step="1" value="0"/>
-                    <label id="blur-slider-label" for="blur-slider">BLUR</label>
-                  </div>
-                </fieldset>
-              </form>
-
+            <div id="image-manager-display">
+              <div id="image-manager-header-bar" class="body-text-medium">
+              </div>
             </div>
-            <div id="image-manager-display"></div>
+            <div class="refresh-button" id="image-manager-refresh-button-wrapper"><button title="Refresh Image" type="button"><img src="img/refresh-cw.png"></button></div>
           </div>
         </div>
 
