@@ -8,13 +8,13 @@ $(document).ready( function() {
             "images": {
                 "image-1": {
 
-                    "url":          "https://picsum.photos/seed/98416414/500/280.webp",
+                    "url":          "https://picsum.photos/seed/9841641/500/280.webp",
                     "blur-effect":  "?blur=3"
                 }
                 // ,
                 // "image-2": {
 
-                //     "url":          "https://picsum.photos/seed/07235622/500/280",
+                //     "url":          "https://picsum.photos/seed/0723562/500/280",
                 //     "greyscale-effect":  "?grayscale"
                 // }
             }
@@ -25,13 +25,13 @@ $(document).ready( function() {
             "images": {
                 "image-1": {
 
-                    "url":          "https://picsum.photos/seed/68713524/500/280.webp",
+                    "url":          "https://picsum.photos/seed/6871352/500/280.webp",
                     "blur-effect":  "?blur=1"
                 }
                 ,
                 "image-2": {
 
-                    "url":          "https://picsum.photos/seed/38435354/500/280.webp"
+                    "url":          "https://picsum.photos/seed/3843535/500/280.webp"
                 }
             }
 
@@ -59,7 +59,6 @@ $(document).ready( function() {
     const firstCalculatedHeight = Math.ceil(firstCurrentWidth * 0.5625);
     const firstIntroHeight = firstHeaderIntro.clientHeight;
     const firstAddressHeight = firstAddressTop.clientHeight;
-    const firstImgMngrHeight = firstImageMngrTop.clientHeight;
     const firstNewFontSize = (firstCurrentWidth / 768) + 2;
 
     let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
@@ -70,8 +69,11 @@ $(document).ready( function() {
     $(firstHeaderIntro).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight}px`});
     $(firstAddressTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight}px`});
     $(firstImageMngrTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight}px`});
-    $(firstGalleryTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
+
     firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+
+    const firstImgMngrHeight = firstImageMngrTop.clientHeight + (firstCurrentWidth * 0.39375) + 30;
+    $(firstGalleryTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
 
 
 // Positions the sections, calculates a new image seed, then fades the current image
@@ -554,6 +556,7 @@ $(document).ready( function() {
 
     function populateGallery () {
 
+        selectedAddress = "info@institution.gov";
         if (selectedAddress) {
 
             // Get the gallery wrapper
@@ -565,7 +568,22 @@ $(document).ready( function() {
             // Get the number of images attached to the object.
             let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
 
+            if (imagesInObject > 0) {
+
+                for (let i = 0;i < imagesInObject;i++) {
+
+                    let indexedImageSeed = imageLinks[addressIndex].images[`image-${i+1}`].url.substring(27,34);
+
+                    console.log(`>${indexedImageSeed}<`);
+
+                    // let itemString = `<div><button type="button"><img src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"></btn></div>`;
+
+                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img id="image-${i+1}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
+                }
+            }
+
         }
     }
 
+    populateGallery();
 });
