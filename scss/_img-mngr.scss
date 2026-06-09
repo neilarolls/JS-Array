@@ -12,6 +12,7 @@
             flex-wrap: wrap;
             justify-content: space-around;
             overflow: hidden;
+            padding-bottom: 1rem;
 
             #image-manager-header-bar {
 
@@ -20,6 +21,13 @@
                 font-size: 1.125rem;
                 font-weight: 450;
                 padding: 0.625rem 0 0.625rem 0;
+            }
+
+            #image-wrapper {
+
+                img {
+                    border: 1px solid black;
+                }
             }
         }
     }

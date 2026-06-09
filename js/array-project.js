@@ -11,12 +11,12 @@ $(document).ready( function() {
                     "url":          "https://picsum.photos/seed/98416414/500/280",
                     "blur-effect":  "?blur=3"
                 }
-                ,
-                "image-2": {
+                // ,
+                // "image-2": {
 
-                    "url":          "https://picsum.photos/seed/07235622/500/280",
-                    "greyscale-effect":  "?grayscale"
-                }
+                //     "url":          "https://picsum.photos/seed/07235622/500/280",
+                //     "greyscale-effect":  "?grayscale"
+                // }
             }
         }
         ,
@@ -200,12 +200,12 @@ $(document).ready( function() {
                     imageCount = Object.keys(imageLinks[i].images).length;
 
                     // Builds the string for the button text.
-                    buttonText = addressText.substring(0,16) + "...<br>" + `${imageCount} images assigned`;
+                    buttonText = addressText.substring(0,16) + "...<br>" + `${imageCount} image${imageCount!=1?`s`:""} assigned`;
 
                     // Inserts the html at the end of the div. The div and btn are given a unique id containing the email address.
                     // This means an event handler on the button returns the email address string which is the key for the array object it represents.
                     // selectedAddress is set to this value after making the visual change showing button selection.
-                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
+                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
 
                     // Gets the button just created.
                     newButton = document.getElementById(`btn${addressText}`);
@@ -265,12 +265,12 @@ $(document).ready( function() {
                 buttonText = addressText.substring(0,16) + "...<br>0 images assigned";
 
                 // Inserts the html at the end of the div. (see previous branch also)
-                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
+                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
 
                 // Gets the button just created.
                 newButton = document.getElementById(`btn${addressText}`);
 
-                // Add click event listener on new button.
+                // Add a click event listener on new button.
                 newButton.addEventListener("click", (e) => {
 
                     // Suppress any default behaviour.
@@ -311,6 +311,35 @@ $(document).ready( function() {
                     }
                 });
 
+            } else if (update === "refreshImageCounts") {
+
+                // Get the number of objects in the array.
+                let arrayLength = imageLinks.length;
+
+                // Not sure how I'd end up calling this branch with an empty array, but just in case...
+                if(arrayLength) {
+                
+                    for (let i = 0; i < arrayLength; i++) {
+
+                        // Gets the indexed address.
+                        addressText = imageLinks[i]["address"];
+
+                        // Gets the number of images attached to the address.
+                        imageCount = Object.keys(imageLinks[i].images).length;
+
+                        // Builds the string for the button text.
+                        buttonText = addressText.substring(0,16) + "...<br>" + `${imageCount} image${imageCount!=1?`s`:""} assigned`;
+
+                        // Get the indexed button.
+                        const indexedButton = document.getElementById(`btn${addressText}`);
+
+                        // Insert new string into button.
+                        indexedButton.innerHTML = `${buttonText}`;
+                    }
+                } else {
+
+                    window.alert("Tried to refresh image counts with an empty array!");
+                }
             }
         }
     }
@@ -343,7 +372,7 @@ $(document).ready( function() {
         if (isUnique(emailValue)) {
 
             // Creates the new entry in imageLinks.
-            imageLinks.push({"address":emailValue});
+            imageLinks.push({"address":emailValue,"images":{}});
 
             // Updates the address display.
             displayLinks("addaddress");
@@ -373,19 +402,17 @@ $(document).ready( function() {
     // Generate a new random seed.
     let currentImageManagerSeed = Math.random().toString(36).substring(2, 9);
 
-    // Get image containers and header text container, plus buttons.
+    // Get image containers and header text container and both buttons.
     const imageWrapper = document.getElementById("image-wrapper");
     const imageContainerHeader = document.getElementById("image-manager-header-bar");
     const refreshButton = document.getElementById("image-manager-refresh-button-wrapper");
-
-    // Insert image element into the image container.
-    imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageWidth}/${imageHeight}.webp">`);
+    const assignButton = document.getElementById("image-manager-assign-button-wrapper");
 
     // Make the container match the image size.
     $(imageWrapper).css({"width":`${imageWidth + 8}px`,"height":`${imageHeight + 8}px`});
 
-    // Get image element.
-    let currentImageElement = document.getElementById("current-random-image");
+    // Insert image element into the image container.
+    imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageWidth}/${imageHeight}.webp">`);
 
     // Set the header text.
     imageContainerHeader.insertAdjacentText("beforeend",`Selected Email Address: none`);
@@ -398,6 +425,7 @@ $(document).ready( function() {
         // The updateIMDisplay flag is set when a button is selected in the address manager.
         if (updateIMDisplay) {
             
+
             imageContainerHeader.textContent = "";
 
             imageContainerHeader.insertAdjacentText("beforeend",`Selected Email Address: ${selectedAddress}`);
@@ -406,20 +434,23 @@ $(document).ready( function() {
 
         }
 
-        let imageWidth = document.getElementById("current-random-image").clientWidth;
-        let imageTopOffset = imageContainerHeader.offsetHeight + 20;
-        let imageRightOffset = ((window.innerWidth - imageWidth) / 2) + 16;
+        let imageWidth = imageWrapper.clientWidth;
+        let imageTopOffset = imageContainerHeader.offsetHeight + 16;
+        let imageRightOffset = ((window.innerWidth - imageWidth) / 2) - 40;
 
         $(refreshButton).css({"top":`${imageTopOffset}px`});
         $(refreshButton).css({"right":`${imageRightOffset}px`});
 
+        $(assignButton).css({"top":`${imageTopOffset + 48}px`});
+        $(assignButton).css({"right":`${imageRightOffset}px`});
+
     }, 20);
 
-    // Event listener on the refresh button which replaces the image seed 
+    // Event listener on the refresh button which replaces the image seed and image.
     // 
     refreshButton.addEventListener("click", function (e) {
 
-        // Stop the automated behaviour.
+        // Stop any automated behaviour.
         e.preventDefault();
 
         // Set image dimensions. It displays a 16:9 image 70% of the page width.
@@ -432,8 +463,11 @@ $(document).ready( function() {
         // Generate a new random seed.
         let newImageManagerSeed = Math.random().toString(36).substring(2, 9);
 
-        // Remove the current image element from the display container.
-        $(currentImageElement).remove();
+        // Get the image.
+        const currentImage = document.getElementById("current-random-image");
+
+        // Remove the current image element from the image wrapper.
+        $(currentImage).remove();
 
         // Add new image element with new seed.
         imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
@@ -441,9 +475,81 @@ $(document).ready( function() {
         // Update global variables.
         currentImageElement = document.getElementById("current-random-image");
 
+        currentImageManagerSeed = newImageManagerSeed;
     });
 
+    function updateIMOnResize() {
+
+        // Set image dimensions. It displays a 16:9 image 70% of the page width.
+        let newImageWidth = Math.ceil(window.innerWidth * 0.7);
+        let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
+
+        // Make the container match the image size.
+        $(imageWrapper).css({"width":`${newImageWidth + 8}px`,"height":`${newImageHeight + 8}px`});
+
+        // Get the image.
+        const currentImage = document.getElementById("current-random-image");
+
+        // Remove the current image element from the image wrapper.
+        $(currentImage).remove();
+
+        // Add updated image element.
+        imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
+        
+    }
+
+    // Call the updateHeader function on resize or orientation change.
+    window.addEventListener('resize', updateIMOnResize);
+
+    // Adds event listener on the assign button which assigns the image to the selected address.
+    // It then resets the image.
+    assignButton.addEventListener("click", function (e) {
+
+        // Stop any automated behaviour.
+        e.preventDefault();
+
+        if (selectedAddress) {
+
+            // Get the index of the object related to selectedAddress.
+            const addressIndex = imageLinks.findIndex(a => a.address === selectedAddress);
+
+            // Get the number of images attached to the object.
+            let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
+
+            // Add the new image to the object.
+            imageLinks[addressIndex].images[`image-${imagesInObject + 1}`] = {"url":`https://picsum.photos/seed/${currentImageManagerSeed}/500/280.webp`};
+
+            console.log(imageLinks);
+
+            // Set image dimensions. It displays a 16:9 image 70% of the page width.
+            let newImageWidth = Math.ceil(window.innerWidth * 0.7);
+            let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
+
+            // Make the container match the image size.
+            $(imageWrapper).css({"width":`${newImageWidth + 8}px`,"height":`${newImageHeight + 8}px`});
+
+            // Generate a new random seed. Sets to current value if selectedAddress is null which results in no effective change.
+            let newImageManagerSeed = (selectedAddress)?Math.random().toString(36).substring(2, 9):currentImageManagerSeed;
+
+            // Get the image.
+            const currentImage = document.getElementById("current-random-image");
+
+            // Remove the current image element from the image wrapper.
+            $(currentImage).remove();
+
+            // Add new image element with new seed.
+            imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
+
+            // Update the image counts in the email display.
+            displayLinks("refreshImageCounts");
+
+            // Update global variables.
+            currentImageElement = document.getElementById("current-random-image");
+
+            currentImageManagerSeed = newImageManagerSeed;
+        }
+    });
+//-------------------------------------------------------------------------------------------
+// 
+//-------------------------------------------------------------------------------------------
 });
-
-
-                            // updateIMDisplay = true;

@@ -93,7 +93,7 @@
   display: block;
 }
 
-/* line 88, ../../../JS Array/scss/_classes.scss */
+/* line 87, ../../../JS Array/scss/_classes.scss */
 .refresh-button button {
   border: none;
   color: transparent;
@@ -101,8 +101,30 @@
   filter: drop-shadow(0 0 0.05rem #000000);
 }
 
-/* line 95, ../../../JS Array/scss/_classes.scss */
+/* line 94, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img {
+  color: transparent;
+  background-color: transparent;
+}
+
+/* line 104, ../../../JS Array/scss/_classes.scss */
+.assign-button {
+  position: absolute;
+  color: transparent;
+  background-color: transparent;
+  display: block;
+}
+
+/* line 110, ../../../JS Array/scss/_classes.scss */
+.assign-button button {
+  border: none;
+  color: transparent;
+  background-color: transparent;
+  filter: drop-shadow(0 0 0.05rem #111111);
+}
+
+/* line 117, ../../../JS Array/scss/_classes.scss */
+.assign-button button img {
   color: transparent;
   background-color: transparent;
 }
@@ -230,15 +252,21 @@
   flex-wrap: wrap;
   justify-content: space-around;
   overflow: hidden;
+  padding-bottom: 1rem;
 }
 
-/* line 16, ../../../JS Array/scss/_img-mngr.scss */
+/* line 17, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
   width: 100%;
   height: fit-content;
   font-size: 1.125rem;
   font-weight: 450;
   padding: 0.625rem 0 0.625rem 0;
+}
+
+/* line 28, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-display #image-wrapper img {
+  border: 1px solid black;
 }
 
 /*# sourceMappingURL=styles.css.map */
