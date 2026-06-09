@@ -8,7 +8,7 @@ $(document).ready( function() {
             "images": {
                 "image-1": {
 
-                    "url":          "https://picsum.photos/seed/98416414/500/280",
+                    "url":          "https://picsum.photos/seed/98416414/500/280.webp",
                     "blur-effect":  "?blur=3"
                 }
                 // ,
@@ -25,13 +25,13 @@ $(document).ready( function() {
             "images": {
                 "image-1": {
 
-                    "url":          "https://picsum.photos/seed/68713524/500/280",
+                    "url":          "https://picsum.photos/seed/68713524/500/280.webp",
                     "blur-effect":  "?blur=1"
                 }
                 ,
                 "image-2": {
 
-                    "url":          "https://picsum.photos/seed/38435354/500/280"
+                    "url":          "https://picsum.photos/seed/38435354/500/280.webp"
                 }
             }
 
@@ -311,6 +311,7 @@ $(document).ready( function() {
                     }
                 });
 
+            // Updates the image counts on the buttons.
             } else if (update === "refreshImageCounts") {
 
                 // Get the number of objects in the array.
@@ -446,8 +447,7 @@ $(document).ready( function() {
 
     }, 20);
 
-    // Event listener on the refresh button which replaces the image seed and image.
-    // 
+    // Adds event listener on the refresh button which replaces the image seed and image.
     refreshButton.addEventListener("click", function (e) {
 
         // Stop any automated behaviour.
@@ -463,7 +463,7 @@ $(document).ready( function() {
         // Generate a new random seed.
         let newImageManagerSeed = Math.random().toString(36).substring(2, 9);
 
-        // Get the image.
+        // Get the current image element.
         const currentImage = document.getElementById("current-random-image");
 
         // Remove the current image element from the image wrapper.
@@ -472,9 +472,7 @@ $(document).ready( function() {
         // Add new image element with new seed.
         imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
 
-        // Update global variables.
-        currentImageElement = document.getElementById("current-random-image");
-
+        // Swap to the new seed value.
         currentImageManagerSeed = newImageManagerSeed;
     });
 
@@ -508,6 +506,7 @@ $(document).ready( function() {
         // Stop any automated behaviour.
         e.preventDefault();
 
+        // Only executes if an address has been selected.
         if (selectedAddress) {
 
             // Get the index of the object related to selectedAddress.
@@ -525,7 +524,7 @@ $(document).ready( function() {
             let newImageWidth = Math.ceil(window.innerWidth * 0.7);
             let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
 
-            // Make the container match the image size.
+            // Make the container match the image size. Needs some extra to avoid scrollbars (need to investigate).
             $(imageWrapper).css({"width":`${newImageWidth + 8}px`,"height":`${newImageHeight + 8}px`});
 
             // Generate a new random seed. Sets to current value if selectedAddress is null which results in no effective change.
@@ -543,13 +542,30 @@ $(document).ready( function() {
             // Update the image counts in the email display.
             displayLinks("refreshImageCounts");
 
-            // Update global variables.
-            currentImageElement = document.getElementById("current-random-image");
-
+            // Swap to the new seed value.
             currentImageManagerSeed = newImageManagerSeed;
         }
     });
+
 //-------------------------------------------------------------------------------------------
-// 
+// The Gallery section displays the images attached to the currently selected email address.
+// Clicking on an image brings it to fullscreen.
 //-------------------------------------------------------------------------------------------
+
+    function populateGallery () {
+
+        if (selectedAddress) {
+
+            // Get the gallery wrapper
+            const thumbnailContainer = document.getElementById("gallery-thumbnails");
+
+            // Get the index of the object related to selectedAddress.
+            const addressIndex = imageLinks.findIndex(a => a.address === selectedAddress);
+
+            // Get the number of images attached to the object.
+            let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
+
+        }
+    }
+
 });
