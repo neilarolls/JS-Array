@@ -1,7 +1,7 @@
 #gallery-top {
 
     width:100vw;
-    min-height: 187.75px;
+    min-height: 200px;
     background-image: linear-gradient(30deg, #4f76b1, #746830 25%, #425d86 50%, #2b8a82 75%, #4f76b1 100%);
     display: flex;
     flex-direction: column;
@@ -10,8 +10,8 @@
         
         width: 95vw;
         padding-top: 30px;
-        padding-left: 3%;
-        padding-right: 2%;
+        padding-left: 2.6%;
+        padding-right: 2.4%;
         padding-bottom: 28px;
         height: fit-content;
         display: flex;
@@ -30,8 +30,15 @@
             width: 100%;
             height: fit-content;
             background-color: white;
-            padding: 5px 5px 0;
+            padding: 5px 5px 5px;
             min-height: 153.391px;
+
+            position: static;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
 
             img {
 

@@ -1,49 +1,51 @@
 $(document).ready( function() {
 
     // Initialise array
-    const imageLinks = Array.from([
+    const imageLinks = [];
 
-        {
-            "address":    "random@company.com",
-            "images": {
-                "image-1": {
+    // const imageLinks = Array.from([
 
-                    "url":          "https://picsum.photos/seed/9841641/500/280.webp",
-                    "blur-effect":  "?blur=3"
-                }
-                // ,
-                // "image-2": {
+    //     {
+    //         "address":    "random@company.com",
+    //         "images": {
+    //             "image-1": {
 
-                //     "url":          "https://picsum.photos/seed/0723562/500/280",
-                //     "greyscale-effect":  "?grayscale"
-                // }
-            }
-        }
-        ,
-        {
-            "address":    "info@institution.gov",
-            "images": {
-                "image-1": {
+    //                 "url":          "https://picsum.photos/seed/9841641/500/280.webp",
+    //                 "blur-effect":  "?blur=3"
+    //             }
+    //             // ,
+    //             // "image-2": {
 
-                    "url":          "https://picsum.photos/seed/6871352/500/280.webp",
-                    "blur-effect":  "?blur=1"
-                }
-                ,
-                "image-2": {
+    //             //     "url":          "https://picsum.photos/seed/0723562/500/280",
+    //             //     "greyscale-effect":  "?grayscale"
+    //             // }
+    //         }
+    //     }
+    //     ,
+    //     {
+    //         "address":    "info@institution.gov",
+    //         "images": {
+    //             "image-1": {
 
-                    "url":          "https://picsum.photos/seed/3843535/500/280.webp"
-                }
-                ,
-                "image-3": {
+    //                 "url":          "https://picsum.photos/seed/6871352/500/280.webp",
+    //                 "blur-effect":  "?blur=1"
+    //             }
+    //             ,
+    //             "image-2": {
 
-                    "url":          "https://picsum.photos/seed/8137531/500/280.webp"
-                }
-            }
+    //                 "url":          "https://picsum.photos/seed/3843535/500/280.webp"
+    //             }
+    //             ,
+    //             "image-3": {
 
-        }
-    ]);
+    //                 "url":          "https://picsum.photos/seed/8137531/500/280.webp"
+    //             }
+    //         }
 
-    console.log(imageLinks);
+    //     }
+    // ]);
+
+    // console.log(imageLinks);
 
 // -------------------------------------------------------------------------------------
 // This section loads and swaps the banner image - this involves adding/removing an img
@@ -67,6 +69,7 @@ $(document).ready( function() {
     const firstNewFontSize = (firstCurrentWidth / 768) + 2;
 
     let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
+    let currentImageManagerSeed = "";
     let selectedAddress = "";
     let updateIMDisplay = false;
 
@@ -165,7 +168,11 @@ $(document).ready( function() {
             // Get the gallery wrapper
             const thumbnailContainer = document.getElementById("gallery-thumbnails");
 
-            thumbnailContainer.innerHTML = "";
+            // Remove all gallery contents.
+            while (thumbnailContainer.firstChild) {
+
+                thumbnailContainer.firstChild.remove();
+            }
 
             // Get the index of the object related to selectedAddress.
             const addressIndex = imageLinks.findIndex(a => a.address === selectedAddress);
@@ -173,13 +180,29 @@ $(document).ready( function() {
             // Get the number of images attached to the object.
             let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
 
+            // If there are images, loop through them and create an img element for each one.
             if (imagesInObject > 0) {
 
                 for (let i = 0;i < imagesInObject;i++) {
 
-                    let indexedImageSeed = imageLinks[addressIndex].images[`image-${i+1}`].url.substring(27,34);
+                    // Construct string from index.
+                    const imageName = `image-${i+1}`;
 
-                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img id="image-${i+1}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
+                    // Get the seed from the array corresponding to the index.
+                    let indexedImageSeed = imageLinks[addressIndex].images[imageName].url.substring(27,34);                    
+
+                    // Create the img element.
+                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img id="${imageName}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
+
+                    // Get image element just created.
+                    const currentImage = document.getElementById(imageName);
+
+                    // Add click event listener to pass image back to image manager.
+                    currentImage.addEventListener("click", function () {
+
+                        updateIMOnResize(indexedImageSeed);
+
+                    });
                 }
             }
 
@@ -452,7 +475,7 @@ $(document).ready( function() {
     let imageHeight = Math.ceil(window.innerWidth * 0.39375);
 
     // Generate a new random seed.
-    let currentImageManagerSeed = Math.random().toString(36).substring(2, 9);
+    currentImageManagerSeed = Math.random().toString(36).substring(2, 9);
 
     // Get image containers and header text container and both buttons.
     const imageWrapper = document.getElementById("image-wrapper");
@@ -487,7 +510,7 @@ $(document).ready( function() {
         }
 
         let imageWidth = imageWrapper.clientWidth;
-        let imageTopOffset = imageContainerHeader.offsetHeight + 16;
+        let imageTopOffset = imageContainerHeader.offsetHeight + 40;
         let imageRightOffset = ((window.innerWidth - imageWidth) / 2) - 40;
 
         $(refreshButton).css({"top":`${imageTopOffset}px`});
@@ -527,7 +550,7 @@ $(document).ready( function() {
         currentImageManagerSeed = newImageManagerSeed;
     });
 
-    function updateIMOnResize() {
+    function updateIMOnResize(gallerySeed) {
 
         // Set image dimensions. It displays a 16:9 image 70% of the page width.
         let newImageWidth = Math.ceil(window.innerWidth * 0.7);
@@ -542,8 +565,16 @@ $(document).ready( function() {
         // Remove the current image element from the image wrapper.
         $(currentImage).remove();
 
+        // If gallery seed is not null replace the current seed.
+        if (gallerySeed) {
+
+            currentImageManagerSeed = gallerySeed;
+        }
+
         // Add updated image element.
         imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
+
+
         
     }
 
@@ -569,7 +600,7 @@ $(document).ready( function() {
             // Add the new image to the object.
             imageLinks[addressIndex].images[`image-${imagesInObject + 1}`] = {"url":`https://picsum.photos/seed/${currentImageManagerSeed}/500/280.webp`};
 
-            console.log(imageLinks);
+            // console.log(imageLinks);
 
             // Set image dimensions. It displays a 16:9 image 70% of the page width.
             let newImageWidth = Math.ceil(window.innerWidth * 0.7);
