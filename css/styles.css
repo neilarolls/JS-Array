@@ -322,9 +322,10 @@ img, button {
   height: fit-content;
   background-color: white;
   padding: 5px 5px 0;
+  min-height: 153.391px;
 }
 
-/* line 35, ../../../JS Array/scss/_gallery.scss */
+/* line 36, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails img {
   padding: 10px;
   display: inline-block;
@@ -333,7 +334,7 @@ img, button {
   scale: 1;
 }
 
-/* line 43, ../../../JS Array/scss/_gallery.scss */
+/* line 44, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails img:hover {
   transition: scale 0.15s ease-in;
   scale: 1.04;

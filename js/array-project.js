@@ -153,6 +153,40 @@ $(document).ready( function() {
     window.addEventListener('resize', updateHeader);
 
 
+//-------------------------------------------------------------------------------------------
+// The Gallery section displays the images attached to the currently selected email address.
+// Clicking on an image brings it to fullscreen.
+//-------------------------------------------------------------------------------------------
+
+    function populateGallery () {
+
+        if (selectedAddress) {
+
+            // Get the gallery wrapper
+            const thumbnailContainer = document.getElementById("gallery-thumbnails");
+
+            thumbnailContainer.innerHTML = "";
+
+            // Get the index of the object related to selectedAddress.
+            const addressIndex = imageLinks.findIndex(a => a.address === selectedAddress);
+
+            // Get the number of images attached to the object.
+            let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
+
+            if (imagesInObject > 0) {
+
+                for (let i = 0;i < imagesInObject;i++) {
+
+                    let indexedImageSeed = imageLinks[addressIndex].images[`image-${i+1}`].url.substring(27,34);
+
+                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img id="image-${i+1}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
+                }
+            }
+
+        }
+    }
+
+
 // -------------------------------------------------------------------------------------
 // This section adds email addresses to a list, stored in an array of objects.
 // The objects have the email address and an object with strings representing the
@@ -256,6 +290,9 @@ $(document).ready( function() {
                             selectedAddress = newAddress;
                             updateIMDisplay = true;
                         }
+
+                            populateGallery();
+
                     });
 
                 }
@@ -307,6 +344,8 @@ $(document).ready( function() {
                         selectedAddress = newAddress;
                         updateIMDisplay = true;
 
+                        populateGallery();
+
                     } else {
 
                         // At first no buttons are selected
@@ -315,10 +354,14 @@ $(document).ready( function() {
 
                         selectedAddress = newAddress;
                         updateIMDisplay = true;
+
+                        populateGallery();
+
                     }
+
                 });
 
-            // Updates the image counts on the buttons.
+            // Updates the image counts on the buttons. Called by the assign button.
             } else if (update === "refreshImageCounts") {
 
                 // Get the number of objects in the array.
@@ -344,6 +387,7 @@ $(document).ready( function() {
                         // Insert new string into button.
                         indexedButton.innerHTML = `${buttonText}`;
                     }
+                    
                 } else {
 
                     window.alert("Tried to refresh image counts with an empty array!");
@@ -507,7 +551,7 @@ $(document).ready( function() {
     window.addEventListener('resize', updateIMOnResize);
 
     // Adds event listener on the assign button which assigns the image to the selected address.
-    // It then resets the image.
+    // It then resets the image, updates the image counts in the email section and updates the gallery.
     assignButton.addEventListener("click", function (e) {
 
         // Stop any automated behaviour.
@@ -549,46 +593,13 @@ $(document).ready( function() {
             // Update the image counts in the email display.
             displayLinks("refreshImageCounts");
 
+            populateGallery();
+
             // Swap to the new seed value.
             currentImageManagerSeed = newImageManagerSeed;
         }
     });
 
-//-------------------------------------------------------------------------------------------
-// The Gallery section displays the images attached to the currently selected email address.
-// Clicking on an image brings it to fullscreen.
-//-------------------------------------------------------------------------------------------
 
-    function populateGallery () {
 
-        selectedAddress = "info@institution.gov";
-        if (selectedAddress) {
-
-            // Get the gallery wrapper
-            const thumbnailContainer = document.getElementById("gallery-thumbnails");
-
-            // Get the index of the object related to selectedAddress.
-            const addressIndex = imageLinks.findIndex(a => a.address === selectedAddress);
-
-            // Get the number of images attached to the object.
-            let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
-
-            if (imagesInObject > 0) {
-
-                for (let i = 0;i < imagesInObject;i++) {
-
-                    let indexedImageSeed = imageLinks[addressIndex].images[`image-${i+1}`].url.substring(27,34);
-
-                    console.log(`>${indexedImageSeed}<`);
-
-                    // let itemString = `<div><button type="button"><img src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"></btn></div>`;
-
-                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img id="image-${i+1}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
-                }
-            }
-
-        }
-    }
-
-    populateGallery();
 });
