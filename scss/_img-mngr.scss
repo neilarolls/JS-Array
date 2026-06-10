@@ -17,18 +17,17 @@
             #image-manager-header-bar {
 
                 width: 100%;
-                height: fit-content;
+                height:64px;
+
+                @media (min-width: 576px) {
+                    height: 42px;
+                }
+
                 font-size: 1.125rem;
                 font-weight: 450;
                 padding: 0.625rem 0 0.625rem 0;
             }
 
-            #image-wrapper {
-
-                img {
-                    border: 1px solid black;
-                }
-            }
         }
     }
 }

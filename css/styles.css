@@ -6,6 +6,12 @@
   user-select: none;
 }
 
+/* line 8, ../../../JS Array/scss/_base.scss */
+img, button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 /* line 3, ../../../JS Array/scss/_classes.scss */
 .visually-hidden {
   position: absolute;
@@ -68,9 +74,10 @@
   border-radius: 0.5rem;
   margin: 0.625rem;
   letter-spacing: -1px;
+  cursor: pointer;
 }
 
-/* line 66, ../../../JS Array/scss/_classes.scss */
+/* line 67, ../../../JS Array/scss/_classes.scss */
 .btn-selected {
   width: 250px;
   height: 100px;
@@ -84,9 +91,10 @@
   margin: 0.625rem;
   box-shadow: 0 0 0.5rem #11111188;
   letter-spacing: -1px;
+  cursor: pointer;
 }
 
-/* line 81, ../../../JS Array/scss/_classes.scss */
+/* line 83, ../../../JS Array/scss/_classes.scss */
 .refresh-button {
   position: absolute;
   color: transparent;
@@ -94,21 +102,22 @@
   display: block;
 }
 
-/* line 87, ../../../JS Array/scss/_classes.scss */
+/* line 89, ../../../JS Array/scss/_classes.scss */
 .refresh-button button {
   border: none;
   color: transparent;
   background-color: transparent;
+  cursor: pointer;
   filter: drop-shadow(0 0 0.05rem #000000);
 }
 
-/* line 94, ../../../JS Array/scss/_classes.scss */
+/* line 97, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img {
   color: transparent;
   background-color: transparent;
 }
 
-/* line 104, ../../../JS Array/scss/_classes.scss */
+/* line 107, ../../../JS Array/scss/_classes.scss */
 .assign-button {
   position: absolute;
   color: transparent;
@@ -116,15 +125,16 @@
   display: block;
 }
 
-/* line 110, ../../../JS Array/scss/_classes.scss */
+/* line 113, ../../../JS Array/scss/_classes.scss */
 .assign-button button {
   border: none;
   color: transparent;
   background-color: transparent;
+  cursor: pointer;
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 117, ../../../JS Array/scss/_classes.scss */
+/* line 121, ../../../JS Array/scss/_classes.scss */
 .assign-button button img {
   color: transparent;
   background-color: transparent;
@@ -222,9 +232,11 @@
   max-width: 14rem;
   height: 2rem;
   align-self: center;
+  cursor: pointer;
+  padding: 5px 0 2px;
 }
 
-/* line 62, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 64, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-list-wrapper {
   width: 100%;
   max-width: 1200px;
@@ -260,15 +272,17 @@
 /* line 17, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
   width: 100%;
-  height: fit-content;
+  height: 64px;
   font-size: 1.125rem;
   font-weight: 450;
   padding: 0.625rem 0 0.625rem 0;
 }
 
-/* line 28, ../../../JS Array/scss/_img-mngr.scss */
-#image-manager-top #image-manager-wrapper #image-manager-display #image-wrapper img {
-  border: 1px solid black;
+@media (min-width: 576px) {
+  /* line 17, ../../../JS Array/scss/_img-mngr.scss */
+  #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
+    height: 42px;
+  }
 }
 
 /* line 1, ../../../JS Array/scss/_gallery.scss */
@@ -276,36 +290,53 @@
   width: 100vw;
   min-height: 187.75px;
   background-image: linear-gradient(30deg, #4f76b1, #746830 25%, #425d86 50%, #2b8a82 75%, #4f76b1 100%);
-}
-
-/* line 7, ../../../JS Array/scss/_gallery.scss */
-#gallery-top #gallery-wrapper {
-  width: 95%;
-  padding-left: 2.5%;
-  padding-right: 2.5%;
-  height: 187.75px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  overflow-x: hidden;
+  flex-direction: column;
 }
 
-/* line 18, ../../../JS Array/scss/_gallery.scss */
-#gallery-top #gallery-wrapper #gallery-thumbnails {
-  display: grid;
-  grid-template-columns: 230px;
-  grid-template-rows: auto;
-  gap: 10px;
+/* line 9, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper {
+  width: 95vw;
+  padding-top: 30px;
+  padding-left: 3%;
+  padding-right: 2%;
+  padding-bottom: 28px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
   overflow-x: hidden;
   align-self: center;
-  width: 100%;
-  height: 133.75px;
-  background-color: white;
 }
 
-/* line 30, ../../../JS Array/scss/_gallery.scss */
+@media (min-width: 576px) {
+  /* line 9, ../../../JS Array/scss/_gallery.scss */
+  #gallery-top #gallery-wrapper {
+    flex-direction: row;
+  }
+}
+
+/* line 27, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper #gallery-thumbnails {
+  overflow-x: hidden;
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+  padding: 5px 5px 0;
+}
+
+/* line 35, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails img {
-  padding: 5px;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+  transition: scale 0.15s ease-in;
+  scale: 1;
+}
+
+/* line 43, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper #gallery-thumbnails img:hover {
+  transition: scale 0.15s ease-in;
+  scale: 1.04;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -33,6 +33,11 @@ $(document).ready( function() {
 
                     "url":          "https://picsum.photos/seed/3843535/500/280.webp"
                 }
+                ,
+                "image-3": {
+
+                    "url":          "https://picsum.photos/seed/8137531/500/280.webp"
+                }
             }
 
         }
@@ -72,7 +77,7 @@ $(document).ready( function() {
 
     firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
-    const firstImgMngrHeight = firstImageMngrTop.clientHeight + (firstCurrentWidth * 0.39375) + 30;
+    const firstImgMngrHeight = (firstCurrentWidth * 0.39375) + 120;
     $(firstGalleryTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
 
 
@@ -92,7 +97,7 @@ $(document).ready( function() {
         let calculatedHeight = Math.ceil(currentWidth * 0.5625);
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
-        let imgMngrHeight = imageMngrTop.clientHeight;
+        let imgMngrHeight = (currentWidth * 0.39375) + 120;
         const newFontSize = (currentWidth / 768) + 2;
         const imageSeed = Math.random().toString(36).substring(2, 9);
 
@@ -131,7 +136,7 @@ $(document).ready( function() {
         let calculatedHeight = Math.ceil(currentWidth * 0.5625);
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
-        let imgMngrHeight = imageMngrTop.clientHeight;
+        let imgMngrHeight = (currentWidth * 0.39375) + 120;
         const newFontSize = (currentWidth / 768) + 2;
 
         $(titleText).css({"font-size":`${newFontSize}rem`});
