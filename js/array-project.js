@@ -72,6 +72,8 @@ $(document).ready( function() {
     let currentImageManagerSeed = "";
     let selectedAddress = "";
     let updateIMDisplay = false;
+    let galleryPassback = [];
+    let galleryIndex = -1;
 
     $(firstTitleText).css({"font-size":`${firstNewFontSize}rem`});
     $(firstHeaderIntro).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight}px`});
@@ -158,7 +160,7 @@ $(document).ready( function() {
 
 //-------------------------------------------------------------------------------------------
 // The Gallery section displays the images attached to the currently selected email address.
-// Clicking on an image brings it to fullscreen.
+// Clicking on an image passes it back into the image selection section.
 //-------------------------------------------------------------------------------------------
 
     function populateGallery () {
@@ -183,6 +185,9 @@ $(document).ready( function() {
             // If there are images, loop through them and create an img element for each one.
             if (imagesInObject > 0) {
 
+                // Clear galleryPassback array.
+                galleryPassback = [];
+
                 for (let i = 0;i < imagesInObject;i++) {
 
                     // Construct string from index.
@@ -197,10 +202,17 @@ $(document).ready( function() {
                     // Get image element just created.
                     const currentImage = document.getElementById(imageName);
 
-                    // Add click event listener to pass image back to image manager.
-                    currentImage.addEventListener("click", function () {
+                    // Stores a record of the current display's image seeds.
+                    galleryPassback[i] = indexedImageSeed;
 
-                        updateIMOnResize(indexedImageSeed);
+                    // Add click event listener to pass image back to image manager.
+                    currentImage.addEventListener("click", function (e) {
+
+                        // Get Index of clicked image from event object
+                        galleryIndex = Number(e.target.id.substring(6)) - 1;
+                        // console.log(clickedImageIndex);
+
+                        updateIMOnResize();
 
                     });
                 }
@@ -550,7 +562,7 @@ $(document).ready( function() {
         currentImageManagerSeed = newImageManagerSeed;
     });
 
-    function updateIMOnResize(gallerySeed) {
+    function updateIMOnResize() {
 
         // Set image dimensions. It displays a 16:9 image 70% of the page width.
         let newImageWidth = Math.ceil(window.innerWidth * 0.7);
@@ -565,24 +577,29 @@ $(document).ready( function() {
         // Remove the current image element from the image wrapper.
         $(currentImage).remove();
 
-        // If gallery seed is not null replace the current seed.
-        if (gallerySeed) {
+        // If galleryIndex is not -1 replace the current seed with the seed passed as a parameter and reset galleryIndex.
+        if (galleryIndex != -1) {
 
-            currentImageManagerSeed = gallerySeed;
+            currentImageManagerSeed = galleryPassback[galleryIndex];
+
+            galleryIndex = -1;
+      
         }
 
         // Add updated image element.
         imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
 
-
-        
     }
 
     // Call the updateHeader function on resize or orientation change.
     window.addEventListener('resize', updateIMOnResize);
 
+
+    //----------------------------------------------------------------------------------------------------
     // Adds event listener on the assign button which assigns the image to the selected address.
     // It then resets the image, updates the image counts in the email section and updates the gallery.
+    //----------------------------------------------------------------------------------------------------
+
     assignButton.addEventListener("click", function (e) {
 
         // Stop any automated behaviour.
