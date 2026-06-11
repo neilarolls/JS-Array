@@ -61,10 +61,20 @@
             }
         }
 
+
+        #address-manager-list-wrapper:empty {
+
+            background-image: url("../img/email-background.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+
         #address-manager-list-wrapper {
-            
-            width: 100%;
-            max-width: 1200px;
+
+            width: 90%;
+            max-width: 992px;
             margin: 0 auto;
             height: 16rem;
             padding: 1rem 0;
@@ -75,7 +85,7 @@
             flex-wrap: wrap;
             justify-content: center;
             border: 1px solid #164881;
-            border-radius: 0.25rem;
+            border-radius: 0.625rem;
         }
     }
 }

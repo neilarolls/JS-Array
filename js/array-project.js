@@ -62,8 +62,10 @@ $(document).ready( function() {
     const firstImageMngrTop = document.getElementById("image-manager-top");
     const firstGalleryTop = document.getElementById("gallery-top");
 
+    const maxBannerHeight = 450;
     const firstCurrentWidth = window.innerWidth;
-    const firstCalculatedHeight = Math.ceil(firstCurrentWidth * 0.5625);
+    let tempHeight = Math.ceil(firstCurrentWidth * 0.5625);
+    const firstCalculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
     const firstIntroHeight = firstHeaderIntro.clientHeight;
     const firstAddressHeight = firstAddressTop.clientHeight;
     const firstNewFontSize = (firstCurrentWidth / 768) + 2;
@@ -99,7 +101,8 @@ $(document).ready( function() {
         const galleryTop = document.getElementById("gallery-top");
 
         const currentWidth = window.innerWidth;
-        let calculatedHeight = Math.ceil(currentWidth * 0.5625);
+        tempHeight = Math.ceil(currentWidth * 0.5625);
+        const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = (currentWidth * 0.39375) + 120;
@@ -132,13 +135,15 @@ $(document).ready( function() {
     function updateHeader() {
 
         const titleText = document.getElementById("header-title-wrapper");
+        const headerTitle = document.getElementById("header-title-top");
         const headerIntro = document.getElementById("header-intro-top");
         const addressTop = document.getElementById("address-manager-top");
         const imageMngrTop = document.getElementById("image-manager-top");
         const galleryTop = document.getElementById("gallery-top");
 
         const currentWidth = window.innerWidth;
-        let calculatedHeight = Math.ceil(currentWidth * 0.5625);
+        tempHeight = Math.ceil(currentWidth * 0.5625);
+        const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
         let introHeight = headerIntro.clientHeight;
         let addressHeight = addressTop.clientHeight;
         let imgMngrHeight = (currentWidth * 0.39375) + 120;
@@ -150,7 +155,10 @@ $(document).ready( function() {
         $(imageMngrTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight}px`});
         $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
 
-        $("#banner-image").css({"src":`https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp`, "style":"position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;"});
+        $("#banner-image").remove();
+
+        headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+        // $("#banner-image").css({"src":`https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp`, "style":"position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;"});
 
     }
 
@@ -160,7 +168,8 @@ $(document).ready( function() {
 
 //-------------------------------------------------------------------------------------------
 // The Gallery section displays the images attached to the currently selected email address.
-// Clicking on an image passes it back into the image selection section.
+// Clicking on an image copies it back into the image selection section where it can be
+// assigned to another email address.
 //-------------------------------------------------------------------------------------------
 
     function populateGallery () {
@@ -194,10 +203,10 @@ $(document).ready( function() {
                     const imageName = `image-${i+1}`;
 
                     // Get the seed from the array corresponding to the index.
-                    let indexedImageSeed = imageLinks[addressIndex].images[imageName].url.substring(27,34);                    
+                    let indexedImageSeed = imageLinks[addressIndex].images[imageName].url.substring(27,34);
 
-                    // Create the img element.
-                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img id="${imageName}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
+                    // Create the img element.  (I'll add this for options to delete the image or send to image to the image selector: title="Right-click for options.")
+                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img alt="gallery image ${i+1}" id="${imageName}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
 
                     // Get image element just created.
                     const currentImage = document.getElementById(imageName);
@@ -344,7 +353,13 @@ $(document).ready( function() {
                 buttonText = addressText.substring(0,16) + "...<br>0 images assigned";
 
                 // Inserts the html at the end of the div. (see previous branch also)
-                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
+                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class=${(arrayLength === 1)?"btn-selected":"btn-not-selected"} type="button">${buttonText}</button></div>`);
+
+                // Changes selectedAddress to new address only if this is the first item.
+                selectedAddress = (arrayLength === 1)?addressText:selectedAddress;
+
+                // Set UpdateIMDisplay
+                updateIMDisplay = true;
 
                 // Gets the button just created.
                 newButton = document.getElementById(`btn${addressText}`);
@@ -496,7 +511,7 @@ $(document).ready( function() {
     const assignButton = document.getElementById("image-manager-assign-button-wrapper");
 
     // Make the container match the image size.
-    $(imageWrapper).css({"width":`${imageWidth + 8}px`,"height":`${imageHeight + 8}px`});
+    $(imageWrapper).css({"width":`${imageWidth}px`,"height":`${imageHeight}px`});
 
     // Insert image element into the image container.
     imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageWidth}/${imageHeight}.webp">`);
@@ -521,9 +536,10 @@ $(document).ready( function() {
 
         }
 
+        let currentWidth = window.innerWidth;
         let imageWidth = imageWrapper.clientWidth;
         let imageTopOffset = imageContainerHeader.offsetHeight + 40;
-        let imageRightOffset = ((window.innerWidth - imageWidth) / 2) - 40;
+        let imageRightOffset = ((currentWidth - imageWidth) / 2) - `${currentWidth < 576?50:70}`;
 
         $(refreshButton).css({"top":`${imageTopOffset}px`});
         $(refreshButton).css({"right":`${imageRightOffset}px`});
@@ -544,7 +560,7 @@ $(document).ready( function() {
         let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
 
         // Make the container match the image size.
-        $(imageWrapper).css({"width":`${newImageWidth + 8}px`,"height":`${newImageHeight + 8}px`});
+        $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
 
         // Generate a new random seed.
         let newImageManagerSeed = Math.random().toString(36).substring(2, 9);
@@ -569,7 +585,7 @@ $(document).ready( function() {
         let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
 
         // Make the container match the image size.
-        $(imageWrapper).css({"width":`${newImageWidth + 8}px`,"height":`${newImageHeight + 8}px`});
+        $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
 
         // Get the image.
         const currentImage = document.getElementById("current-random-image");
@@ -624,7 +640,7 @@ $(document).ready( function() {
             let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
 
             // Make the container match the image size. Needs some extra to avoid scrollbars (need to investigate).
-            $(imageWrapper).css({"width":`${newImageWidth + 8}px`,"height":`${newImageHeight + 8}px`});
+            $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
 
             // Generate a new random seed. Sets to current value if selectedAddress is null which results in no effective change.
             let newImageManagerSeed = (selectedAddress)?Math.random().toString(36).substring(2, 9):currentImageManagerSeed;

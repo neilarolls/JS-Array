@@ -24,6 +24,14 @@
         overflow-x: hidden;
         align-self: center;
 
+        #gallery-thumbnails:empty {
+
+            background-image: url("../img/gallery-background.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
         #gallery-thumbnails {
 
             overflow-x: hidden;
@@ -39,6 +47,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
+            border-radius: 0.625rem;
 
             img {
 
