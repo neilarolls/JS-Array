@@ -3,17 +3,24 @@
   box-sizing: border-box;
   font-family: "roboto", serif;
   user-select: none;
+  overflow-x: hidden;
 }
 
-/* line 7, ../../../JS Array/scss/_base.scss */
+/* line 9, ../../../JS Array/scss/_base.scss */
 a:active {
   background-color: transparent;
 }
 
-/* line 11, ../../../JS Array/scss/_base.scss */
+/* line 13, ../../../JS Array/scss/_base.scss */
 img, button {
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* line 19, ../../../JS Array/scss/_base.scss */
+h3 {
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 
 /* line 3, ../../../JS Array/scss/_classes.scss */
@@ -93,7 +100,7 @@ img, button {
 /* line 75, ../../../JS Array/scss/_classes.scss */
 .btn-not-selected:hover {
   transition: scale 0.1s ease-in;
-  scale: 1.04;
+  scale: 1.02;
 }
 
 /* line 82, ../../../JS Array/scss/_classes.scss */
@@ -124,7 +131,7 @@ img, button {
 /* line 105, ../../../JS Array/scss/_classes.scss */
 .btn-selected:hover {
   transition: scale 0.1s ease-in;
-  scale: 1.04;
+  scale: 1.02;
 }
 
 /* line 112, ../../../JS Array/scss/_classes.scss */
@@ -134,9 +141,11 @@ img, button {
   color: transparent;
   background-color: transparent;
   display: block;
+  overflow-x: hidden;
+  z-index: 1;
 }
 
-/* line 120, ../../../JS Array/scss/_classes.scss */
+/* line 122, ../../../JS Array/scss/_classes.scss */
 .refresh-button button {
   border: none;
   color: transparent;
@@ -146,7 +155,7 @@ img, button {
   height: 55px;
 }
 
-/* line 129, ../../../JS Array/scss/_classes.scss */
+/* line 131, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img {
   width: 40px;
   height: 40px;
@@ -156,22 +165,24 @@ img, button {
   transition: all 0.1s ease-in;
 }
 
-/* line 138, ../../../JS Array/scss/_classes.scss */
+/* line 140, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img:hover {
   scale: 1.05;
   transition: all 0.1s ease-in;
-  filter: drop-shadow(0 0 0.2rem #33333322);
+  filter: drop-shadow(0.1rem 0.1rem 0.2rem #33333333);
 }
 
-/* line 148, ../../../JS Array/scss/_classes.scss */
+/* line 150, ../../../JS Array/scss/_classes.scss */
 .assign-button {
   position: absolute;
   color: transparent;
   background-color: transparent;
   display: block;
+  overflow-x: hidden;
+  z-index: 1;
 }
 
-/* line 154, ../../../JS Array/scss/_classes.scss */
+/* line 158, ../../../JS Array/scss/_classes.scss */
 .assign-button button {
   border: none;
   color: transparent;
@@ -180,7 +191,7 @@ img, button {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 162, ../../../JS Array/scss/_classes.scss */
+/* line 166, ../../../JS Array/scss/_classes.scss */
 .assign-button button img {
   width: 40px;
   height: 40px;
@@ -190,33 +201,45 @@ img, button {
   transition: all 0.1s ease-in;
 }
 
-/* line 171, ../../../JS Array/scss/_classes.scss */
+/* line 175, ../../../JS Array/scss/_classes.scss */
 .assign-button button img:hover {
-  scale: 1.05;
+  scale: 1.08;
   transition: all 0.1s ease-in;
-  filter: drop-shadow(0 0 0.15rem #33333322);
+  filter: drop-shadow(0.2rem 0.2rem 0.15rem #33333333);
 }
 
 /* line 1, ../../../JS Array/scss/_header.scss */
+#header-intro-top::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(ellipse farthest-side at 80% 100%, #5573776e 0%, transparent 50%), radial-gradient(circle farthest-side at 5% 30%, #5573776e 0%, transparent 50%), url("../img/10247006.jpg");
+  background-position: center;
+  background-size: auto;
+  background-repeat: repeat;
+  z-index: 0;
+}
+
+/* line 15, ../../../JS Array/scss/_header.scss */
 #header-top {
   height: fit-content;
   overflow: hidden;
 }
 
-/* line 8, ../../../JS Array/scss/_header.scss */
+/* line 22, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-title-top {
   height: calc((100vw * 0.5625));
   overflow: hidden;
 }
 
 @media (min-width: 800px) {
-  /* line 8, ../../../JS Array/scss/_header.scss */
+  /* line 22, ../../../JS Array/scss/_header.scss */
   #header-top #header-wrapper #header-title-top {
     height: 450px;
   }
 }
 
-/* line 18, ../../../JS Array/scss/_header.scss */
+/* line 32, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-title-top #header-title-wrapper {
   width: 80%;
   position: absolute;
@@ -226,7 +249,7 @@ img, button {
   overflow: visible;
 }
 
-/* line 29, ../../../JS Array/scss/_header.scss */
+/* line 43, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-intro-top {
   display: flex;
   flex-direction: column;
@@ -234,12 +257,14 @@ img, button {
   width: 100vw;
 }
 
-/* line 37, ../../../JS Array/scss/_header.scss */
+/* line 51, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-intro-top #header-intro-wrapper {
+  z-index: 2;
   padding: 1.75rem 0.5rem 1.75rem;
   min-width: 280px;
   max-width: 600px;
   text-align: center;
+  background-color: transparent;
 }
 
 /* line 1, ../../../JS Array/scss/_addr-mngr.scss */
@@ -328,25 +353,38 @@ img, button {
 }
 
 /* line 1, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(ellipse farthest-side at -50px 15%, #55737799 0%, transparent 50%), url("../img/10247006.jpg");
+  background-position: center;
+  background-size: auto;
+  background-repeat: repeat;
+  z-index: 0;
+}
+
+/* line 14, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top {
   width: 100vw;
   height: fit-content;
   padding: 2rem 0;
-  background-image: url("../img/10247006.jpg");
-  background-position: center;
-  background-size: auto;
-  background-repeat: repeat;
 }
 
-/* line 13, ../../../JS Array/scss/_img-mngr.scss */
+/* line 20, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper {
+  overflow-x: clip;
+}
+
+/* line 24, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
-/* line 20, ../../../JS Array/scss/_img-mngr.scss */
+/* line 31, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
   width: 100%;
   height: 64px;
@@ -354,19 +392,46 @@ img, button {
   font-size: 1.125rem;
   font-weight: 450;
   padding: 0.625rem 0 0.625rem 0;
+  z-index: 1;
 }
 
 @media (min-width: 576px) {
-  /* line 20, ../../../JS Array/scss/_img-mngr.scss */
+  /* line 31, ../../../JS Array/scss/_img-mngr.scss */
   #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
     height: 42px;
   }
 }
 
-/* line 35, ../../../JS Array/scss/_img-mngr.scss */
+/* line 47, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-wrapper {
   box-shadow: 0.25rem 0.25rem 1.5rem #44444488;
   background-color: white;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* line 57, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
+  position: absolute;
+  width: 200px;
+  height: 294px;
+  left: 90%;
+  top: 20%;
+  z-index: 2;
+  overflow: hidden;
+}
+
+@media (max-width: 639.999px) {
+  /* line 57, ../../../JS Array/scss/_img-mngr.scss */
+  #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
+    display: none;
+  }
+}
+
+/* line 71, ../../../JS Array/scss/_img-mngr.scss */
+#image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper #image-manager-scissors-image {
+  width: 200px;
+  height: 294px;
 }
 
 /* line 1, ../../../JS Array/scss/_gallery.scss */

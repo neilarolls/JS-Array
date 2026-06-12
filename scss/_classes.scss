@@ -74,7 +74,7 @@
 
     &:hover {
         transition: scale 0.1s ease-in;
-        scale: 1.04;
+        scale: 1.02;
     }
 
 }
@@ -104,7 +104,7 @@
 
     &:hover {
         transition: scale 0.1s ease-in;
-        scale: 1.04;
+        scale: 1.02;
     }
 
 }
@@ -116,6 +116,8 @@
     color: transparent;
     background-color: transparent;
     display: block;
+    overflow-x: hidden;
+    z-index: 1;
 
     button {
 
@@ -138,7 +140,7 @@
             &:hover {
                 scale: 1.05;
                 transition: all 0.1s ease-in;
-                filter: drop-shadow(0 0 0.2rem #33333322);
+                filter: drop-shadow(0.1rem 0.1rem 0.2rem #33333333);
             }
         }
     }
@@ -150,6 +152,8 @@
     color: transparent;
     background-color: transparent;
     display: block;
+    overflow-x: hidden;
+    z-index: 1;
 
     button {
 
@@ -169,9 +173,9 @@
             transition: all 0.1s ease-in;
 
             &:hover {
-                scale: 1.05;
+                scale: 1.08;
                 transition: all 0.1s ease-in;
-                filter: drop-shadow(0 0 0.15rem #33333322);
+                filter: drop-shadow(0.2rem 0.2rem 0.15rem #33333333);
             }
 
         }

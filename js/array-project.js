@@ -205,7 +205,7 @@ $(document).ready( function() {
                     // Get the seed from the array corresponding to the index.
                     let indexedImageSeed = imageLinks[addressIndex].images[imageName].url.substring(27,34);
 
-                    // Create the img element.  (I'll add this for options to delete the image or send to image to the image selector: title="Right-click for options.")
+                    // Create the img element.
                     thumbnailContainer.insertAdjacentHTML('beforeend', `<img alt="gallery image ${i+1}" id="${imageName}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
 
                     // Get image element just created.
@@ -514,7 +514,7 @@ $(document).ready( function() {
     $(imageWrapper).css({"width":`${imageWidth}px`,"height":`${imageHeight}px`});
 
     // Insert image element into the image container.
-    imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageWidth}/${imageHeight}.webp">`);
+    imageWrapper.insertAdjacentHTML('beforeend', `<img style="overflow:hidden !important;" id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${imageWidth}/${imageHeight}.webp">`);
 
     // Set the header text.
     imageContainerHeader.insertAdjacentText("beforeend",`Selected Email Address: none`);
