@@ -3,6 +3,9 @@ $(document).ready( function() {
     // Initialise array
     const imageLinks = [];
 
+
+//--------------------------------------  TEST DATA  -----------------------------------
+
     // const imageLinks = Array.from([
 
     //     {
@@ -47,13 +50,16 @@ $(document).ready( function() {
 
     // console.log(imageLinks);
 
-// -------------------------------------------------------------------------------------
-// This section loads and swaps the banner image - this involves adding/removing an img
-// element with appropriate sizing and effects parameters in the Lorum Picsum url.
-// I've given all the containers absolute positioning and adjust all sections' top
-// values here too.
-// -------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 
+
+
+// ---------------------------------------------------------------------------------------------
+// This section performs initial setup of variables and section positions. It generates a seed and displays the banner image,
+// adding an img element with appropriate sizing and effects parameters in the Lorum Picsum url.
+// ---------------------------------------------------------------------------------------------
+
+// Get references.
 
     const firstTitleText = document.getElementById("header-title-wrapper");
     const firstHeaderTitle = document.getElementById("header-title-top");
@@ -62,65 +68,80 @@ $(document).ready( function() {
     const firstImageMngrTop = document.getElementById("image-manager-top");
     const firstGalleryTop = document.getElementById("gallery-top");
 
-    const maxBannerHeight = 450;
-    const firstCurrentWidth = window.innerWidth;
-    let tempHeight = Math.ceil(firstCurrentWidth * 0.5625);
-    const firstCalculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
-    const firstIntroHeight = firstHeaderIntro.clientHeight;
-    const firstAddressHeight = firstAddressTop.clientHeight;
-    const firstNewFontSize = (firstCurrentWidth / 768) + 2;
+// Set and calculate flags and variables.
 
+    const firstCurrentWidth = window.innerWidth;
+
+    // Initialise global variables.
+    const maxBannerHeight = 450;
     let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
     let currentImageManagerSeed = "";
     let selectedAddress = "";
     let updateIMDisplay = false;
     let galleryPassback = [];
     let galleryIndex = -1;
+    let desktopMode = (firstCurrentWidth >= 1500);
 
+    // Constrains the banner height to the maximum.
+    let tempHeight = Math.ceil(firstCurrentWidth * 0.5625);
+    const firstCalculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
+
+    // Get or calculate section heights and the banner text font-size.
+    const firstIntroHeight = firstHeaderIntro.clientHeight;
+    const firstAddressHeight = firstAddressTop.clientHeight;
+    const firstImgMngrHeight = (firstCurrentWidth * 0.39375) + 120;
+    const firstNewFontSize = (firstCurrentWidth / 768) + 2;
+
+    // Set top and left positions of sections and banner text font-size.
     $(firstTitleText).css({"font-size":`${firstNewFontSize}rem`});
     $(firstHeaderIntro).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight}px`});
     $(firstAddressTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight}px`});
     $(firstImageMngrTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight}px`});
 
+    // If in desktop mode (width >= 1500px) sets the position and height,
+    // moving the Gallery to the right of the intro and address manager.
+    if (desktopMode) {
+
+        $(firstGalleryTop).css({"position":"absolute","height":`${firstIntroHeight + firstAddressHeight}`,"right":"0","top":`${firstCalculatedHeight}px`});
+
+    } else {
+
+        $(firstGalleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
+    }
+
+    // Insert random image into banner as an img element.
     firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
-    const firstImgMngrHeight = (firstCurrentWidth * 0.39375) + 120;
-    $(firstGalleryTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
 
 
-// Positions the sections, calculates a new image seed, then fades the current image
-// before loading the new image. Finally the new image seed replaces the old one.
+// Calculates a new image seed, then fades the current image before loading the new image.
+// Finally the new image seed replaces the old one.
 
     function changeHeader() {
 
-        const titleText = document.getElementById("header-title-wrapper");
+        // Get reference to section.
         const headerTitle = document.getElementById("header-title-top");
-        const headerIntro = document.getElementById("header-intro-top");
-        const addressTop = document.getElementById("address-manager-top");
-        const imageMngrTop = document.getElementById("image-manager-top");
-        const galleryTop = document.getElementById("gallery-top");
 
+        // Get current window width.
         const currentWidth = window.innerWidth;
+
+        // Calculate banner height.
         tempHeight = Math.ceil(currentWidth * 0.5625);
         const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
-        let introHeight = headerIntro.clientHeight;
-        let addressHeight = addressTop.clientHeight;
-        let imgMngrHeight = (currentWidth * 0.39375) + 120;
-        const newFontSize = (currentWidth / 768) + 2;
+
+        // Generate new random seed.
         const imageSeed = Math.random().toString(36).substring(2, 9);
 
-        $(titleText).css({"font-size":`${newFontSize}rem`});
-        $(headerIntro).css({"position":"absolute","left":"0","top":`${calculatedHeight}px`});
-        $(addressTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight}px`});
-        $(imageMngrTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight}px`});
-        $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
-
+        // Fade current banner image.
         $("#banner-image").fadeOut(200, () => {
 
+            // Remove current img element.
             $("#banner-image").remove();
 
+            // Insert new img element with new seed.
             headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
+            // Swap new seed for old.
             currentBannerImageSeed = imageSeed;
 
         });
@@ -144,21 +165,35 @@ $(document).ready( function() {
         const currentWidth = window.innerWidth;
         tempHeight = Math.ceil(currentWidth * 0.5625);
         const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
-        let introHeight = headerIntro.clientHeight;
-        let addressHeight = addressTop.clientHeight;
-        let imgMngrHeight = (currentWidth * 0.39375) + 120;
+        const introHeight = headerIntro.clientHeight;
+        const addressHeight = addressTop.clientHeight;
+        const imgMngrHeight = (currentWidth * 0.39375) + 120;
         const newFontSize = (currentWidth / 768) + 2;
 
         $(titleText).css({"font-size":`${newFontSize}rem`});
         $(headerIntro).css({"position":"absolute","left":"0","top":`${calculatedHeight}px`});
         $(addressTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight}px`});
         $(imageMngrTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight}px`});
-        $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
+        // $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
+
+        // If in desktop mode (width >= 1500px) sets the position and height,
+        // moving the Gallery to the right of the intro and address manager.
+        
+        desktopMode = (currentWidth >= 1500);
+
+        if (desktopMode) {
+
+            document.getElementById("gallery-top").style.removeProperty('left');
+            $(galleryTop).css({"position":"absolute","height":`${introHeight + addressHeight}`,"right":"0","top":`${calculatedHeight}px`});
+
+        } else {
+
+            $(galleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
+        }
 
         $("#banner-image").remove();
 
         headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
-        // $("#banner-image").css({"src":`https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp`, "style":"position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;"});
 
     }
 

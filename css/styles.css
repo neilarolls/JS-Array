@@ -46,7 +46,7 @@ img, button {
   background-color: #000000;
   text-align: center;
   text-shadow: 0 0 1.5rem #000000aa;
-  border-bottom: 1px solid #000;
+  border-bottom: 2px solid #000;
   width: 100%;
 }
 
@@ -258,7 +258,14 @@ img, button {
   width: 100vw;
 }
 
-/* line 51, ../../../JS Array/scss/_header.scss */
+@media (min-width: 1500px) {
+  /* line 43, ../../../JS Array/scss/_header.scss */
+  #header-top #header-wrapper #header-intro-top {
+    width: 80vw;
+  }
+}
+
+/* line 54, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-intro-top #header-intro-wrapper {
   z-index: 2;
   padding: 1.75rem 0.5rem 1.75rem;
@@ -274,21 +281,29 @@ img, button {
   height: fit-content;
   align-items: center;
   background-image: linear-gradient(30deg, #4f76b1, #746830 25%, #425d86 50%, #2b8a82 75%, #4f76b1 100%);
+  width: 100vw;
 }
 
-/* line 8, ../../../JS Array/scss/_addr-mngr.scss */
+@media (min-width: 1500px) {
+  /* line 1, ../../../JS Array/scss/_addr-mngr.scss */
+  #address-manager-top {
+    width: 80vw;
+  }
+}
+
+/* line 13, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper {
-  width: 100vw;
+  width: 100%;
   padding: 1rem 0 2rem;
   text-align: center;
 }
 
-/* line 16, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 21, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper {
   padding-bottom: 1rem;
 }
 
-/* line 20, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 25, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form {
   display: grid;
   grid-template-columns: 1fr;
@@ -296,14 +311,14 @@ img, button {
   justify-items: center;
 }
 
-/* line 27, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 32, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-email-input {
   padding: 0.75rem 0;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
-/* line 33, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 38, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-email-input input {
   padding: 0.3rem 0.5rem;
   height: 2rem;
@@ -314,7 +329,7 @@ img, button {
   align-self: center;
 }
 
-/* line 44, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 49, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-submit-button {
   grid-row-start: 2;
   grid-row-end: 3;
@@ -328,7 +343,7 @@ img, button {
   padding: 5px 0 2px;
 }
 
-/* line 65, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 70, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-list-wrapper:empty {
   background-image: url("../img/email-background.png");
   background-position: center;
@@ -336,7 +351,7 @@ img, button {
   background-repeat: no-repeat;
 }
 
-/* line 74, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 79, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-list-wrapper {
   width: 90%;
   max-width: 992px;
@@ -370,14 +385,15 @@ img, button {
   width: 100vw;
   height: fit-content;
   padding: 2rem 0;
+  border-top: 2px solid black;
 }
 
-/* line 20, ../../../JS Array/scss/_img-mngr.scss */
+/* line 21, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper {
   overflow-x: clip;
 }
 
-/* line 24, ../../../JS Array/scss/_img-mngr.scss */
+/* line 25, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display {
   display: flex;
   flex-wrap: wrap;
@@ -385,7 +401,7 @@ img, button {
   padding-bottom: 2rem;
 }
 
-/* line 31, ../../../JS Array/scss/_img-mngr.scss */
+/* line 32, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
   width: 100%;
   height: 64px;
@@ -397,13 +413,13 @@ img, button {
 }
 
 @media (min-width: 576px) {
-  /* line 31, ../../../JS Array/scss/_img-mngr.scss */
+  /* line 32, ../../../JS Array/scss/_img-mngr.scss */
   #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
     height: 42px;
   }
 }
 
-/* line 47, ../../../JS Array/scss/_img-mngr.scss */
+/* line 48, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-wrapper {
   box-shadow: 0.25rem 0.25rem 1.5rem #44444488;
   background-color: white;
@@ -411,7 +427,7 @@ img, button {
   z-index: 1;
 }
 
-/* line 57, ../../../JS Array/scss/_img-mngr.scss */
+/* line 58, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
   position: absolute;
   width: 200px;
@@ -423,13 +439,13 @@ img, button {
 }
 
 @media (max-width: 639.999px) {
-  /* line 57, ../../../JS Array/scss/_img-mngr.scss */
+  /* line 58, ../../../JS Array/scss/_img-mngr.scss */
   #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
     display: none;
   }
 }
 
-/* line 71, ../../../JS Array/scss/_img-mngr.scss */
+/* line 72, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper #image-manager-scissors-image {
   width: 200px;
   height: 294px;
@@ -444,28 +460,46 @@ img, button {
   flex-direction: column;
 }
 
-/* line 9, ../../../JS Array/scss/_gallery.scss */
+@media (min-width: 1500px) {
+  /* line 1, ../../../JS Array/scss/_gallery.scss */
+  #gallery-top {
+    width: 20vw;
+    box-shadow: 0 0 3rem #00000077;
+  }
+}
+
+/* line 14, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper {
-  width: 95vw;
+  width: 95%;
   padding-top: 30px;
   padding-left: 2.6%;
   padding-right: 2.4%;
   padding-bottom: 28px;
-  height: fit-content;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  overflow-y: auto;
   align-self: center;
 }
 
 @media (min-width: 576px) {
-  /* line 9, ../../../JS Array/scss/_gallery.scss */
+  /* line 14, ../../../JS Array/scss/_gallery.scss */
   #gallery-top #gallery-wrapper {
     flex-direction: row;
   }
 }
 
-/* line 27, ../../../JS Array/scss/_gallery.scss */
+@media (min-width: 1500px) {
+  /* line 14, ../../../JS Array/scss/_gallery.scss */
+  #gallery-top #gallery-wrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 20vw;
+  }
+}
+
+/* line 39, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails:empty {
   background-image: url("../img/gallery-background.png");
   background-position: center;
@@ -473,7 +507,7 @@ img, button {
   background-repeat: no-repeat;
 }
 
-/* line 35, ../../../JS Array/scss/_gallery.scss */
+/* line 47, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails {
   overflow-x: hidden;
   width: 100%;
@@ -486,20 +520,30 @@ img, button {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  align-content: center;
   gap: 10px;
   border-radius: 0.625rem;
 }
 
-/* line 52, ../../../JS Array/scss/_gallery.scss */
+@media (min-width: 1500px) {
+  /* line 47, ../../../JS Array/scss/_gallery.scss */
+  #gallery-top #gallery-wrapper #gallery-thumbnails {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
+
+/* line 71, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails img {
   padding: 10px;
   display: inline-block;
   cursor: pointer;
   transition: scale 0.15s ease-in;
   scale: 1;
+  object-fit: contain;
 }
 
-/* line 60, ../../../JS Array/scss/_gallery.scss */
+/* line 80, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails img:hover {
   transition: scale 0.15s ease-in;
   scale: 1.04;
