@@ -469,6 +469,11 @@ img, button {
 }
 
 /* line 14, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* line 19, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper {
   width: 95%;
   padding-top: 30px;
@@ -484,14 +489,14 @@ img, button {
 }
 
 @media (min-width: 576px) {
-  /* line 14, ../../../JS Array/scss/_gallery.scss */
+  /* line 19, ../../../JS Array/scss/_gallery.scss */
   #gallery-top #gallery-wrapper {
     flex-direction: row;
   }
 }
 
 @media (min-width: 1500px) {
-  /* line 14, ../../../JS Array/scss/_gallery.scss */
+  /* line 19, ../../../JS Array/scss/_gallery.scss */
   #gallery-top #gallery-wrapper {
     padding-left: 5%;
     padding-right: 5%;
@@ -499,7 +504,7 @@ img, button {
   }
 }
 
-/* line 39, ../../../JS Array/scss/_gallery.scss */
+/* line 44, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails:empty {
   background-image: url("../img/gallery-background.png");
   background-position: center;
@@ -507,7 +512,7 @@ img, button {
   background-repeat: no-repeat;
 }
 
-/* line 47, ../../../JS Array/scss/_gallery.scss */
+/* line 52, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails {
   overflow-x: hidden;
   width: 100%;
@@ -526,14 +531,14 @@ img, button {
 }
 
 @media (min-width: 1500px) {
-  /* line 47, ../../../JS Array/scss/_gallery.scss */
+  /* line 52, ../../../JS Array/scss/_gallery.scss */
   #gallery-top #gallery-wrapper #gallery-thumbnails {
     flex-direction: column;
     flex-wrap: nowrap;
   }
 }
 
-/* line 71, ../../../JS Array/scss/_gallery.scss */
+/* line 76, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails img {
   padding: 10px;
   display: inline-block;
@@ -543,7 +548,7 @@ img, button {
   object-fit: contain;
 }
 
-/* line 80, ../../../JS Array/scss/_gallery.scss */
+/* line 85, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails img:hover {
   transition: scale 0.15s ease-in;
   scale: 1.04;
