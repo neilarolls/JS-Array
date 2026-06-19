@@ -673,7 +673,7 @@ $(document).ready( function() {
             if (!response.ok) {
 
                 console.warn(`Request failed: ${response.status}`);
-                return "refresh";
+                return "";
             }
 
             // Extract unique ID string from the response headers
@@ -682,13 +682,13 @@ $(document).ready( function() {
             if (!currentUniqueID) {
 
                 console.warn(`Could not resolve ID for seed: ${imageSeed}`);
-                return "refresh";
+                return "";
             }
 
         } catch (error) {
 
             console.warn('Fetch failed:', error);
-            return "refresh";
+            return "";
             
         }
 
