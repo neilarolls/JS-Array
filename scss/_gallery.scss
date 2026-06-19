@@ -2,44 +2,44 @@
 
     width:100vw;
     min-height: 200px;
-    background-image: linear-gradient(30deg, #4f76b1, #746830 25%, #425d86 50%, #2b8a82 75%, #4f76b1 100%);
+    background-image: linear-gradient(270deg, #4f76b1, #746830 25%, #425d86 50%, #2b8a82 75%, #4f76b1 100%);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
 
     @media (min-width: 1500px) {
-        width: 20vw;
-        box-shadow: 0 0 3rem #00000077;
+        width: 40vw;
+        box-shadow: 0 0 3rem #00000099;
     }
 
-    #gallery-wrapper::-webkit-scrollbar {
+    #gallery-wrapper::-webkit-scrollbar, #gallery-thumbnails::-webkit-scrollbar {
 
         display: none;
     }
 
-    #gallery-wrapper {
-        
+    #gallery-wrapper {        
+
         width: 95%;
         padding-top: 30px;
-        padding-left: 2.6%;
-        padding-right: 2.4%;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
         padding-bottom: 28px;
         height: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        align-self: center;
 
-        @media (min-width: 576px) {
-            flex-direction: row;
-        }
+        // @media (min-width: 576px) {
+        //     flex-direction: row;
+        // }
 
         @media (min-width: 1500px) {
-            padding-left: 5%;
-            padding-right: 5%;
-            width: 20vw;
+
+            width: 40vw;
         }
 
-        overflow-x: hidden;
-        overflow-y: auto;
-        align-self: center;
+        overflow: hidden;
 
         #gallery-thumbnails:empty {
 
@@ -51,40 +51,96 @@
 
         #gallery-thumbnails {
 
-            overflow-x: hidden;
-            width: 100%;
-            height: fit-content;
-            background-color: white;
-            padding: 5px 5px 5px;
             min-height: 153.391px;
+
+            @media (min-width: 1500px) {
+                max-width: 1020px;
+                margin: 0 auto;
+                overflow-y: scroll;
+            }
+
+            width: 100%;
+            height: auto;
+            background-color: white;
+            padding: 15px 15px;
 
             position: static;
             display: flex;
             flex-direction: row;
-
-            @media (min-width: 1500px) {
-                flex-direction: column;
-                flex-wrap: nowrap;
-            }
-
+            flex-shrink: 0;
             flex-wrap: wrap;
-            justify-content: center;
-            align-content: center;
-            gap: 10px;
+            justify-self: safe center;
+            column-gap: 20px;
+            row-gap: 20px;
+
+            // @media (min-width: 1500px) {
+
+            //     flex-direction: column;
+            //     flex-wrap: nowrap;
+            //     overflow-y: hidden;
+            // }
+
+            justify-content: safe center;
+            align-content: safe center;
             border-radius: 0.625rem;
 
-            img {
+            .gallery-img-span::after {
 
-                padding: 10px;
-                display: inline-block;
+                position: relative;
+                font-size: 16px;
+                text-align: center;
+                content: "X";
+                inset: 0;
+
+                display: none;
+                width: 20px;
+                height: 20px;
+                padding-top: 3px;
+                border-radius: 3px;
                 cursor: pointer;
+
+                left: 87.5%;
+                top: -120px;
+
+                background-color: #44444444;
+                color: rgb(255, 255, 255);
+                z-index: 5;
+
+            }
+
+            .gallery-img-span:hover::after {
+
+                background-color: #44444444;
+                display: block;
+
+            }
+
+            .gallery-img-span {
+
+                display: inline-block;
+                width: 220px;
+                height: 124px;
                 transition: scale 0.15s ease-in;
-                scale: 1;
-                object-fit: contain;
+                align-self: center;
+                justify-self: center;
+                overflow: hidden;
 
                 &:hover {
+
                     transition: scale 0.15s ease-in;
                     scale: 1.04;
+                }
+
+                img {
+
+                    display: inline-block;
+                    cursor: pointer;
+                    transition: scale 0.15s ease-in;
+                    scale: 1;
+                    object-fit: contain;
+                    align-self: center;
+                    justify-self: center;
+
                 }
             }
         }

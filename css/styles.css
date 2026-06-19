@@ -24,6 +24,12 @@ img, button {
   padding-bottom: 1rem;
 }
 
+/* line 25, ../../../JS Array/scss/_base.scss */
+#section-wrapper {
+  width: 100vw;
+  height: fit-content;
+}
+
 /* line 3, ../../../JS Array/scss/_classes.scss */
 .visually-hidden {
   position: absolute;
@@ -147,6 +153,11 @@ img, button {
 }
 
 /* line 121, ../../../JS Array/scss/_classes.scss */
+.refresh-button button:hover, .refresh-button button:focus {
+  outline-style: none;
+}
+
+/* line 126, ../../../JS Array/scss/_classes.scss */
 .refresh-button button {
   border: none;
   color: transparent;
@@ -156,7 +167,7 @@ img, button {
   height: 55px;
 }
 
-/* line 130, ../../../JS Array/scss/_classes.scss */
+/* line 135, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img {
   width: 40px;
   height: 40px;
@@ -166,14 +177,14 @@ img, button {
   transition: all 0.1s ease-in;
 }
 
-/* line 139, ../../../JS Array/scss/_classes.scss */
+/* line 144, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img:hover {
   scale: 1.05;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.1rem 0.1rem 0.2rem #33333333);
 }
 
-/* line 149, ../../../JS Array/scss/_classes.scss */
+/* line 154, ../../../JS Array/scss/_classes.scss */
 .assign-button {
   position: absolute;
   color: transparent;
@@ -183,7 +194,12 @@ img, button {
   z-index: 3;
 }
 
-/* line 157, ../../../JS Array/scss/_classes.scss */
+/* line 163, ../../../JS Array/scss/_classes.scss */
+.assign-button button:hover, .assign-button button:focus {
+  outline-style: none;
+}
+
+/* line 168, ../../../JS Array/scss/_classes.scss */
 .assign-button button {
   border: none;
   color: transparent;
@@ -192,7 +208,7 @@ img, button {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 165, ../../../JS Array/scss/_classes.scss */
+/* line 176, ../../../JS Array/scss/_classes.scss */
 .assign-button button img {
   width: 40px;
   height: 40px;
@@ -202,11 +218,16 @@ img, button {
   transition: all 0.1s ease-in;
 }
 
-/* line 174, ../../../JS Array/scss/_classes.scss */
+/* line 185, ../../../JS Array/scss/_classes.scss */
 .assign-button button img:hover {
   scale: 1.08;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
+}
+
+/* line 199, ../../../JS Array/scss/_classes.scss */
+.clean-child-button button:hover, .clean-child-button button:focus {
+  outline-style: none;
 }
 
 /* line 1, ../../../JS Array/scss/_header.scss */
@@ -258,14 +279,7 @@ img, button {
   width: 100vw;
 }
 
-@media (min-width: 1500px) {
-  /* line 43, ../../../JS Array/scss/_header.scss */
-  #header-top #header-wrapper #header-intro-top {
-    width: 80vw;
-  }
-}
-
-/* line 54, ../../../JS Array/scss/_header.scss */
+/* line 50, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-intro-top #header-intro-wrapper {
   z-index: 2;
   padding: 1.75rem 0.5rem 1.75rem;
@@ -287,7 +301,7 @@ img, button {
 @media (min-width: 1500px) {
   /* line 1, ../../../JS Array/scss/_addr-mngr.scss */
   #address-manager-top {
-    width: 80vw;
+    width: 60vw;
   }
 }
 
@@ -341,9 +355,17 @@ img, button {
   align-self: center;
   cursor: pointer;
   padding: 5px 0 2px;
+  transition: scale 0.1s ease-in;
 }
 
-/* line 70, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 64, ../../../JS Array/scss/_addr-mngr.scss */
+#address-manager-top #address-manager-wrapper #address-manager-input #address-manager-form-wrapper #address-manager-form #address-manager-submit-button:hover {
+  transition: scale 0.1s ease-in;
+  scale: 1.04;
+  filter: drop-shadow(0 0 0.05rem #111111);
+}
+
+/* line 79, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-list-wrapper:empty {
   background-image: url("../img/email-background.png");
   background-position: center;
@@ -351,7 +373,7 @@ img, button {
   background-repeat: no-repeat;
 }
 
-/* line 79, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 88, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-list-wrapper {
   width: 90%;
   max-width: 992px;
@@ -385,15 +407,14 @@ img, button {
   width: 100vw;
   height: fit-content;
   padding: 2rem 0;
-  border-top: 2px solid black;
 }
 
-/* line 21, ../../../JS Array/scss/_img-mngr.scss */
+/* line 20, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper {
   overflow-x: clip;
 }
 
-/* line 25, ../../../JS Array/scss/_img-mngr.scss */
+/* line 24, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display {
   display: flex;
   flex-wrap: wrap;
@@ -401,7 +422,7 @@ img, button {
   padding-bottom: 2rem;
 }
 
-/* line 32, ../../../JS Array/scss/_img-mngr.scss */
+/* line 31, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
   width: 100%;
   height: 64px;
@@ -413,13 +434,13 @@ img, button {
 }
 
 @media (min-width: 576px) {
-  /* line 32, ../../../JS Array/scss/_img-mngr.scss */
+  /* line 31, ../../../JS Array/scss/_img-mngr.scss */
   #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
     height: 42px;
   }
 }
 
-/* line 48, ../../../JS Array/scss/_img-mngr.scss */
+/* line 47, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-wrapper {
   box-shadow: 0.25rem 0.25rem 1.5rem #44444488;
   background-color: white;
@@ -427,7 +448,7 @@ img, button {
   z-index: 1;
 }
 
-/* line 58, ../../../JS Array/scss/_img-mngr.scss */
+/* line 57, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
   position: absolute;
   width: 200px;
@@ -439,13 +460,13 @@ img, button {
 }
 
 @media (max-width: 639.999px) {
-  /* line 58, ../../../JS Array/scss/_img-mngr.scss */
+  /* line 57, ../../../JS Array/scss/_img-mngr.scss */
   #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
     display: none;
   }
 }
 
-/* line 72, ../../../JS Array/scss/_img-mngr.scss */
+/* line 71, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper #image-manager-scissors-image {
   width: 200px;
   height: 294px;
@@ -455,52 +476,44 @@ img, button {
 #gallery-top {
   width: 100vw;
   min-height: 200px;
-  background-image: linear-gradient(30deg, #4f76b1, #746830 25%, #425d86 50%, #2b8a82 75%, #4f76b1 100%);
+  background-image: linear-gradient(270deg, #4f76b1, #746830 25%, #425d86 50%, #2b8a82 75%, #4f76b1 100%);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 @media (min-width: 1500px) {
   /* line 1, ../../../JS Array/scss/_gallery.scss */
   #gallery-top {
-    width: 20vw;
-    box-shadow: 0 0 3rem #00000077;
+    width: 40vw;
+    box-shadow: 0 0 3rem #00000099;
   }
 }
 
-/* line 14, ../../../JS Array/scss/_gallery.scss */
-#gallery-top #gallery-wrapper::-webkit-scrollbar {
+/* line 16, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper::-webkit-scrollbar, #gallery-top #gallery-thumbnails::-webkit-scrollbar {
   display: none;
 }
 
-/* line 19, ../../../JS Array/scss/_gallery.scss */
+/* line 21, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper {
   width: 95%;
   padding-top: 30px;
-  padding-left: 2.6%;
-  padding-right: 2.4%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
   padding-bottom: 28px;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
+  flex-direction: row;
   align-self: center;
-}
-
-@media (min-width: 576px) {
-  /* line 19, ../../../JS Array/scss/_gallery.scss */
-  #gallery-top #gallery-wrapper {
-    flex-direction: row;
-  }
+  overflow: hidden;
 }
 
 @media (min-width: 1500px) {
-  /* line 19, ../../../JS Array/scss/_gallery.scss */
+  /* line 21, ../../../JS Array/scss/_gallery.scss */
   #gallery-top #gallery-wrapper {
-    padding-left: 5%;
-    padding-right: 5%;
-    width: 20vw;
+    width: 40vw;
   }
 }
 
@@ -514,44 +527,85 @@ img, button {
 
 /* line 52, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails {
-  overflow-x: hidden;
-  width: 100%;
-  height: fit-content;
-  background-color: white;
-  padding: 5px 5px 5px;
   min-height: 153.391px;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  padding: 15px 15px;
   position: static;
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
   flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  gap: 10px;
+  justify-self: safe center;
+  column-gap: 20px;
+  row-gap: 20px;
+  justify-content: safe center;
+  align-content: safe center;
   border-radius: 0.625rem;
 }
 
 @media (min-width: 1500px) {
   /* line 52, ../../../JS Array/scss/_gallery.scss */
   #gallery-top #gallery-wrapper #gallery-thumbnails {
-    flex-direction: column;
-    flex-wrap: nowrap;
+    max-width: 1020px;
+    margin: 0 auto;
+    overflow-y: scroll;
   }
 }
 
-/* line 76, ../../../JS Array/scss/_gallery.scss */
-#gallery-top #gallery-wrapper #gallery-thumbnails img {
-  padding: 10px;
+/* line 87, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span::after {
+  position: relative;
+  font-size: 16px;
+  text-align: center;
+  content: "X";
+  inset: 0;
+  display: none;
+  width: 20px;
+  height: 20px;
+  padding-top: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  left: 87.5%;
+  top: -120px;
+  background-color: #44444444;
+  color: white;
+  z-index: 5;
+}
+
+/* line 111, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span:hover::after {
+  background-color: #44444444;
+  display: block;
+}
+
+/* line 118, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span {
+  display: inline-block;
+  width: 220px;
+  height: 124px;
+  transition: scale 0.15s ease-in;
+  align-self: center;
+  justify-self: center;
+  overflow: hidden;
+}
+
+/* line 128, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span:hover {
+  transition: scale 0.15s ease-in;
+  scale: 1.04;
+}
+
+/* line 134, ../../../JS Array/scss/_gallery.scss */
+#gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span img {
   display: inline-block;
   cursor: pointer;
   transition: scale 0.15s ease-in;
   scale: 1;
   object-fit: contain;
-}
-
-/* line 85, ../../../JS Array/scss/_gallery.scss */
-#gallery-top #gallery-wrapper #gallery-thumbnails img:hover {
-  transition: scale 0.15s ease-in;
-  scale: 1.04;
+  align-self: center;
+  justify-self: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

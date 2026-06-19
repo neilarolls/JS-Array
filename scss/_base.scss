@@ -21,3 +21,31 @@ img, button {
     font-size: 1.3rem;
     padding-bottom: 1rem;
 }
+
+#section-wrapper {
+
+    width: 100vw;
+    height: fit-content;
+}
+
+// #address-not-selected-notification {
+
+//     font-size: 1rem;
+//     color: #ff6666;
+//     border: 2px solid black;
+//     width: 250px;
+//     height: 100px;
+
+//     position: relative;
+//     right: calc(50vw - 125px);
+//     top: calc(50vh - 50px);
+//     z-index: 5;
+
+//     #address-not-selected-text {
+
+//         position: relative;
+//         top: 0;
+//         left: 0;
+//     }
+
+// }

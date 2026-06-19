@@ -118,6 +118,11 @@
     overflow-x: hidden;
     z-index: 3;
 
+    button:hover, button:focus {
+
+        outline-style: none;
+    }
+
     button {
 
         border: none;
@@ -147,12 +152,18 @@
 }
 
 .assign-button {
+
     position: absolute;
     color: transparent;
     background-color: transparent;
     display: block;
     overflow-x: hidden;
     z-index: 3;
+
+    button:hover, button:focus {
+
+        outline-style: none;
+    }
 
     button {
 
@@ -172,6 +183,7 @@
             transition: all 0.1s ease-in;
 
             &:hover {
+
                 scale: 1.08;
                 transition: all 0.1s ease-in;
                 filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
@@ -180,5 +192,13 @@
         }
     }
 
+}
+
+.clean-child-button {
+
+    button:hover, button:focus {
+
+        outline-style: none;
+    }
 }
 

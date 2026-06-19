@@ -1,6 +1,6 @@
 $(document).ready( function() {
 
-    // Initialise array
+//  Initialise array
     const imageLinks = [];
 
 
@@ -13,15 +13,13 @@ $(document).ready( function() {
     //         "images": {
     //             "image-1": {
 
-    //                 "url":          "https://picsum.photos/seed/9841641/500/280.webp",
-    //                 "blur-effect":  "?blur=3"
+    //                 "url":          "https://picsum.photos/seed/vjh9ixn/500/280.webp"
     //             }
-    //             // ,
-    //             // "image-2": {
+    //             ,
+    //             "image-2": {
 
-    //             //     "url":          "https://picsum.photos/seed/0723562/500/280",
-    //             //     "greyscale-effect":  "?grayscale"
-    //             // }
+    //                 "url":          "https://picsum.photos/seed/xqe34s6/500/280"
+    //             }
     //         }
     //     }
     //     ,
@@ -30,34 +28,39 @@ $(document).ready( function() {
     //         "images": {
     //             "image-1": {
 
-    //                 "url":          "https://picsum.photos/seed/6871352/500/280.webp",
-    //                 "blur-effect":  "?blur=1"
+    //                 "url":          "https://picsum.photos/seed/fhz8uf4/500/280.webp"
     //             }
     //             ,
     //             "image-2": {
 
-    //                 "url":          "https://picsum.photos/seed/3843535/500/280.webp"
+    //                 "url":          "https://picsum.photos/seed/24cgqbh/500/280.webp"
     //             }
     //             ,
     //             "image-3": {
 
-    //                 "url":          "https://picsum.photos/seed/8137531/500/280.webp"
+    //                 "url":          "https://picsum.photos/seed/l3fy3y3/500/280.webp"
+    //             }
+    //             ,
+    //             "image-4": {
+
+    //                 "url":          "https://picsum.photos/seed/2fsdgzq/500/280.webp"
     //             }
     //         }
 
     //     }
     // ]);
 
-    // console.log(imageLinks);
+    console.log(imageLinks);
 
 //--------------------------------------------------------------------------------------
 
 
 
-// ---------------------------------------------------------------------------------------------
-// This section performs initial setup of variables and section positions. It generates a seed and displays the banner image,
-// adding an img element with appropriate sizing and effects parameters in the Lorum Picsum url.
-// ---------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------
+// This section performs initial setup of variables and section positions. It generates
+// a seed and displays the banner image, adding an img element with appropriate sizing
+// and effects parameters in the Lorum Picsum url.
+// -------------------------------------------------------------------------------------
 
 // Get references.
 
@@ -102,7 +105,7 @@ $(document).ready( function() {
     // moving the Gallery to the right of the intro and address manager.
     if (desktopMode) {
 
-        $(firstGalleryTop).css({"position":"absolute","height":`${firstIntroHeight + firstAddressHeight}`,"right":"0","top":`${firstCalculatedHeight}px`});
+        $(firstGalleryTop).css({"position":"absolute","height":`${firstAddressHeight}`,"right":"0","top":`${firstCalculatedHeight + firstIntroHeight}px`});
 
     } else {
 
@@ -141,7 +144,7 @@ $(document).ready( function() {
             // Insert new img element with new seed.
             headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
-            // Swap new seed for old.
+            // Set global seed variable to new value.
             currentBannerImageSeed = imageSeed;
 
         });
@@ -150,10 +153,10 @@ $(document).ready( function() {
     // Call the changeHeader function every 15 seconds.
     const changeHeaderImage = setInterval(changeHeader, 15000);
 
-// This function handles updating the top positions of the sections and the
+// This function handles updating the positions of the sections and the
 // size of the banner image as the display changes size or orientation.
 
-    function updateHeader() {
+    function updateSections() {
 
         const titleText = document.getElementById("header-title-wrapper");
         const headerTitle = document.getElementById("header-title-top");
@@ -177,17 +180,18 @@ $(document).ready( function() {
         // $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
 
         // If in desktop mode (width >= 1500px) sets the position and height,
-        // moving the Gallery to the right of the intro and address manager.
+        // moving the Gallery to the right of the address manager.
         
         desktopMode = (currentWidth >= 1500);
 
         if (desktopMode) {
 
             document.getElementById("gallery-top").style.removeProperty('left');
-            $(galleryTop).css({"position":"absolute","height":`${introHeight + addressHeight}`,"right":"0","top":`${calculatedHeight}px`});
+            $(galleryTop).css({"position":"absolute","height":`${addressHeight}`,"right":"0","top":`${calculatedHeight + introHeight}px`});
 
         } else {
 
+            document.getElementById("gallery-top").style.removeProperty('right');
             $(galleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
         }
 
@@ -197,14 +201,15 @@ $(document).ready( function() {
 
     }
 
-    // Call the updateHeader function on resize or orientation change.
-    window.addEventListener('resize', updateHeader);
+    // Call the updateSections function on resize or orientation change.
+    window.addEventListener('resize', updateSections);
 
 
 //-------------------------------------------------------------------------------------------
 // The Gallery section displays the images attached to the currently selected email address.
 // Clicking on an image copies it back into the image selection section where it can be
-// assigned to another email address.
+// assigned to another email address. When Hovered on, the image displays an X which will
+// remove the image from the selected email address and update the gallery.
 //-------------------------------------------------------------------------------------------
 
     function populateGallery () {
@@ -234,34 +239,101 @@ $(document).ready( function() {
 
                 for (let i = 0;i < imagesInObject;i++) {
 
-                    // Construct string from index.
+                    // Construct ID strings from index.
                     const imageName = `image-${i+1}`;
+                    const spanName = `span-${i+1}`;
 
                     // Get the seed from the array corresponding to the index.
                     let indexedImageSeed = imageLinks[addressIndex].images[imageName].url.substring(27,34);
 
                     // Create the img element.
-                    thumbnailContainer.insertAdjacentHTML('beforeend', `<img alt="gallery image ${i+1}" id="${imageName}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"">`);
+                    thumbnailContainer.insertAdjacentHTML('beforeend', `<span title="Click to delete image." class="gallery-img-span" id="${spanName}"><img alt="gallery image ${i+1}" id="${imageName}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"" title="Click to open with image selector."></span>`);
 
-                    // Get image element just created.
+                    // Get image and span elements just created.
                     const currentImage = document.getElementById(imageName);
+                    const currentSpan = currentImage.parentElement;
 
-                    // Stores a record of the current display's image seeds.
+                    // Stores a record of the current display's image seeds. This is useful for passing images back
+                    // to the image manager. I also utilise it for checking image uniqueness.
                     galleryPassback[i] = indexedImageSeed;
 
                     // Add click event listener to pass image back to image manager.
                     currentImage.addEventListener("click", function (e) {
 
-                        // Get Index of clicked image from event object
+                        // Get Index of clicked image from event object. updateIMOnResize will change the image
+                        // seed to the value in galleryPassback[] corresponding to the index.
                         galleryIndex = Number(e.target.id.substring(6)) - 1;
-                        // console.log(clickedImageIndex);
 
                         updateIMOnResize();
 
                     });
+
+                    // Adds event listener to listen for clicks on the 'X' button.
+                    // This pseudo-element of the image wrapper is placed in the
+                    // top right corner on hover. Delimiting values are retrieved
+                    // and adjusted to determine if the button was actually clicked.
+                    currentSpan.addEventListener("click", function (e) {
+
+                        // Get the after pseudo-element from the span.
+                        const spanAfter = getComputedStyle(this, ":after");
+
+                        // Get the clicked span ID from the event object 
+                        const spanID = e.target.id;
+
+                        // Get image index from ID.
+                        const imageIndex = spanID.substring(5);
+
+                        // Make image string (ie 'image-1').
+                        const imageString = `image-${imageIndex}`;
+
+                        // Get span element.
+                        const spanElement = document.getElementById(spanID);
+
+                        if (spanAfter) {
+
+                            // Get top/left and width/height from pseudo-element. These need adjusting to align
+                            // with the mouse coordinates.
+                            const afterTop = Number(spanAfter.getPropertyValue("top").slice(0, -2)) + 127;
+                            const afterHeight = Number(spanAfter.getPropertyValue("height").slice(0, -2)) + 5;
+                            const afterLeft = Number(spanAfter.getPropertyValue("left").slice(0, -2)) + 7.5;
+                            const afterWidth = Number(spanAfter.getPropertyValue("width").slice(0, -2)) + 1;
+
+                            // Get mouse X/Y.
+                            const mouseX = e.layerX;
+                            const mouseY = e.layerY;
+
+                            // Is the mouse click within the calculated bounds of the remove image button?
+                            if (mouseX > afterLeft && mouseX < afterLeft + afterWidth && mouseY > afterTop && mouseY < afterTop + afterHeight) {
+
+                                // Get the index of the object related to selectedAddress.
+                                const addressIndex = imageLinks.findIndex(a => a.address === selectedAddress);
+
+                                // Remove the image property from the object's images.
+                                delete imageLinks[addressIndex].images[imageString];
+
+                                // Rebuild the images object so keys remain consecutive; image-1, image-2, etc...
+                                const remainingImages = Object.values(imageLinks[addressIndex].images);
+                                const renumberedImages = {};
+
+                                remainingImages.forEach((val, idx) => {
+                                    renumberedImages[`image-${idx+1}`] = val;
+                                });
+
+                                imageLinks[addressIndex].images = renumberedImages;
+
+                                // Remove the element from the DOM and refresh the gallery display.
+                                $(spanElement).remove();
+
+                                populateGallery();
+
+                                // Update address manager to show correct number of images attached.
+                                displayLinks("refreshImageCounts");
+
+                            }
+                        }
+                    })
                 }
             }
-
         }
     }
 
@@ -278,7 +350,7 @@ $(document).ready( function() {
     // Checks if the address passed to it is already a button, hence not unique.
     // Returns true if there is no match.
 
-    function isUnique(idString) {
+    function isUniqueAddress(idString) {
 
         let test = document.getElementById(`btn${idString}`);
 
@@ -287,6 +359,35 @@ $(document).ready( function() {
         } else {
             return true;
         }
+    }
+
+    // Checks if the image string passed to it is already in the gallery, hence not unique.
+    // Returns true if there is no match.
+
+    function isUniqueImage(imageString) {
+
+        // Assume the image is unique.
+        let isUnique = true;
+
+        // If there are images in the gallery...
+        let imagesInGallery = galleryPassback.length;
+
+        if (imagesInGallery > 0) {
+
+            // Loop through galleryPassback[] to look for a match with parameter string.
+            for (let i = 0;i < imagesInGallery; i++) {
+
+                if (galleryPassback[i] === imageString) {
+
+                    // The image is not unique.
+                    isUnique = false;
+                }
+
+            }
+        }
+
+        return isUnique;
+
     }
 
     // Adds each email address as a button in #address-manager-list-wrapper.
@@ -325,7 +426,7 @@ $(document).ready( function() {
                     // Inserts the html at the end of the div. The div and btn are given a unique id containing the email address.
                     // This means an event handler on the button returns the email address string which is the key for the array object it represents.
                     // selectedAddress is set to this value after making the visual change showing button selection.
-                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
+                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display clean-child-button" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
 
                     // Gets the button just created.
                     newButton = document.getElementById(`btn${addressText}`);
@@ -388,7 +489,7 @@ $(document).ready( function() {
                 buttonText = addressText.substring(0,16) + "...<br>0 images assigned";
 
                 // Inserts the html at the end of the div. (see previous branch also)
-                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class=${(arrayLength === 1)?"btn-selected":"btn-not-selected"} type="button">${buttonText}</button></div>`);
+                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display clean-child-button" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class=${(arrayLength === 1)?"btn-selected":"btn-not-selected"} type="button">${buttonText}</button></div>`);
 
                 // Changes selectedAddress to new address only if this is the first item.
                 selectedAddress = (arrayLength === 1)?addressText:selectedAddress;
@@ -506,7 +607,7 @@ $(document).ready( function() {
         // is not an existing address. Otherwise display an
         // error message.
 
-        if (isUnique(emailValue)) {
+        if (isUniqueAddress(emailValue)) {
 
             // Creates the new entry in imageLinks.
             imageLinks.push({"address":emailValue,"images":{}});
@@ -524,7 +625,6 @@ $(document).ready( function() {
         formElement.reset();
 
     });
-
 
 //-------------------------------------------------------------------------------------------
 // This section handles the image selection display. At the top is the current email address.
@@ -628,7 +728,8 @@ $(document).ready( function() {
         // Remove the current image element from the image wrapper.
         $(currentImage).remove();
 
-        // If galleryIndex is not -1 replace the current seed with the seed passed as a parameter and reset galleryIndex.
+        // If galleryIndex is not -1 replace the current seed with the seed in galleryPassback indexed by galleryIndex.
+        // This mechanism is initiated by gallery image click events on the image.
         if (galleryIndex != -1) {
 
             currentImageManagerSeed = galleryPassback[galleryIndex];
@@ -642,7 +743,7 @@ $(document).ready( function() {
 
     }
 
-    // Call the updateHeader function on resize or orientation change.
+    // Call the updateIMOnResize function on resize.
     window.addEventListener('resize', updateIMOnResize);
 
 
@@ -656,8 +757,11 @@ $(document).ready( function() {
         // Stop any automated behaviour.
         e.preventDefault();
 
+        // Is currentImageManagerSeed unique to this address?
+        let okToAdd = isUniqueImage(currentImageManagerSeed);
+
         // Only executes if an address has been selected.
-        if (selectedAddress) {
+        if (selectedAddress && okToAdd) {
 
             // Get the index of the object related to selectedAddress.
             const addressIndex = imageLinks.findIndex(a => a.address === selectedAddress);
@@ -668,8 +772,6 @@ $(document).ready( function() {
             // Add the new image to the object.
             imageLinks[addressIndex].images[`image-${imagesInObject + 1}`] = {"url":`https://picsum.photos/seed/${currentImageManagerSeed}/500/280.webp`};
 
-            // console.log(imageLinks);
-
             // Set image dimensions. It displays a 16:9 image 70% of the page width.
             let newImageWidth = Math.ceil(window.innerWidth * 0.7);
             let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
@@ -677,28 +779,30 @@ $(document).ready( function() {
             // Make the container match the image size. Needs some extra to avoid scrollbars (need to investigate).
             $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
 
-            // Generate a new random seed. Sets to current value if selectedAddress is null which results in no effective change.
-            let newImageManagerSeed = (selectedAddress)?Math.random().toString(36).substring(2, 9):currentImageManagerSeed;
-
             // Get the image.
             const currentImage = document.getElementById("current-random-image");
 
             // Remove the current image element from the image wrapper.
             $(currentImage).remove();
 
-            // Add new image element with new seed.
-            imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
+            // Add new image element with current seed.
+            imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${currentImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
 
             // Update the image counts in the email display.
             displayLinks("refreshImageCounts");
 
             populateGallery();
 
-            // Swap to the new seed value.
-            currentImageManagerSeed = newImageManagerSeed;
+        } else if (!selectedAddress) {
+
+            // No email address has been selected.
+            window.alert("No email address has been selected.");
+
+        } else if (selectedAddress && !(okToAdd)) {
+
+            // This image is already attached to the selected address.
+            window.alert("That image is already attached to this email address.");
         }
     });
-
-
 
 });
