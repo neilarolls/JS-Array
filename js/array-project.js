@@ -50,7 +50,7 @@ $(document).ready( function() {
     //     }
     // ]);
 
-    console.log(imageLinks);
+    // console.log(imageLinks);
 
 //--------------------------------------------------------------------------------------
 
@@ -79,9 +79,11 @@ $(document).ready( function() {
     const maxBannerHeight = 450;
     let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
     let currentImageManagerSeed = "";
+    let currentUniqueID = "";
     let selectedAddress = "";
     let updateIMDisplay = false;
     let galleryPassback = [];
+    let galleryUniqueIDs = [];
     let galleryIndex = -1;
     let desktopMode = (firstCurrentWidth >= 1500);
 
@@ -212,7 +214,7 @@ $(document).ready( function() {
 // remove the image from the selected email address and update the gallery.
 //-------------------------------------------------------------------------------------------
 
-    function populateGallery () {
+    async function populateGallery () {
 
         if (selectedAddress) {
 
@@ -236,6 +238,7 @@ $(document).ready( function() {
 
                 // Clear galleryPassback array.
                 galleryPassback = [];
+                galleryUniqueIDs = [];
 
                 for (let i = 0;i < imagesInObject;i++) {
 
@@ -254,8 +257,10 @@ $(document).ready( function() {
                     const currentSpan = currentImage.parentElement;
 
                     // Stores a record of the current display's image seeds. This is useful for passing images back
-                    // to the image manager. I also utilise it for checking image uniqueness.
+                    // to the image manager.
                     galleryPassback[i] = indexedImageSeed;
+
+                    galleryUniqueIDs[i] = await getUniqueID(indexedImageSeed);
 
                     // Add click event listener to pass image back to image manager.
                     currentImage.addEventListener("click", function (e) {
@@ -272,6 +277,8 @@ $(document).ready( function() {
                     // This pseudo-element of the image wrapper is placed in the
                     // top right corner on hover. Delimiting values are retrieved
                     // and adjusted to determine if the button was actually clicked.
+                    // This setup is purely because I want a system tooltip on the
+                    // delete button. This way works.
                     currentSpan.addEventListener("click", function (e) {
 
                         // Get the after pseudo-element from the span.
@@ -333,6 +340,8 @@ $(document).ready( function() {
                         }
                     })
                 }
+
+                // console.log(galleryUniqueIDs);
             }
         }
     }
@@ -364,23 +373,33 @@ $(document).ready( function() {
     // Checks if the image string passed to it is already in the gallery, hence not unique.
     // Returns true if there is no match.
 
-    function isUniqueImage(imageString) {
+    async function isUniqueImage(imageString) {
 
         // Assume the image is unique.
         let isUnique = true;
+
+        // Get the unique ID for the seed passed in imageString.
+        let imageStringUniqueID = await getUniqueID(imageString);
 
         // If there are images in the gallery...
         let imagesInGallery = galleryPassback.length;
 
         if (imagesInGallery > 0) {
 
-            // Loop through galleryPassback[] to look for a match with parameter string.
+            // Loop through galleryUniqueIDs[] to look for a match with the unique ID retrieved for the seed string parameter.
             for (let i = 0;i < imagesInGallery; i++) {
 
-                if (galleryPassback[i] === imageString) {
+                // Get the indexed unique ID from the values stored when the gallery is populated.
+                let indexedGalleryUniqueID = await galleryUniqueIDs[i];
+                console.log(`indexedGalleryUniqueID: >${indexedGalleryUniqueID}<`);
+                console.log(`imageStringUniqueID: >${imageStringUniqueID}<`);
+
+                // Test whether the ID's match.
+                if (indexedGalleryUniqueID === imageStringUniqueID) {
 
                     // The image is not unique.
                     isUnique = false;
+                    console.log("Not unique.")
                 }
 
             }
@@ -639,6 +658,50 @@ $(document).ready( function() {
     // Generate a new random seed.
     currentImageManagerSeed = Math.random().toString(36).substring(2, 9);
 
+
+// Function to retrieve the unique image ID for the image seed passed to it.-------------------
+
+    async function getUniqueID(imageSeed) {
+    
+        // Get the Unique ID from the Lorem Picsum API.
+        try {
+
+            // 'HEAD' fetches metadata only.
+            const response = await fetch(`https://picsum.photos/seed/${imageSeed}/500/280.webp`, { method: 'HEAD' });
+
+            // Gives warning if http returns aren't ok.
+            if (!response.ok) {
+
+                console.warn(`Request failed: ${response.status}`);
+                return "refresh";
+            }
+
+            // Extract unique ID string from the response headers
+            currentUniqueID = response.headers.get('picsum-id');
+
+            if (!currentUniqueID) {
+
+                console.warn(`Could not resolve ID for seed: ${imageSeed}`);
+                return "refresh";
+            }
+
+        } catch (error) {
+
+            console.warn('Fetch failed:', error);
+            return "refresh";
+            
+        }
+
+        // console.log(currentUniqueID);
+        return currentUniqueID;
+    }
+
+// --------------------------------------------------------------------------------------------
+
+
+    // let uniqueResponse = getUniqueID(currentImageManagerSeed);
+    // console.log(`First Image Unique ID: ${uniqueResponse}`);
+
     // Get image containers and header text container and both buttons.
     const imageWrapper = document.getElementById("image-wrapper");
     const imageContainerHeader = document.getElementById("image-manager-header-bar");
@@ -752,14 +815,16 @@ $(document).ready( function() {
     // It then resets the image, updates the image counts in the email section and updates the gallery.
     //----------------------------------------------------------------------------------------------------
 
-    assignButton.addEventListener("click", function (e) {
+    assignButton.addEventListener("click", async function (e) {
 
         // Stop any automated behaviour.
         e.preventDefault();
 
         // Is currentImageManagerSeed unique to this address?
-        let okToAdd = isUniqueImage(currentImageManagerSeed);
-
+        let okToAdd = await isUniqueImage(currentImageManagerSeed);
+        // console.log(okToAdd);
+        // console.log(galleryUniqueIDs);
+        
         // Only executes if an address has been selected.
         if (selectedAddress && okToAdd) {
 
@@ -791,7 +856,7 @@ $(document).ready( function() {
             // Update the image counts in the email display.
             displayLinks("refreshImageCounts");
 
-            populateGallery();
+            await populateGallery();
 
         } else if (!selectedAddress) {
 

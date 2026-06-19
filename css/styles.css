@@ -446,9 +446,13 @@ img, button {
   background-color: white;
   overflow: hidden;
   z-index: 1;
+  background-image: url("../img/Loading_image.png");
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
 }
 
-/* line 57, ../../../JS Array/scss/_img-mngr.scss */
+/* line 62, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
   position: absolute;
   width: 200px;
@@ -460,13 +464,13 @@ img, button {
 }
 
 @media (max-width: 639.999px) {
-  /* line 57, ../../../JS Array/scss/_img-mngr.scss */
+  /* line 62, ../../../JS Array/scss/_img-mngr.scss */
   #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper {
     display: none;
   }
 }
 
-/* line 71, ../../../JS Array/scss/_img-mngr.scss */
+/* line 76, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-scissors-wrapper #image-manager-scissors-image {
   width: 200px;
   height: 294px;
