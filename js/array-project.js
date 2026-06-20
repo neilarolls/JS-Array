@@ -3,65 +3,11 @@ $(document).ready( function() {
 //  Initialise array
     const imageLinks = [];
 
-
-//--------------------------------------  TEST DATA  -----------------------------------
-
-    // const imageLinks = Array.from([
-
-    //     {
-    //         "address":    "random@company.com",
-    //         "images": {
-    //             "image-1": {
-
-    //                 "url":          "https://picsum.photos/seed/vjh9ixn/500/280.webp"
-    //             }
-    //             ,
-    //             "image-2": {
-
-    //                 "url":          "https://picsum.photos/seed/xqe34s6/500/280"
-    //             }
-    //         }
-    //     }
-    //     ,
-    //     {
-    //         "address":    "info@institution.gov",
-    //         "images": {
-    //             "image-1": {
-
-    //                 "url":          "https://picsum.photos/seed/fhz8uf4/500/280.webp"
-    //             }
-    //             ,
-    //             "image-2": {
-
-    //                 "url":          "https://picsum.photos/seed/24cgqbh/500/280.webp"
-    //             }
-    //             ,
-    //             "image-3": {
-
-    //                 "url":          "https://picsum.photos/seed/l3fy3y3/500/280.webp"
-    //             }
-    //             ,
-    //             "image-4": {
-
-    //                 "url":          "https://picsum.photos/seed/2fsdgzq/500/280.webp"
-    //             }
-    //         }
-
-    //     }
-    // ]);
-
-    // console.log(imageLinks);
-
-//--------------------------------------------------------------------------------------
-
-
-
 // -------------------------------------------------------------------------------------
 // This section performs initial setup of variables and section positions. It generates
 // a seed and displays the banner image, adding an img element with appropriate sizing
 // and effects parameters in the Lorum Picsum url.
 // -------------------------------------------------------------------------------------
-
 // Get references.
 
     const firstTitleText = document.getElementById("header-title-wrapper");
@@ -605,7 +551,7 @@ $(document).ready( function() {
 
 
     //-------------------------------------------------------------------------------------------
-    // This sections initiates an event listener on the form to accept new email addresses.
+    // This section initiates an event listener on the form to accept new email addresses.
     // When an address is submitted the event listener adds a new object to the imageLinks
     // array with the supplied email address and no images attached.
     //-------------------------------------------------------------------------------------------
@@ -666,7 +612,7 @@ $(document).ready( function() {
         // Get the Unique ID from the Lorem Picsum API.
         try {
 
-            // 'HEAD' fetches metadata only.
+            // HEAD method fetches metadata only.
             const response = await fetch(`https://picsum.photos/seed/${imageSeed}/500/280.webp`, { method: 'HEAD' });
 
             // Gives warning if http returns aren't ok.
@@ -692,17 +638,13 @@ $(document).ready( function() {
             
         }
 
-        // console.log(currentUniqueID);
         return currentUniqueID;
     }
 
 // --------------------------------------------------------------------------------------------
 
 
-    // let uniqueResponse = getUniqueID(currentImageManagerSeed);
-    // console.log(`First Image Unique ID: ${uniqueResponse}`);
-
-    // Get image containers and header text container and both buttons.
+    // Get image containers, header text container and both buttons.
     const imageWrapper = document.getElementById("image-wrapper");
     const imageContainerHeader = document.getElementById("image-manager-header-bar");
     const refreshButton = document.getElementById("image-manager-refresh-button-wrapper");
@@ -716,7 +658,6 @@ $(document).ready( function() {
 
     // Set the header text.
     imageContainerHeader.insertAdjacentText("beforeend",`Selected Email Address: none`);
-
 
     // This interval timed function updates the selected email displayed in the header area.
     // I've also co-opted it to maintain a consistent position for the refresh and assign buttons.

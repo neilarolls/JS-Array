@@ -10,3 +10,60 @@
 //   } catch (error) {
 //     console.error("Network or CORS error fetching image headers:", error);
 //   }
+
+// &#013; FOR LINE-BREAK IN TOOLTIPS
+
+
+
+
+//--------------------------------------  TEST DATA  -----------------------------------
+
+    // const imageLinks = Array.from([
+
+    //     {
+    //         "address":    "random@company.com",
+    //         "images": {
+    //             "image-1": {
+
+    //                 "url":          "https://picsum.photos/seed/vjh9ixn/500/280.webp"
+    //             }
+    //             ,
+    //             "image-2": {
+
+    //                 "url":          "https://picsum.photos/seed/xqe34s6/500/280"
+    //             }
+    //         }
+    //     }
+    //     ,
+    //     {
+    //         "address":    "info@institution.gov",
+    //         "images": {
+    //             "image-1": {
+
+    //                 "url":          "https://picsum.photos/seed/fhz8uf4/500/280.webp"
+    //             }
+    //             ,
+    //             "image-2": {
+
+    //                 "url":          "https://picsum.photos/seed/24cgqbh/500/280.webp"
+    //             }
+    //             ,
+    //             "image-3": {
+
+    //                 "url":          "https://picsum.photos/seed/l3fy3y3/500/280.webp"
+    //             }
+    //             ,
+    //             "image-4": {
+
+    //                 "url":          "https://picsum.photos/seed/2fsdgzq/500/280.webp"
+    //             }
+    //         }
+
+    //     }
+    // ]);
+
+    // console.log(imageLinks);
+
+//--------------------------------------------------------------------------------------
+
+
