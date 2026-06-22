@@ -45,7 +45,12 @@
 
             background-image: url("../img/gallery-background.png");
             background-position: center;
-            background-size: contain;
+            background-size: 170px;
+
+            @media (min-width: 1500px) {
+                background-size: 250px;
+            }
+
             background-repeat: no-repeat;
         }
 

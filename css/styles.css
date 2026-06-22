@@ -525,11 +525,18 @@ img, button {
 #gallery-top #gallery-wrapper #gallery-thumbnails:empty {
   background-image: url("../img/gallery-background.png");
   background-position: center;
-  background-size: contain;
+  background-size: 170px;
   background-repeat: no-repeat;
 }
 
-/* line 52, ../../../JS Array/scss/_gallery.scss */
+@media (min-width: 1500px) {
+  /* line 44, ../../../JS Array/scss/_gallery.scss */
+  #gallery-top #gallery-wrapper #gallery-thumbnails:empty {
+    background-size: 250px;
+  }
+}
+
+/* line 57, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails {
   min-height: 153.391px;
   width: 100%;
@@ -550,7 +557,7 @@ img, button {
 }
 
 @media (min-width: 1500px) {
-  /* line 52, ../../../JS Array/scss/_gallery.scss */
+  /* line 57, ../../../JS Array/scss/_gallery.scss */
   #gallery-top #gallery-wrapper #gallery-thumbnails {
     max-width: 1020px;
     margin: 0 auto;
@@ -558,7 +565,7 @@ img, button {
   }
 }
 
-/* line 87, ../../../JS Array/scss/_gallery.scss */
+/* line 92, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span::after {
   position: relative;
   font-size: 16px;
@@ -578,13 +585,13 @@ img, button {
   z-index: 5;
 }
 
-/* line 111, ../../../JS Array/scss/_gallery.scss */
+/* line 116, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span:hover::after {
   background-color: #44444444;
   display: block;
 }
 
-/* line 118, ../../../JS Array/scss/_gallery.scss */
+/* line 123, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span {
   display: inline-block;
   width: 220px;
@@ -595,13 +602,13 @@ img, button {
   overflow: hidden;
 }
 
-/* line 128, ../../../JS Array/scss/_gallery.scss */
+/* line 133, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span:hover {
   transition: scale 0.15s ease-in;
   scale: 1.04;
 }
 
-/* line 134, ../../../JS Array/scss/_gallery.scss */
+/* line 139, ../../../JS Array/scss/_gallery.scss */
 #gallery-top #gallery-wrapper #gallery-thumbnails .gallery-img-span img {
   display: inline-block;
   cursor: pointer;

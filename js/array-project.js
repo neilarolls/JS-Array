@@ -3,7 +3,7 @@ $(document).ready( function() {
 //  Initialise array
     const imageLinks = [];
 
-// -------------------------------------------------------------------------------------
+// -------------------------- Initial Setup --------------------------------------------
 // This section performs initial setup of variables and section positions. It generates
 // a seed and displays the banner image, adding an img element with appropriate sizing
 // and effects parameters in the Lorum Picsum url.
@@ -23,12 +23,13 @@ $(document).ready( function() {
 
     // Initialise global variables.
     const maxBannerHeight = 450;
+    const maxIMImageWidth = 1440;
     let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
     let currentImageManagerSeed = "";
     let currentUniqueID = "";
     let selectedAddress = "";
     let updateIMDisplay = false;
-    let galleryPassback = [];
+    let gallerySeeds = [];
     let galleryUniqueIDs = [];
     let galleryIndex = -1;
     let desktopMode = (firstCurrentWidth >= 1500);
@@ -153,7 +154,7 @@ $(document).ready( function() {
     window.addEventListener('resize', updateSections);
 
 
-//-------------------------------------------------------------------------------------------
+//--------------------------- Gallery -------------------------------------------------------
 // The Gallery section displays the images attached to the currently selected email address.
 // Clicking on an image copies it back into the image selection section where it can be
 // assigned to another email address. When Hovered on, the image displays an X which will
@@ -179,21 +180,22 @@ $(document).ready( function() {
             // Get the number of images attached to the object.
             let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
 
+            // Clear gallerySeeds and UIDs array.
+            gallerySeeds = [];
+            galleryUniqueIDs = [];
+
             // If there are images, loop through them and create an img element for each one.
             if (imagesInObject > 0) {
 
-                // Clear galleryPassback array.
-                galleryPassback = [];
-                galleryUniqueIDs = [];
-
-                for (let i = 0;i < imagesInObject;i++) {
+                for (let i = 0; i < imagesInObject; i++) {
 
                     // Construct ID strings from index.
                     const imageName = `image-${i+1}`;
                     const spanName = `span-${i+1}`;
 
-                    // Get the seed from the array corresponding to the index.
+                    // Get the seed and UID from the array corresponding to the index.
                     let indexedImageSeed = imageLinks[addressIndex].images[imageName].url.substring(27,34);
+                    let indexedImageUID = imageLinks[addressIndex].images[imageName].UID;
 
                     // Create the img element.
                     thumbnailContainer.insertAdjacentHTML('beforeend', `<span title="Click to delete image." class="gallery-img-span" id="${spanName}"><img alt="gallery image ${i+1}" id="${imageName}" src="https://picsum.photos/seed/${indexedImageSeed}/220/124.webp"" title="Click to open with image selector."></span>`);
@@ -202,17 +204,16 @@ $(document).ready( function() {
                     const currentImage = document.getElementById(imageName);
                     const currentSpan = currentImage.parentElement;
 
-                    // Stores a record of the current display's image seeds. This is useful for passing images back
-                    // to the image manager.
-                    galleryPassback[i] = indexedImageSeed;
-
-                    galleryUniqueIDs[i] = await getUniqueID(indexedImageSeed);
+                    // Stores a record of the current display's image seeds and UID's. This is useful for
+                    // passing images back to the image manager and checking for uniqueness.
+                    gallerySeeds[i] = indexedImageSeed;
+                    galleryUniqueIDs[i] = indexedImageUID;
 
                     // Add click event listener to pass image back to image manager.
                     currentImage.addEventListener("click", function (e) {
 
                         // Get Index of clicked image from event object. updateIMOnResize will change the image
-                        // seed to the value in galleryPassback[] corresponding to the index.
+                        // seed to the value in gallerySeeds[] corresponding to the index.
                         galleryIndex = Number(e.target.id.substring(6)) - 1;
 
                         updateIMOnResize();
@@ -224,7 +225,7 @@ $(document).ready( function() {
                     // top right corner on hover. Delimiting values are retrieved
                     // and adjusted to determine if the button was actually clicked.
                     // This setup is purely because I want a system tooltip on the
-                    // delete button. This way works.
+                    // delete button.
                     currentSpan.addEventListener("click", function (e) {
 
                         // Get the after pseudo-element from the span.
@@ -293,7 +294,7 @@ $(document).ready( function() {
     }
 
 
-// -------------------------------------------------------------------------------------
+// -------------------------- Address Manager ------------------------------------------
 // This section adds email addresses to a list, stored in an array of objects.
 // The objects have the email address and an object with strings representing the
 // pictures assigned to it. On loading there is a button to add an address, only
@@ -316,19 +317,24 @@ $(document).ready( function() {
         }
     }
 
-    // Checks if the image string passed to it is already in the gallery, hence not unique.
-    // Returns true if there is no match.
+    // Checks if the UID of the image string passed to it is already in the gallery,
+    // hence not unique. Returns true if there is no match.
 
     async function isUniqueImage(imageString) {
+
+        console.log(`Function 'isUniqueImage' - selectedAddress: >${selectedAddress}<`);
 
         // Assume the image is unique.
         let isUnique = true;
 
         // Get the unique ID for the seed passed in imageString.
         let imageStringUniqueID = await getUniqueID(imageString);
+        console.log(`Function 'isUniqueImage' - imageStringUniqueID: >${imageStringUniqueID}<`);
 
         // If there are images in the gallery...
-        let imagesInGallery = galleryPassback.length;
+        let imagesInGallery = gallerySeeds.length;        
+        console.log(`Function 'isUniqueImage' - imagesInGallery: >${imagesInGallery}<`);
+
 
         if (imagesInGallery > 0) {
 
@@ -337,15 +343,14 @@ $(document).ready( function() {
 
                 // Get the indexed unique ID from the values stored when the gallery is populated.
                 let indexedGalleryUniqueID = await galleryUniqueIDs[i];
-                console.log(`indexedGalleryUniqueID: >${indexedGalleryUniqueID}<`);
-                console.log(`imageStringUniqueID: >${imageStringUniqueID}<`);
+                console.log(`Function 'isUniqueImage' - indexedGalleryUniqueID: >${indexedGalleryUniqueID}<`);
 
                 // Test whether the ID's match.
                 if (indexedGalleryUniqueID === imageStringUniqueID) {
 
                     // The image is not unique.
                     isUnique = false;
-                    console.log("Not unique.")
+                    console.log("Function 'isUniqueImage' - Image not unique.")
                 }
 
             }
@@ -550,11 +555,11 @@ $(document).ready( function() {
     displayLinks("new");
 
 
-    //-------------------------------------------------------------------------------------------
-    // This section initiates an event listener on the form to accept new email addresses.
-    // When an address is submitted the event listener adds a new object to the imageLinks
-    // array with the supplied email address and no images attached.
-    //-------------------------------------------------------------------------------------------
+//--------------------------- Form Input Manager --------------------------------------------
+// This section initiates an event listener on the form to accept new email addresses.
+// When an address is submitted the event listener adds a new object to the imageLinks
+// array with the supplied email address and no images attached.
+//-------------------------------------------------------------------------------------------
 
     // Get Submit button.
     const formElement = document.getElementById("address-manager-form");
@@ -591,15 +596,21 @@ $(document).ready( function() {
 
     });
 
-//-------------------------------------------------------------------------------------------
+//--------------------------- Image Manager -------------------------------------------------
 // This section handles the image selection display. At the top is the current email address.
 // Below that a random image is displayed with two buttons overlaying in the top right corner.
 // These refresh the image or add the current image to the selected address.
 //-------------------------------------------------------------------------------------------
 
     // Set image dimensions. It displays a 16:9 image 70% of the page width.
+    // Constrains to maxIMImageWidth to keep things sensible on large desktops.
     let imageWidth = Math.ceil(window.innerWidth * 0.7);
-    let imageHeight = Math.ceil(window.innerWidth * 0.39375);
+
+    if (imageWidth > maxIMImageWidth) {
+        imageWidth = maxIMImageWidth;
+    }
+
+    let imageHeight = Math.ceil(imageWidth * 0.5625);
 
     // Generate a new random seed.
     currentImageManagerSeed = Math.random().toString(36).substring(2, 9);
@@ -695,8 +706,14 @@ $(document).ready( function() {
         e.preventDefault();
 
         // Set image dimensions. It displays a 16:9 image 70% of the page width.
+        // Constrains to maxIMImageWidth to keep things sensible on large desktops.
         let newImageWidth = Math.ceil(window.innerWidth * 0.7);
-        let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
+
+        if (newImageWidth > maxIMImageWidth) {
+            newImageWidth = maxIMImageWidth;
+        }
+
+        let newImageHeight = Math.ceil(newImageWidth * 0.5625);
 
         // Make the container match the image size.
         $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
@@ -720,8 +737,14 @@ $(document).ready( function() {
     function updateIMOnResize() {
 
         // Set image dimensions. It displays a 16:9 image 70% of the page width.
+        // Constrains to maxIMImageWidth to keep things sensible on large desktops.
         let newImageWidth = Math.ceil(window.innerWidth * 0.7);
-        let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
+
+        if (newImageWidth > maxIMImageWidth) {
+            newImageWidth = maxIMImageWidth;
+        }
+
+        let newImageHeight = Math.ceil(newImageWidth * 0.5625);
 
         // Make the container match the image size.
         $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
@@ -732,11 +755,11 @@ $(document).ready( function() {
         // Remove the current image element from the image wrapper.
         $(currentImage).remove();
 
-        // If galleryIndex is not -1 replace the current seed with the seed in galleryPassback indexed by galleryIndex.
+        // If galleryIndex is not -1 replace the current seed with the seed in gallerySeeds indexed by galleryIndex.
         // This mechanism is initiated by gallery image click events on the image.
         if (galleryIndex != -1) {
 
-            currentImageManagerSeed = galleryPassback[galleryIndex];
+            currentImageManagerSeed = gallerySeeds[galleryIndex];
 
             galleryIndex = -1;
       
@@ -763,10 +786,11 @@ $(document).ready( function() {
 
         // Is currentImageManagerSeed unique to this address?
         let okToAdd = await isUniqueImage(currentImageManagerSeed);
-        // console.log(okToAdd);
-        // console.log(galleryUniqueIDs);
-        
-        // Only executes if an address has been selected.
+
+        // Gets the ID of the current IM image seed.
+        let currentIMUniqueID = await getUniqueID(currentImageManagerSeed);
+
+        // Only executes if an address has been selected and the image is unique to this address.
         if (selectedAddress && okToAdd) {
 
             // Get the index of the object related to selectedAddress.
@@ -776,11 +800,18 @@ $(document).ready( function() {
             let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
 
             // Add the new image to the object.
-            imageLinks[addressIndex].images[`image-${imagesInObject + 1}`] = {"url":`https://picsum.photos/seed/${currentImageManagerSeed}/500/280.webp`};
+            imageLinks[addressIndex].images[`image-${imagesInObject + 1}`] = {"url":`https://picsum.photos/seed/${currentImageManagerSeed}/500/280.webp`, "UID":`${currentIMUniqueID}`};
+            console.log(imageLinks);
 
             // Set image dimensions. It displays a 16:9 image 70% of the page width.
+            // Constrains to maxIMImageWidth to keep things sensible on large desktops.
             let newImageWidth = Math.ceil(window.innerWidth * 0.7);
-            let newImageHeight = Math.ceil(window.innerWidth * 0.39375);
+
+            if (newImageWidth > maxIMImageWidth) {
+                newImageWidth = maxIMImageWidth;
+            }
+
+            let newImageHeight = Math.ceil(newImageWidth * 0.5625);
 
             // Make the container match the image size. Needs some extra to avoid scrollbars (need to investigate).
             $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
