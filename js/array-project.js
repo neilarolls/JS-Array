@@ -62,7 +62,7 @@ $(document).ready( function() {
     }
 
     // Insert random image into banner as an img element.
-    firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+    firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}?not-from-cache.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
 
 
@@ -619,7 +619,7 @@ $(document).ready( function() {
 // Function to retrieve the unique image ID for the image seed passed to it.-------------------
 
     async function getUniqueID(imageSeed) {
-    
+
         // Get the Unique ID from the Lorem Picsum API.
         try {
 
@@ -645,8 +645,7 @@ $(document).ready( function() {
         } catch (error) {
 
             console.warn('Fetch failed:', error);
-            return "";
-            
+            return "";            
         }
 
         return currentUniqueID;
