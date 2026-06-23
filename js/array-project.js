@@ -33,17 +33,10 @@ $(document).ready( function() {
     let galleryUniqueIDs = [];
     let galleryIndex = -1;
     let desktopMode = (firstCurrentWidth >= 1500);
-    let bannerHidden = false;
-    let tempHeight;
-    let firstCalculatedHeight = 0;
 
-    if (!bannerHidden) {
-
-        // Constrains the banner height to the maximum.
-        tempHeight = Math.ceil(firstCurrentWidth * 0.5625);
-        firstCalculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
-
-    }
+    // Constrains the banner height to the maximum.
+    let tempHeight = Math.ceil(firstCurrentWidth * 0.5625);
+    const firstCalculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
 
     // Get or calculate section heights and the banner text font-size.
     const firstIntroHeight = firstHeaderIntro.clientHeight;
@@ -74,39 +67,36 @@ $(document).ready( function() {
 
 
 // Calculates a new image seed, then fades the current image before loading the new image.
-// Finally the new image seed replaces the old one. Does nothing if the banner is hidden.
+// Finally the new image seed replaces the old one.
 
     function changeHeader() {
 
-        if (!bannerHidden){
+        // Get reference to section.
+        const headerTitle = document.getElementById("header-title-top");
 
-            // Get reference to section.
-            const headerTitle = document.getElementById("header-title-top");
+        // Get current window width.
+        const currentWidth = window.innerWidth;
 
-            // Get current window width.
-            const currentWidth = window.innerWidth;
+        // Calculate banner height.
+        tempHeight = Math.ceil(currentWidth * 0.5625);
+        const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
 
-            // Calculate banner height.
-            tempHeight = Math.ceil(currentWidth * 0.5625);
-            const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
+        // Generate new random seed.
+        const imageSeed = Math.random().toString(36).substring(2, 9);
 
-            // Generate new random seed.
-            const imageSeed = Math.random().toString(36).substring(2, 9);
+        // Fade current banner image.
+        $("#banner-image").fadeOut(200, () => {
 
-            // Fade current banner image.
-            $("#banner-image").fadeOut(200, () => {
+            // Remove current img element.
+            $("#banner-image").remove();
 
-                // Remove current img element.
-                $("#banner-image").remove();
+            // Insert new img element with new seed.
+            headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
-                // Insert new img element with new seed.
-                headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+            // Set global seed variable to new value.
+            currentBannerImageSeed = imageSeed;
 
-                // Set global seed variable to new value.
-                currentBannerImageSeed = imageSeed;
-
-            });
-        }
+        });
     }
 
     // Call the changeHeader function every 15 seconds.
@@ -125,17 +115,8 @@ $(document).ready( function() {
         const galleryTop = document.getElementById("gallery-top");
 
         const currentWidth = window.innerWidth;
-
-        let calculatedHeight = 0;
-
-        if (!bannerHidden) {
-
-            // Constrains the banner height to the maximum.
-            tempHeight = Math.ceil(firstCurrentWidth * 0.5625);
-            calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
-
-        }
-
+        tempHeight = Math.ceil(currentWidth * 0.5625);
+        const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
         const introHeight = headerIntro.clientHeight;
         const addressHeight = addressTop.clientHeight;
         const imgMngrHeight = (currentWidth * 0.39375) + 120;
