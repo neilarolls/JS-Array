@@ -561,8 +561,22 @@ $(document).ready( function() {
 // array with the supplied email address and no images attached.
 //-------------------------------------------------------------------------------------------
 
-    // Get Submit button.
+    // Get Submit button and form elements.
     const formElement = document.getElementById("address-manager-form");
+    const emailInput = document.getElementById("email-address-input");
+    const submitButton = document.getElementById("address-manager-submit-button");
+
+    // Function to validate input and update button state.
+    function validateEmailInput() {
+        const isValid = emailInput.checkValidity() && emailInput.value.trim() !== "";
+        submitButton.disabled = !isValid;
+    }
+
+    // Initialize button as disabled on page load.
+    validateEmailInput();
+
+    // Add real-time validation on input change.
+    emailInput.addEventListener("input", validateEmailInput);
 
     // Initiate event listener.
     formElement.addEventListener("submit", function(e) {
@@ -593,6 +607,7 @@ $(document).ready( function() {
 
         // Reset email input
         formElement.reset();
+        validateEmailInput();
 
     });
 
