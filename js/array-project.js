@@ -288,7 +288,6 @@ $(document).ready( function() {
                     })
                 }
 
-                // console.log(galleryUniqueIDs);
             }
         }
     }
