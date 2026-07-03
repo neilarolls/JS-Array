@@ -1,3 +1,53 @@
+// -------------------------------- CUSTOM ALERT FUNCTION --------------------------------
+// This function displays a custom styled alert modal instead of using window.alert()
+// It handles showing/hiding and user interactions (close, escape key, overlay click, OK)
+// -------------------------------------------------------------------------------------
+
+function showAlert(message) {
+
+    const alertModal = document.getElementById("custom-alert-modal");
+    const alertOverlay = document.getElementById("custom-alert-overlay");
+    const alertMessage = document.getElementById("custom-alert-message");
+    const alertOkBtn = document.getElementById("custom-alert-ok-btn");
+    const alertCloseBtn = document.getElementById("custom-alert-close-btn");
+
+    // Set the message text
+    alertMessage.textContent = message;
+
+    // Show modal and overlay
+    alertModal.classList.add("show");
+    alertOverlay.classList.add("show");
+
+    // Focus on OK button for keyboard accessibility
+    alertOkBtn.focus();
+
+    // Function to close the alert
+    function closeAlert() {
+        alertModal.classList.remove("show");
+        alertOverlay.classList.remove("show");
+        
+        // Clean up event listeners
+        alertOkBtn.removeEventListener("click", closeAlert);
+        alertCloseBtn.removeEventListener("click", closeAlert);
+        alertOverlay.removeEventListener("click", closeAlert);
+        document.removeEventListener("keydown", handleEscapeKey);
+    }
+
+    // Handle Escape key to close alert
+    function handleEscapeKey(event) {
+        if (event.key === "Escape") {
+            closeAlert();
+        }
+    }
+
+    // Add event listeners
+    alertOkBtn.addEventListener("click", closeAlert);
+    alertCloseBtn.addEventListener("click", closeAlert);
+    alertOverlay.addEventListener("click", closeAlert);
+    document.addEventListener("keydown", handleEscapeKey);
+
+}
+
 $(document).ready( function() {
 
 //  Initialise array
@@ -601,7 +651,7 @@ $(document).ready( function() {
         } else {
 
             // Show an alert dialogue.
-            window.alert(["That address has already been entered."]);
+            showAlert("That address has already been entered.");
         }
 
         // Reset email input
@@ -846,12 +896,12 @@ $(document).ready( function() {
         } else if (!selectedAddress) {
 
             // No email address has been selected.
-            window.alert("No email address has been selected.");
+            showAlert("No email address has been selected.");
 
         } else if (selectedAddress && !(okToAdd)) {
 
             // This image is already attached to the selected address.
-            window.alert("That image is already attached to this email address.");
+            showAlert("That image is already attached to this address.");
         }
     });
 
