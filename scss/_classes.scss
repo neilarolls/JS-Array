@@ -14,23 +14,23 @@
   
 }
 
-.header-title {
+// .header-title {
 
-    position: absolute;
-    font-size: 3rem;
+//     position: absolute;
+//     font-size: 3rem;
 
-    @media (min-width: 768px) {
-        font-size: calc((100vw / 768px) + 32px);
-    }
+//     @media (min-width: 768px) {
+//         font-size: calc((100vw / 768px) + 32px);
+//     }
 
-    font-weight: 250;
-    color: #fff;
-    background-color: #000000;
-    text-align: center;
-    text-shadow: (0 0 1.5rem #000000aa);
-    border-bottom: 2px solid #000;
-    width: 100%;
-}
+//     font-weight: 250;
+//     color: #fff;
+//     background-color: #000000;
+//     text-align: center;
+//     text-shadow: (0 0 1.5rem #000000aa);
+//     border-bottom: 2px solid #000;
+//     width: 100%;
+// }
 
 .body-text-medium {
 
@@ -213,7 +213,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 999;
-    animation: fadeIn 0.2s ease-in;
+    animation: fadeIn 0.1s ease-in;
 
     &.show {
         display: block;
@@ -270,7 +270,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.2s ease;
+    transition: color 0.1s ease;
 
     &:hover,
     &:focus {
@@ -299,7 +299,7 @@
     flex-wrap: wrap;
     padding-top: 0.5rem;
     overflow: visible;
-    
+
 }
 
 .custom-alert-ok-btn {
@@ -311,7 +311,7 @@
     font-size: clamp(0.875rem, 2vw, 1rem);
     font-weight: 400;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.1s ease;
     min-height: 44px;
     min-width: 100px;
     display: flex;

@@ -1,6 +1,6 @@
 // -------------------------------- CUSTOM ALERT FUNCTION --------------------------------
-// This function displays a custom styled alert modal instead of using window.alert()
-// It handles showing/hiding and user interactions (close, escape key, overlay click, OK)
+// This function displays a custom styled alert modal. It handles showing/hiding and user
+// interactions (close icon, escape key, click outside alert box and the OK button).
 // -------------------------------------------------------------------------------------
 
 function showAlert(message) {
@@ -11,17 +11,17 @@ function showAlert(message) {
     const alertOkBtn = document.getElementById("custom-alert-ok-btn");
     const alertCloseBtn = document.getElementById("custom-alert-close-btn");
 
-    // Set the message text
+    // Set the message text.
     alertMessage.textContent = message;
 
-    // Show modal and overlay
+    // Show modal and overlay.
     alertModal.classList.add("show");
     alertOverlay.classList.add("show");
 
-    // Focus on OK button for keyboard accessibility
+    // Focus on OK button for keyboard accessibility.
     alertOkBtn.focus();
 
-    // Function to close the alert
+    // Function to close the alert.
     function closeAlert() {
         alertModal.classList.remove("show");
         alertOverlay.classList.remove("show");
@@ -33,7 +33,7 @@ function showAlert(message) {
         document.removeEventListener("keydown", handleEscapeKey);
     }
 
-    // Handle Escape key to close alert
+    // Handle Escape key to close alert.
     function handleEscapeKey(event) {
         if (event.key === "Escape") {
             closeAlert();
@@ -60,8 +60,6 @@ $(document).ready( function() {
 // -------------------------------------------------------------------------------------
 // Get references.
 
-    const firstTitleText = document.getElementById("header-title-wrapper");
-    const firstHeaderTitle = document.getElementById("header-title-top");
     const firstHeaderIntro = document.getElementById("header-intro-top");
     const firstAddressTop = document.getElementById("address-manager-top");
     const firstImageMngrTop = document.getElementById("image-manager-top");
@@ -72,9 +70,8 @@ $(document).ready( function() {
     const firstCurrentWidth = window.innerWidth;
 
     // Initialise global variables.
-    const maxBannerHeight = 450;
-    const maxIMImageWidth = 1440;
-    let currentBannerImageSeed = Math.random().toString(36).substring(2, 9);
+    const maxIMImageWidth = 740;
+    const maxIMHeight = 555;
     let currentImageManagerSeed = "";
     let currentUniqueID = "";
     let selectedAddress = "";
@@ -84,99 +81,92 @@ $(document).ready( function() {
     let galleryIndex = -1;
     let desktopMode = (firstCurrentWidth >= 1500);
 
-    // Constrains the banner height to the maximum.
-    let tempHeight = Math.ceil(firstCurrentWidth * 0.5625);
-    const firstCalculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
-
-    // Get or calculate section heights and the banner text font-size.
+    // Get or calculate section heights.
     const firstIntroHeight = firstHeaderIntro.clientHeight;
     const firstAddressHeight = firstAddressTop.clientHeight;
-    const firstImgMngrHeight = (firstCurrentWidth * 0.39375) + 120;
-    const firstNewFontSize = (firstCurrentWidth / 768) + 2;
+    let firstImgMngrHeight = (firstCurrentWidth * 0.39375) + 120;
+    if (firstImgMngrHeight > maxIMHeight) {
+        firstImgMngrHeight = maxIMHeight;
+    }
 
-    // Set top and left positions of sections and banner text font-size.
-    $(firstTitleText).css({"font-size":`${firstNewFontSize}rem`});
-    $(firstHeaderIntro).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight}px`});
-    $(firstAddressTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight}px`});
-    $(firstImageMngrTop).css({"position":"absolute","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight}px`});
+    // Set top and left positions of sections.
+    $(firstHeaderIntro).css({"position":"absolute","left":"0","top":"0"});
+    $(firstAddressTop).css({"position":"absolute","left":"0","top":`${firstIntroHeight}px`});
+    $(firstImageMngrTop).css({"position":"absolute","left":"0","top":`${firstIntroHeight + firstAddressHeight}px`});
 
     // If in desktop mode (width >= 1500px) sets the position and height,
     // moving the Gallery to the right of the intro and address manager.
     if (desktopMode) {
 
-        $(firstGalleryTop).css({"position":"absolute","height":`${firstAddressHeight}`,"right":"0","top":`${firstCalculatedHeight + firstIntroHeight}px`});
+        $(firstGalleryTop).css({"position":"absolute","height":`${firstImgMngrHeight}`,"right":"0","top":`${firstIntroHeight + firstAddressHeight}px`});
 
     } else {
 
-        $(firstGalleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${firstCalculatedHeight + firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
+        $(firstGalleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
     }
 
-    // Insert random image into banner as an img element.
-    firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}?not-from-cache.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+    // // Insert random image into banner as an img element.
+    // firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}?not-from-cache.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
 
 
-// Calculates a new image seed, then fades the current image before loading the new image.
-// Finally the new image seed replaces the old one.
+// // Calculates a new image seed, then fades the current image before loading the new image.
+// // Finally the new image seed replaces the old one.
 
-    function changeHeader() {
+//     function changeHeader() {
 
-        // Get reference to section.
-        const headerTitle = document.getElementById("header-title-top");
+//         // Get reference to section.
+//         const headerTitle = document.getElementById("header-title-top");
 
-        // Get current window width.
-        const currentWidth = window.innerWidth;
+//         // Get current window width.
+//         const currentWidth = window.innerWidth;
 
-        // Calculate banner height.
-        tempHeight = Math.ceil(currentWidth * 0.5625);
-        const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
+//         // Calculate banner height.
+//         tempHeight = Math.ceil(currentWidth * 0.5625);
+//         const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
 
-        // Generate new random seed.
-        const imageSeed = Math.random().toString(36).substring(2, 9);
+//         // Generate new random seed.
+//         const imageSeed = Math.random().toString(36).substring(2, 9);
 
-        // Fade current banner image.
-        $("#banner-image").fadeOut(200, () => {
+//         // Fade current banner image.
+//         $("#banner-image").fadeOut(200, () => {
 
-            // Remove current img element.
-            $("#banner-image").remove();
+//             // Remove current img element.
+//             $("#banner-image").remove();
 
-            // Insert new img element with new seed.
-            headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
+//             // Insert new img element with new seed.
+//             headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
-            // Set global seed variable to new value.
-            currentBannerImageSeed = imageSeed;
+//             // Set global seed variable to new value.
+//             currentBannerImageSeed = imageSeed;
 
-        });
-    }
+//         });
+//     }
 
-    // Call the changeHeader function every 15 seconds.
-    const changeHeaderImage = setInterval(changeHeader, 15000);
+//     // Call the changeHeader function every 15 seconds.
+//     const changeHeaderImage = setInterval(changeHeader, 15000);
 
-// This function handles updating the positions of the sections and the
-// size of the banner image as the display changes size or orientation.
+// This function handles updating the positions of the sections
+// as the display changes size or orientation.
 
     function updateSections() {
 
-        const titleText = document.getElementById("header-title-wrapper");
-        const headerTitle = document.getElementById("header-title-top");
         const headerIntro = document.getElementById("header-intro-top");
         const addressTop = document.getElementById("address-manager-top");
         const imageMngrTop = document.getElementById("image-manager-top");
         const galleryTop = document.getElementById("gallery-top");
 
         const currentWidth = window.innerWidth;
-        tempHeight = Math.ceil(currentWidth * 0.5625);
-        const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
         const introHeight = headerIntro.clientHeight;
         const addressHeight = addressTop.clientHeight;
-        const imgMngrHeight = (currentWidth * 0.39375) + 120;
-        const newFontSize = (currentWidth / 768) + 2;
+        let imgMngrHeight = (currentWidth * 0.39375) + 120;
+        if (imgMngrHeight > maxIMHeight) {
+            imgMngrHeight = maxIMHeight;
+        }
 
-        $(titleText).css({"font-size":`${newFontSize}rem`});
-        $(headerIntro).css({"position":"absolute","left":"0","top":`${calculatedHeight}px`});
-        $(addressTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight}px`});
-        $(imageMngrTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight}px`});
-        // $(galleryTop).css({"position":"absolute","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
+        $(headerIntro).css({"position":"absolute","left":"0","top":"0"});
+        $(addressTop).css({"position":"absolute","left":"0","top":`${introHeight}px`});
+        $(imageMngrTop).css({"position":"absolute","left":"0","top":`${introHeight + addressHeight}px`});
 
         // If in desktop mode (width >= 1500px) sets the position and height,
         // moving the Gallery to the right of the address manager.
@@ -186,17 +176,13 @@ $(document).ready( function() {
         if (desktopMode) {
 
             document.getElementById("gallery-top").style.removeProperty('left');
-            $(galleryTop).css({"position":"absolute","height":`${addressHeight}`,"right":"0","top":`${calculatedHeight + introHeight}px`});
+            $(galleryTop).css({"position":"absolute","height":`${imgMngrHeight}`,"right":"0","top":`${introHeight + addressHeight}px`});
 
         } else {
 
             document.getElementById("gallery-top").style.removeProperty('right');
-            $(galleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${calculatedHeight + introHeight + addressHeight + imgMngrHeight}px`});
+            $(galleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${introHeight + addressHeight + imgMngrHeight}px`});
         }
-
-        $("#banner-image").remove();
-
-        headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
 
     }
 
@@ -748,8 +734,10 @@ $(document).ready( function() {
             updateIMDisplay = false;
 
         }
-
         let currentWidth = window.innerWidth;
+        if (desktopMode) {
+            currentWidth *= (currentWidth < 2200)?0.6:0.5;
+        }
         let imageWidth = imageWrapper.clientWidth;
         let imageTopOffset = imageContainerHeader.offsetHeight + 40;
         let imageRightOffset = ((currentWidth - imageWidth) / 2) - `${currentWidth < 576?50:70}`;

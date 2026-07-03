@@ -19,26 +19,26 @@
     
     #header-wrapper {
 
-        #header-title-top {
+        // #header-title-top {
 
-            height: calc((100vw * 0.5625));
+        //     height: calc((100vw * 0.5625));
 
-            @media (min-width: 800px) {
-                height:450px;
-            }
+        //     @media (min-width: 800px) {
+        //         height:450px;
+        //     }
 
-            overflow: hidden;
+        //     overflow: hidden;
 
-            #header-title-wrapper {
+        //     #header-title-wrapper {
 
-                width: 80%;
-                position: absolute;
-                top: calc(100% * 0.38);
-                left: 10%;
-                z-index: 1;
-                overflow: visible;
-            }
-        }
+        //         width: 80%;
+        //         position: absolute;
+        //         top: calc(100% * 0.38);
+        //         left: 10%;
+        //         z-index: 1;
+        //         overflow: visible;
+        //     }
+        // }
 
         #header-intro-top {
 

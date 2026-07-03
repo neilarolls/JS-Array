@@ -7,7 +7,7 @@
     width: 100vw;
 
     @media (min-width: 1500px) {
-        width: 60vw;
+        width: 100vw;
     }
 
     #address-manager-wrapper {
@@ -110,7 +110,7 @@
         #address-manager-list-wrapper {
 
             width: 90%;
-            max-width: 992px;
+            max-width: 1440px;
             margin: 0 auto;
             height: 16rem;
             padding: 1rem 0;
