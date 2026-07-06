@@ -194,6 +194,49 @@
 
 }
 
+.back-button {
+
+    position: absolute;
+    color: transparent;
+    background-color: transparent;
+    display: block;
+    overflow-x: hidden;
+    z-index: 3;
+
+    button:hover, button:focus {
+
+        outline-style: none;
+    }
+
+    button {
+
+        border: none;
+        color: transparent;
+        background-color: transparent;
+        cursor: pointer;
+        filter: drop-shadow( 0 0 0.05rem #111111);
+
+        img {
+
+            width: 40px;
+            height: 40px;
+            color: transparent;
+            background-color: transparent;
+            scale: 1;
+            transition: all 0.1s ease-in;
+
+            &:hover {
+
+                scale: 1.08;
+                transition: all 0.1s ease-in;
+                filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
+            }
+
+        }
+    }
+
+}
+
 .clean-child-button {
 
     button:hover, button:focus {

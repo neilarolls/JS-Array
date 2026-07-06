@@ -76,6 +76,7 @@ $(document).ready( function() {
     let currentUniqueID = "";
     let selectedAddress = "";
     let updateIMDisplay = false;
+    let prevIMSeeds = [];
     let gallerySeeds = [];
     let galleryUniqueIDs = [];
     let galleryIndex = -1;
@@ -648,8 +649,9 @@ $(document).ready( function() {
 
 //--------------------------- Image Manager -------------------------------------------------
 // This section handles the image selection display. At the top is the current email address.
-// Below that a random image is displayed with two buttons overlaying in the top right corner.
-// These refresh the image or add the current image to the selected address.
+// Below that a random image is displayed with three buttons to the sides. These refresh the
+// image, add the current image to the selected address and go back to a previous image. The
+// buffer can store as many images as wanted. Going back removes the current image.
 //-------------------------------------------------------------------------------------------
 
     // Set image dimensions. It displays a 16:9 image 70% of the page width.
@@ -704,11 +706,12 @@ $(document).ready( function() {
 // --------------------------------------------------------------------------------------------
 
 
-    // Get image containers, header text container and both buttons.
+    // Get image containers, header text container and buttons.
     const imageWrapper = document.getElementById("image-wrapper");
     const imageContainerHeader = document.getElementById("image-manager-header-bar");
     const refreshButton = document.getElementById("image-manager-refresh-button-wrapper");
     const assignButton = document.getElementById("image-manager-assign-button-wrapper");
+    const backButton = document.getElementById("image-manager-back-button-wrapper");
 
     // Make the container match the image size.
     $(imageWrapper).css({"width":`${imageWidth}px`,"height":`${imageHeight}px`});
@@ -720,7 +723,7 @@ $(document).ready( function() {
     imageContainerHeader.insertAdjacentText("beforeend",`Selected Email Address: none`);
 
     // This interval timed function updates the selected email displayed in the header area.
-    // I've also co-opted it to maintain a consistent position for the refresh and assign buttons.
+    // I've also co-opted it to maintain a consistent position for the refresh, assign and back buttons.
     const imageManagerSelectedUpdate = setInterval( function () {
 
         // The updateIMDisplay flag is set when a button is selected in the address manager.
@@ -734,6 +737,8 @@ $(document).ready( function() {
             updateIMDisplay = false;
 
         }
+
+
         let currentWidth = window.innerWidth;
         if (desktopMode) {
             currentWidth *= (currentWidth < 2200)?0.6:0.5;
@@ -747,6 +752,18 @@ $(document).ready( function() {
 
         $(assignButton).css({"top":`${imageTopOffset + 48}px`});
         $(assignButton).css({"right":`${imageRightOffset}px`});
+
+        $(backButton).css({"top":`${imageTopOffset}px`});
+        $(backButton).css({"left":`${imageRightOffset}px`});
+
+        prevImagesExist = (prevIMSeeds.length > 0);
+        backButtonVisible = $(backButton).is(':visible');
+
+        if (prevImagesExist && !backButtonVisible) {
+            $(backButton).fadeIn(300);
+        } else if (!prevImagesExist && backButtonVisible) {
+            $(backButton).fadeOut(300);
+        }
 
     }, 20);
 
@@ -781,8 +798,49 @@ $(document).ready( function() {
         // Add new image element with new seed.
         imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
 
-        // Swap to the new seed value.
+        // Swap to the new seed value, storing the current value in prevIMSeeds[].
+        prevIMSeeds.push(currentImageManagerSeed);    
         currentImageManagerSeed = newImageManagerSeed;
+    
+    });
+
+    // Adds event listener on the back button which replaces the image seed and image with the most recent image that was skipped.
+    backButton.addEventListener("click", function (e) {
+
+        // Stop any automated behaviour.
+        e.preventDefault();
+
+        prevImagesExist = (prevIMSeeds.length > 0);
+
+        if (prevImagesExist) {
+            // Set image dimensions. It displays a 16:9 image 70% of the page width.
+            // Constrains to maxIMImageWidth to keep things sensible on large desktops.
+            let newImageWidth = Math.ceil(window.innerWidth * 0.7);
+
+            if (newImageWidth > maxIMImageWidth) {
+                newImageWidth = maxIMImageWidth;
+            }
+
+            let newImageHeight = Math.ceil(newImageWidth * 0.5625);
+
+            // Make the container match the image size.
+            $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
+
+            // Generate a new random seed.
+            let newImageManagerSeed = prevIMSeeds.pop();
+
+            // Get the current image element.
+            const currentImage = document.getElementById("current-random-image");
+
+            // Remove the current image element from the image wrapper.
+            $(currentImage).remove();
+
+            // Add new image element with new seed.
+            imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
+
+            // Swap to the new seed value.
+            currentImageManagerSeed = newImageManagerSeed;
+        }
     });
 
     function updateIMOnResize() {

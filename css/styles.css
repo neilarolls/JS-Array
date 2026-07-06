@@ -205,12 +205,53 @@ img, button {
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
 }
 
-/* line 199, ../../../JS Array/scss/_classes.scss */
+/* line 197, ../../../JS Array/scss/_classes.scss */
+.back-button {
+  position: absolute;
+  color: transparent;
+  background-color: transparent;
+  display: block;
+  overflow-x: hidden;
+  z-index: 3;
+}
+
+/* line 206, ../../../JS Array/scss/_classes.scss */
+.back-button button:hover, .back-button button:focus {
+  outline-style: none;
+}
+
+/* line 211, ../../../JS Array/scss/_classes.scss */
+.back-button button {
+  border: none;
+  color: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.05rem #111111);
+}
+
+/* line 219, ../../../JS Array/scss/_classes.scss */
+.back-button button img {
+  width: 40px;
+  height: 40px;
+  color: transparent;
+  background-color: transparent;
+  scale: 1;
+  transition: all 0.1s ease-in;
+}
+
+/* line 228, ../../../JS Array/scss/_classes.scss */
+.back-button button img:hover {
+  scale: 1.08;
+  transition: all 0.1s ease-in;
+  filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
+}
+
+/* line 242, ../../../JS Array/scss/_classes.scss */
 .clean-child-button button:hover, .clean-child-button button:focus {
   outline-style: none;
 }
 
-/* line 207, ../../../JS Array/scss/_classes.scss */
+/* line 250, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay {
   position: fixed;
   top: 0;
@@ -223,12 +264,12 @@ img, button {
   animation: fadeIn 0.1s ease-in;
 }
 
-/* line 218, ../../../JS Array/scss/_classes.scss */
+/* line 261, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay.show {
   display: block;
 }
 
-/* line 223, ../../../JS Array/scss/_classes.scss */
+/* line 266, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal {
   position: fixed;
   top: 50%;
@@ -245,19 +286,19 @@ img, button {
 }
 
 @media (min-width: 768px) {
-  /* line 223, ../../../JS Array/scss/_classes.scss */
+  /* line 266, ../../../JS Array/scss/_classes.scss */
   .custom-alert-modal {
     width: 90%;
     max-width: 500px;
   }
 }
 
-/* line 244, ../../../JS Array/scss/_classes.scss */
+/* line 287, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal.show {
   display: flex;
 }
 
-/* line 249, ../../../JS Array/scss/_classes.scss */
+/* line 292, ../../../JS Array/scss/_classes.scss */
 .custom-alert-content {
   display: flex;
   flex-direction: column;
@@ -267,7 +308,7 @@ img, button {
   position: relative;
 }
 
-/* line 258, ../../../JS Array/scss/_classes.scss */
+/* line 301, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn {
   position: absolute;
   top: 0.75rem;
@@ -286,7 +327,7 @@ img, button {
   transition: color 0.1s ease;
 }
 
-/* line 275, ../../../JS Array/scss/_classes.scss */
+/* line 318, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn:hover, .custom-alert-close-btn:focus {
   color: #000;
   outline: 2px solid #336baa;
@@ -294,7 +335,7 @@ img, button {
   border-radius: 0.25rem;
 }
 
-/* line 284, ../../../JS Array/scss/_classes.scss */
+/* line 327, ../../../JS Array/scss/_classes.scss */
 .custom-alert-message {
   font-size: clamp(0.875rem, 3vw, 1.5rem);
   color: #000011aa;
@@ -304,7 +345,7 @@ img, button {
   text-align: center;
 }
 
-/* line 294, ../../../JS Array/scss/_classes.scss */
+/* line 337, ../../../JS Array/scss/_classes.scss */
 .custom-alert-buttons {
   display: flex;
   justify-content: center;
@@ -314,7 +355,7 @@ img, button {
   overflow: visible;
 }
 
-/* line 305, ../../../JS Array/scss/_classes.scss */
+/* line 348, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn {
   background-color: #425d86;
   color: #fff0e8;
@@ -333,20 +374,20 @@ img, button {
   overflow: visible;
 }
 
-/* line 322, ../../../JS Array/scss/_classes.scss */
+/* line 365, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:hover {
   background-color: #304b74;
   scale: 1.02;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
-/* line 328, ../../../JS Array/scss/_classes.scss */
+/* line 371, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:focus {
   outline: 2px solid #336baa;
   outline-offset: 2px;
 }
 
-/* line 333, ../../../JS Array/scss/_classes.scss */
+/* line 376, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:active {
   scale: 0.98;
 }
