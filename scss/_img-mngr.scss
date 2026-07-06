@@ -25,10 +25,12 @@
 
     height: fit-content;
     padding: 2rem 0;
+    box-shadow: 0 0 3rem #00000088;
     
     #image-manager-wrapper {
 
         overflow-x: clip;
+        overflow-y: visible;
 
         #image-manager-display {
 

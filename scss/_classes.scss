@@ -14,27 +14,9 @@
   
 }
 
-// .header-title {
-
-//     position: absolute;
-//     font-size: 3rem;
-
-//     @media (min-width: 768px) {
-//         font-size: calc((100vw / 768px) + 32px);
-//     }
-
-//     font-weight: 250;
-//     color: #fff;
-//     background-color: #000000;
-//     text-align: center;
-//     text-shadow: (0 0 1.5rem #000000aa);
-//     border-bottom: 2px solid #000;
-//     width: 100%;
-// }
-
 .body-text-medium {
 
-    font-size: 1.125rem;
+    font-size: clamp(1.125rem, calc(100vw / 60), 1.5rem);
     font-weight: 350;
     color: #000011aa;
     background-color: #fff;

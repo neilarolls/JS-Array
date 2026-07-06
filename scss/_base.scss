@@ -18,12 +18,16 @@ img, button {
 
 .h3 {
     font-weight: 500;
-    font-size: 1.3rem;
     padding-bottom: 1rem;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 #section-wrapper {
 
     width: 100vw;
+    height: fit-content;
+}
+
+main, body {
     height: fit-content;
 }

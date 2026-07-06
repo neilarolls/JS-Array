@@ -77,6 +77,7 @@ $(document).ready( function() {
     let selectedAddress = "";
     let updateIMDisplay = false;
     let prevIMSeeds = [];
+    const IMUndoLimit = 100;
     let gallerySeeds = [];
     let galleryUniqueIDs = [];
     let galleryIndex = -1;
@@ -106,46 +107,6 @@ $(document).ready( function() {
         $(firstGalleryTop).css({"position":"absolute","height":"fit-content","left":"0","top":`${firstIntroHeight + firstAddressHeight + firstImgMngrHeight}px`});
     }
 
-    // // Insert random image into banner as an img element.
-    // firstHeaderTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${currentBannerImageSeed}/${firstCurrentWidth}/${firstCalculatedHeight}?not-from-cache.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
-
-
-
-// // Calculates a new image seed, then fades the current image before loading the new image.
-// // Finally the new image seed replaces the old one.
-
-//     function changeHeader() {
-
-//         // Get reference to section.
-//         const headerTitle = document.getElementById("header-title-top");
-
-//         // Get current window width.
-//         const currentWidth = window.innerWidth;
-
-//         // Calculate banner height.
-//         tempHeight = Math.ceil(currentWidth * 0.5625);
-//         const calculatedHeight = (tempHeight > maxBannerHeight)?maxBannerHeight:tempHeight;
-
-//         // Generate new random seed.
-//         const imageSeed = Math.random().toString(36).substring(2, 9);
-
-//         // Fade current banner image.
-//         $("#banner-image").fadeOut(200, () => {
-
-//             // Remove current img element.
-//             $("#banner-image").remove();
-
-//             // Insert new img element with new seed.
-//             headerTitle.insertAdjacentHTML('beforeend', `<img id="banner-image" src="https://picsum.photos/seed/${imageSeed}/${currentWidth}/${calculatedHeight}.webp" style="position:absolute;top:0;left:0;z-index:0;width:100vw;object-position:50% 50%;">`);
-
-//             // Set global seed variable to new value.
-//             currentBannerImageSeed = imageSeed;
-
-//         });
-//     }
-
-//     // Call the changeHeader function every 15 seconds.
-//     const changeHeaderImage = setInterval(changeHeader, 15000);
 
 // This function handles updating the positions of the sections
 // as the display changes size or orientation.
@@ -799,9 +760,15 @@ $(document).ready( function() {
         imageWrapper.insertAdjacentHTML('beforeend', `<img id="current-random-image" src="https://picsum.photos/seed/${newImageManagerSeed}/${newImageWidth}/${newImageHeight}.webp">`);
 
         // Swap to the new seed value, storing the current value in prevIMSeeds[].
-        prevIMSeeds.push(currentImageManagerSeed);    
+        // Limits buffer to IMUndoLimit.
+        prevIMSeeds.push(currentImageManagerSeed);
+
+        if (prevIMSeeds.length > IMUndoLimit) {
+            prevIMSeeds.shift();
+        }
+
         currentImageManagerSeed = newImageManagerSeed;
-    
+
     });
 
     // Adds event listener on the back button which replaces the image seed and image with the most recent image that was skipped.

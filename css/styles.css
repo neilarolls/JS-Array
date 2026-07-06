@@ -20,13 +20,18 @@ img, button {
 /* line 19, ../../../JS Array/scss/_base.scss */
 .h3 {
   font-weight: 500;
-  font-size: 1.3rem;
   padding-bottom: 1rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 /* line 25, ../../../JS Array/scss/_base.scss */
 #section-wrapper {
   width: 100vw;
+  height: fit-content;
+}
+
+/* line 31, ../../../JS Array/scss/_base.scss */
+main, body {
   height: fit-content;
 }
 
@@ -43,9 +48,9 @@ img, button {
   border: 0;
 }
 
-/* line 35, ../../../JS Array/scss/_classes.scss */
+/* line 17, ../../../JS Array/scss/_classes.scss */
 .body-text-medium {
-  font-size: 1.125rem;
+  font-size: clamp(1.125rem, calc(100vw / 60), 1.5rem);
   font-weight: 350;
   color: #000011aa;
   background-color: #fff;
@@ -53,13 +58,13 @@ img, button {
   text-shadow: 0 0 0.1rem #00000099;
 }
 
-/* line 45, ../../../JS Array/scss/_classes.scss */
+/* line 27, ../../../JS Array/scss/_classes.scss */
 .body-text-small {
   font-size: 0.875rem;
   text-shadow: none;
 }
 
-/* line 51, ../../../JS Array/scss/_classes.scss */
+/* line 33, ../../../JS Array/scss/_classes.scss */
 .btn-not-selected {
   width: 230px;
   width: 230px;
@@ -78,19 +83,19 @@ img, button {
 }
 
 @media (min-width: 480px) {
-  /* line 51, ../../../JS Array/scss/_classes.scss */
+  /* line 33, ../../../JS Array/scss/_classes.scss */
   .btn-not-selected {
     width: 250px;
   }
 }
 
-/* line 74, ../../../JS Array/scss/_classes.scss */
+/* line 56, ../../../JS Array/scss/_classes.scss */
 .btn-not-selected:hover {
   transition: scale 0.1s ease-in;
   scale: 1.02;
 }
 
-/* line 81, ../../../JS Array/scss/_classes.scss */
+/* line 63, ../../../JS Array/scss/_classes.scss */
 .btn-selected {
   width: 230px;
   height: 100px;
@@ -109,19 +114,19 @@ img, button {
 }
 
 @media (min-width: 480px) {
-  /* line 81, ../../../JS Array/scss/_classes.scss */
+  /* line 63, ../../../JS Array/scss/_classes.scss */
   .btn-selected {
     width: 250px;
   }
 }
 
-/* line 104, ../../../JS Array/scss/_classes.scss */
+/* line 86, ../../../JS Array/scss/_classes.scss */
 .btn-selected:hover {
   transition: scale 0.1s ease-in;
   scale: 1.02;
 }
 
-/* line 111, ../../../JS Array/scss/_classes.scss */
+/* line 93, ../../../JS Array/scss/_classes.scss */
 .refresh-button {
   overflow: visible;
   position: absolute;
@@ -132,12 +137,12 @@ img, button {
   z-index: 3;
 }
 
-/* line 121, ../../../JS Array/scss/_classes.scss */
+/* line 103, ../../../JS Array/scss/_classes.scss */
 .refresh-button button:hover, .refresh-button button:focus {
   outline-style: none;
 }
 
-/* line 126, ../../../JS Array/scss/_classes.scss */
+/* line 108, ../../../JS Array/scss/_classes.scss */
 .refresh-button button {
   border: none;
   color: transparent;
@@ -147,7 +152,7 @@ img, button {
   height: 55px;
 }
 
-/* line 135, ../../../JS Array/scss/_classes.scss */
+/* line 117, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img {
   width: 40px;
   height: 40px;
@@ -157,14 +162,14 @@ img, button {
   transition: all 0.1s ease-in;
 }
 
-/* line 144, ../../../JS Array/scss/_classes.scss */
+/* line 126, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img:hover {
   scale: 1.05;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.1rem 0.1rem 0.2rem #33333333);
 }
 
-/* line 154, ../../../JS Array/scss/_classes.scss */
+/* line 136, ../../../JS Array/scss/_classes.scss */
 .assign-button {
   position: absolute;
   color: transparent;
@@ -174,12 +179,12 @@ img, button {
   z-index: 3;
 }
 
-/* line 163, ../../../JS Array/scss/_classes.scss */
+/* line 145, ../../../JS Array/scss/_classes.scss */
 .assign-button button:hover, .assign-button button:focus {
   outline-style: none;
 }
 
-/* line 168, ../../../JS Array/scss/_classes.scss */
+/* line 150, ../../../JS Array/scss/_classes.scss */
 .assign-button button {
   border: none;
   color: transparent;
@@ -188,7 +193,7 @@ img, button {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 176, ../../../JS Array/scss/_classes.scss */
+/* line 158, ../../../JS Array/scss/_classes.scss */
 .assign-button button img {
   width: 40px;
   height: 40px;
@@ -198,14 +203,14 @@ img, button {
   transition: all 0.1s ease-in;
 }
 
-/* line 185, ../../../JS Array/scss/_classes.scss */
+/* line 167, ../../../JS Array/scss/_classes.scss */
 .assign-button button img:hover {
   scale: 1.08;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
 }
 
-/* line 197, ../../../JS Array/scss/_classes.scss */
+/* line 179, ../../../JS Array/scss/_classes.scss */
 .back-button {
   position: absolute;
   color: transparent;
@@ -215,12 +220,12 @@ img, button {
   z-index: 3;
 }
 
-/* line 206, ../../../JS Array/scss/_classes.scss */
+/* line 188, ../../../JS Array/scss/_classes.scss */
 .back-button button:hover, .back-button button:focus {
   outline-style: none;
 }
 
-/* line 211, ../../../JS Array/scss/_classes.scss */
+/* line 193, ../../../JS Array/scss/_classes.scss */
 .back-button button {
   border: none;
   color: transparent;
@@ -229,7 +234,7 @@ img, button {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 219, ../../../JS Array/scss/_classes.scss */
+/* line 201, ../../../JS Array/scss/_classes.scss */
 .back-button button img {
   width: 40px;
   height: 40px;
@@ -239,19 +244,19 @@ img, button {
   transition: all 0.1s ease-in;
 }
 
-/* line 228, ../../../JS Array/scss/_classes.scss */
+/* line 210, ../../../JS Array/scss/_classes.scss */
 .back-button button img:hover {
   scale: 1.08;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
 }
 
-/* line 242, ../../../JS Array/scss/_classes.scss */
+/* line 224, ../../../JS Array/scss/_classes.scss */
 .clean-child-button button:hover, .clean-child-button button:focus {
   outline-style: none;
 }
 
-/* line 250, ../../../JS Array/scss/_classes.scss */
+/* line 232, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay {
   position: fixed;
   top: 0;
@@ -264,12 +269,12 @@ img, button {
   animation: fadeIn 0.1s ease-in;
 }
 
-/* line 261, ../../../JS Array/scss/_classes.scss */
+/* line 243, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay.show {
   display: block;
 }
 
-/* line 266, ../../../JS Array/scss/_classes.scss */
+/* line 248, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal {
   position: fixed;
   top: 50%;
@@ -286,19 +291,19 @@ img, button {
 }
 
 @media (min-width: 768px) {
-  /* line 266, ../../../JS Array/scss/_classes.scss */
+  /* line 248, ../../../JS Array/scss/_classes.scss */
   .custom-alert-modal {
     width: 90%;
     max-width: 500px;
   }
 }
 
-/* line 287, ../../../JS Array/scss/_classes.scss */
+/* line 269, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal.show {
   display: flex;
 }
 
-/* line 292, ../../../JS Array/scss/_classes.scss */
+/* line 274, ../../../JS Array/scss/_classes.scss */
 .custom-alert-content {
   display: flex;
   flex-direction: column;
@@ -308,7 +313,7 @@ img, button {
   position: relative;
 }
 
-/* line 301, ../../../JS Array/scss/_classes.scss */
+/* line 283, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn {
   position: absolute;
   top: 0.75rem;
@@ -327,7 +332,7 @@ img, button {
   transition: color 0.1s ease;
 }
 
-/* line 318, ../../../JS Array/scss/_classes.scss */
+/* line 300, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn:hover, .custom-alert-close-btn:focus {
   color: #000;
   outline: 2px solid #336baa;
@@ -335,7 +340,7 @@ img, button {
   border-radius: 0.25rem;
 }
 
-/* line 327, ../../../JS Array/scss/_classes.scss */
+/* line 309, ../../../JS Array/scss/_classes.scss */
 .custom-alert-message {
   font-size: clamp(0.875rem, 3vw, 1.5rem);
   color: #000011aa;
@@ -345,7 +350,7 @@ img, button {
   text-align: center;
 }
 
-/* line 337, ../../../JS Array/scss/_classes.scss */
+/* line 319, ../../../JS Array/scss/_classes.scss */
 .custom-alert-buttons {
   display: flex;
   justify-content: center;
@@ -355,7 +360,7 @@ img, button {
   overflow: visible;
 }
 
-/* line 348, ../../../JS Array/scss/_classes.scss */
+/* line 330, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn {
   background-color: #425d86;
   color: #fff0e8;
@@ -374,20 +379,20 @@ img, button {
   overflow: visible;
 }
 
-/* line 365, ../../../JS Array/scss/_classes.scss */
+/* line 347, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:hover {
   background-color: #304b74;
   scale: 1.02;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
-/* line 371, ../../../JS Array/scss/_classes.scss */
+/* line 353, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:focus {
   outline: 2px solid #336baa;
   outline-offset: 2px;
 }
 
-/* line 376, ../../../JS Array/scss/_classes.scss */
+/* line 358, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:active {
   scale: 0.98;
 }
@@ -430,22 +435,61 @@ img, button {
   overflow: hidden;
 }
 
-/* line 43, ../../../JS Array/scss/_header.scss */
+/* line 22, ../../../JS Array/scss/_header.scss */
 #header-top #header-wrapper #header-intro-top {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100vw;
-}
-
-/* line 50, ../../../JS Array/scss/_header.scss */
-#header-top #header-wrapper #header-intro-top #header-intro-wrapper {
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
   z-index: 2;
   padding: 1.75rem 0.5rem 1.75rem;
-  min-width: 280px;
-  max-width: 600px;
   text-align: center;
   background-color: transparent;
+  column-gap: 2rem;
+  justify-content: center;
+}
+
+/* line 36, ../../../JS Array/scss/_header.scss */
+#header-top #header-wrapper #header-intro-top #header-intro-title {
+  width: 85%;
+  z-index: 2;
+  overflow: visible;
+  background-color: transparent;
+  justify-self: center;
+}
+
+/* line 44, ../../../JS Array/scss/_header.scss */
+#header-top #header-wrapper #header-intro-top #header-intro-column-1 {
+  width: 40%;
+  z-index: 2;
+  overflow: visible;
+  background-color: transparent;
+  padding-top: 2rem;
+  max-width: 768px;
+}
+
+@media (max-width: 576px) {
+  /* line 44, ../../../JS Array/scss/_header.scss */
+  #header-top #header-wrapper #header-intro-top #header-intro-column-1 {
+    width: 100%;
+  }
+}
+
+/* line 57, ../../../JS Array/scss/_header.scss */
+#header-top #header-wrapper #header-intro-top #header-intro-column-2 {
+  width: 40%;
+  z-index: 2;
+  overflow: visible;
+  background-color: transparent;
+  padding-top: 2rem;
+  max-width: 768px;
+}
+
+@media (max-width: 576px) {
+  /* line 57, ../../../JS Array/scss/_header.scss */
+  #header-top #header-wrapper #header-intro-top #header-intro-column-2 {
+    width: 100%;
+  }
 }
 
 /* line 1, ../../../JS Array/scss/_addr-mngr.scss */
@@ -591,6 +635,7 @@ img, button {
   width: 100vw;
   height: fit-content;
   padding: 2rem 0;
+  box-shadow: 0 0 3rem #00000088;
 }
 
 @media (min-width: 1500px) {
@@ -607,12 +652,13 @@ img, button {
   }
 }
 
-/* line 29, ../../../JS Array/scss/_img-mngr.scss */
+/* line 30, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper {
   overflow-x: clip;
+  overflow-y: visible;
 }
 
-/* line 33, ../../../JS Array/scss/_img-mngr.scss */
+/* line 35, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display {
   display: flex;
   flex-wrap: wrap;
@@ -620,7 +666,7 @@ img, button {
   padding-bottom: 2rem;
 }
 
-/* line 40, ../../../JS Array/scss/_img-mngr.scss */
+/* line 42, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
   width: 100%;
   height: 64px;
@@ -632,13 +678,13 @@ img, button {
 }
 
 @media (min-width: 576px) {
-  /* line 40, ../../../JS Array/scss/_img-mngr.scss */
+  /* line 42, ../../../JS Array/scss/_img-mngr.scss */
   #image-manager-top #image-manager-wrapper #image-manager-display #image-manager-header-bar {
     height: 42px;
   }
 }
 
-/* line 56, ../../../JS Array/scss/_img-mngr.scss */
+/* line 58, ../../../JS Array/scss/_img-mngr.scss */
 #image-manager-top #image-manager-wrapper #image-manager-display #image-wrapper {
   box-shadow: 0.25rem 0.25rem 1.5rem #44444488;
   background-color: white;
@@ -665,7 +711,7 @@ img, button {
   /* line 1, ../../../JS Array/scss/_gallery.scss */
   #gallery-top {
     width: 40vw;
-    box-shadow: 0 0 3rem #00000099;
+    box-shadow: 0 0 3rem #000000aa;
   }
 }
 
