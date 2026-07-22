@@ -47,8 +47,7 @@ function showAlert(message) {
     document.addEventListener("keydown", handleEscapeKey);
 
 }
-
-$(document).ready( function() {
+$(window).on("load", function () {
 
 //  Initialise array
     const imageLinks = [];
@@ -395,7 +394,7 @@ $(document).ready( function() {
                     // Inserts the html at the end of the div. The div and btn are given a unique id containing the email address.
                     // This means an event handler on the button returns the email address string which is the key for the array object it represents.
                     // selectedAddress is set to this value after making the visual change showing button selection.
-                    addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display clean-child-button" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
+                    addressList.insertAdjacentHTML('beforeend', `<div title="Edit or delete address." class="address-manager-email-display clean-child-button" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class="btn-not-selected" type="button">${buttonText}</button></div>`);
 
                     // Gets the button just created.
                     newButton = document.getElementById(`btn${addressText}`);
@@ -463,7 +462,7 @@ $(document).ready( function() {
 
                 // Inserts the html at the end of the div. (see previous branch also)
                 // If this is the first address entered, the address is automatically selected.
-                addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display clean-child-button" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class=${(arrayLength === 1)?"btn-selected":"btn-not-selected"} type="button">${buttonText}</button></div>`);
+                addressList.insertAdjacentHTML('beforeend', `<div title="Edit or delete address." class="address-manager-email-display clean-child-button" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class=${(arrayLength === 1)?"btn-selected":"btn-not-selected"} type="button">${buttonText}</button></div>`);
 
                 // Changes selectedAddress to new address only if this is the first item.
                 selectedAddress = (arrayLength === 1)?addressText:selectedAddress;
