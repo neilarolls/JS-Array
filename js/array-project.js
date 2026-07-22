@@ -77,7 +77,7 @@ $(document).ready( function() {
     let selectedAddress = "";
     let updateIMDisplay = false;
     let prevIMSeeds = [];
-    const IMUndoLimit = 100;
+    const IMUndoLimit = 20;
     let gallerySeeds = [];
     let galleryUniqueIDs = [];
     let galleryIndex = -1;
@@ -178,7 +178,7 @@ $(document).ready( function() {
             // Get the number of images attached to the object.
             let imagesInObject = Object.keys(imageLinks[addressIndex].images).length;
 
-            // Clear gallerySeeds and UIDs array.
+            // Clear gallerySeeds and UIDs arrays.
             gallerySeeds = [];
             galleryUniqueIDs = [];
 
@@ -222,8 +222,6 @@ $(document).ready( function() {
                     // This pseudo-element of the image wrapper is placed in the
                     // top right corner on hover. Delimiting values are retrieved
                     // and adjusted to determine if the button was actually clicked.
-                    // This setup is purely because I want a system tooltip on the
-                    // delete button.
                     currentSpan.addEventListener("click", function (e) {
 
                         // Get the after pseudo-element from the span.
@@ -387,8 +385,12 @@ $(document).ready( function() {
                     // Gets the number of images attached to the address.
                     imageCount = Object.keys(imageLinks[i].images).length;
 
+                    // Gets length of addressText then sets string accordingly.
+                    const addressLength = addressText.length;
+                    const ellipsisString = (addressLength > 16)?"...":"";
+
                     // Builds the string for the button text.
-                    buttonText = addressText.substring(0,16) + "...<br>" + `${imageCount} image${imageCount!=1?`s`:""} assigned`;
+                    buttonText = addressText.substring(0,16) + ellipsisString + "<br>" + `${imageCount} image${imageCount!=1?`s`:""} assigned`;
 
                     // Inserts the html at the end of the div. The div and btn are given a unique id containing the email address.
                     // This means an event handler on the button returns the email address string which is the key for the array object it represents.
@@ -446,16 +448,21 @@ $(document).ready( function() {
 
             } else if (update === "addaddress") {
 
-                // Creates a button for a newly added address...
+                // Creates a button for a newly added address.
 
 
                 // Gets the last address in the array and stores it.
                 addressText = imageLinks[arrayLength - 1]["address"];
 
+                // Get length of addressText then set string accordingly.
+                const addressLength = addressText.length;
+                const ellipsisString = (addressLength > 16)?"...":"";
+
                 // Builds the string for the button text.
-                buttonText = addressText.substring(0,16) + "...<br>0 images assigned";
+                buttonText = addressText.substring(0,16) + ellipsisString + "<br>0 images assigned";
 
                 // Inserts the html at the end of the div. (see previous branch also)
+                // If this is the first address entered, the address is automatically selected.
                 addressList.insertAdjacentHTML('beforeend', `<div class="address-manager-email-display clean-child-button" id="div${addressText}"><button aria-label="${addressText}" title="${addressText}" id="btn${addressText}" class=${(arrayLength === 1)?"btn-selected":"btn-not-selected"} type="button">${buttonText}</button></div>`);
 
                 // Changes selectedAddress to new address only if this is the first item.
@@ -531,8 +538,12 @@ $(document).ready( function() {
                         // Gets the number of images attached to the address.
                         imageCount = Object.keys(imageLinks[i].images).length;
 
+                        // Get length of addressText then set string accordingly.
+                        const addressLength = addressText.length;
+                        const ellipsisString = (addressLength > 16)?"...":"";
+
                         // Builds the string for the button text.
-                        buttonText = addressText.substring(0,16) + "...<br>" + `${imageCount} image${imageCount!=1?`s`:""} assigned`;
+                        buttonText = addressText.substring(0,16) + ellipsisString + "<br>" + `${imageCount} image${imageCount!=1?`s`:""} assigned`;
 
                         // Get the indexed button.
                         const indexedButton = document.getElementById(`btn${addressText}`);
@@ -780,7 +791,7 @@ $(document).ready( function() {
         prevImagesExist = (prevIMSeeds.length > 0);
 
         if (prevImagesExist) {
-            // Set image dimensions. It displays a 16:9 image 70% of the page width.
+            // Set image dimensions.
             // Constrains to maxIMImageWidth to keep things sensible on large desktops.
             let newImageWidth = Math.ceil(window.innerWidth * 0.7);
 
@@ -793,7 +804,7 @@ $(document).ready( function() {
             // Make the container match the image size.
             $(imageWrapper).css({"width":`${newImageWidth}px`,"height":`${newImageHeight}px`});
 
-            // Generate a new random seed.
+            // Get the previous random seed.
             let newImageManagerSeed = prevIMSeeds.pop();
 
             // Get the current image element.
@@ -877,7 +888,6 @@ $(document).ready( function() {
 
             // Add the new image to the object.
             imageLinks[addressIndex].images[`image-${imagesInObject + 1}`] = {"url":`https://picsum.photos/seed/${currentImageManagerSeed}/500/280.webp`, "UID":`${currentIMUniqueID}`};
-            console.log(imageLinks);
 
             // Set image dimensions. It displays a 16:9 image 70% of the page width.
             // Constrains to maxIMImageWidth to keep things sensible on large desktops.
@@ -916,6 +926,9 @@ $(document).ready( function() {
             // This image is already attached to the selected address.
             showAlert("That image is already attached to this address.");
         }
+
+        
+            console.log(imageLinks);
     });
 
 });

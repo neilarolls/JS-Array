@@ -51,12 +51,12 @@
     letter-spacing: -1px;
     cursor: pointer;
 
-    transition: scale 0.1s ease-in;
+    // transition: scale 0.1s ease-in;
 
-    &:hover {
-        transition: scale 0.1s ease-in;
-        scale: 1.02;
-    }
+    // &:hover {
+    //     transition: scale 0.1s ease-in;
+    //     scale: 1.02;
+    // }
 
 }
 
@@ -81,12 +81,49 @@
     letter-spacing: -1px;
     cursor: pointer;
 
+    // transition: scale 0.1s ease-in;
+
+    // &:hover {
+    //     transition: scale 0.1s ease-in;
+    //     scale: 1.02;
+    // }
+
+}
+
+.address-manager-email-display {
+
     transition: scale 0.1s ease-in;
 
     &:hover {
         transition: scale 0.1s ease-in;
         scale: 1.02;
     }
+}
+
+.address-manager-email-display::after {
+
+    position: relative;
+    font-size: 1.6rem;
+    text-align: center;
+    content: "";
+    inset: 0;
+
+    // display: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    border: 12px solid transparent;
+    border-top:16px solid #ffffff99;
+    border-bottom:0 none;
+    cursor: pointer;
+
+    left: -42px;
+    top: -30px;
+
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+
+    z-index: 5;
 
 }
 
@@ -373,7 +410,7 @@
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translate(-50%, -48%);
+        transform: translate(-50%, -20%);
     }
     to {
         opacity: 1;

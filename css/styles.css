@@ -79,7 +79,6 @@ main, body {
   margin: 0.625rem;
   letter-spacing: -1px;
   cursor: pointer;
-  transition: scale 0.1s ease-in;
 }
 
 @media (min-width: 480px) {
@@ -87,12 +86,6 @@ main, body {
   .btn-not-selected {
     width: 250px;
   }
-}
-
-/* line 56, ../../../JS Array/scss/_classes.scss */
-.btn-not-selected:hover {
-  transition: scale 0.1s ease-in;
-  scale: 1.02;
 }
 
 /* line 63, ../../../JS Array/scss/_classes.scss */
@@ -110,7 +103,6 @@ main, body {
   box-shadow: 0 0 0.5rem #11111188;
   letter-spacing: -1px;
   cursor: pointer;
-  transition: scale 0.1s ease-in;
 }
 
 @media (min-width: 480px) {
@@ -120,13 +112,39 @@ main, body {
   }
 }
 
-/* line 86, ../../../JS Array/scss/_classes.scss */
-.btn-selected:hover {
+/* line 93, ../../../JS Array/scss/_classes.scss */
+.address-manager-email-display {
+  transition: scale 0.1s ease-in;
+}
+
+/* line 97, ../../../JS Array/scss/_classes.scss */
+.address-manager-email-display:hover {
   transition: scale 0.1s ease-in;
   scale: 1.02;
 }
 
-/* line 93, ../../../JS Array/scss/_classes.scss */
+/* line 103, ../../../JS Array/scss/_classes.scss */
+.address-manager-email-display::after {
+  position: relative;
+  font-size: 1.6rem;
+  text-align: center;
+  content: "";
+  inset: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  border: 12px solid transparent;
+  border-top: 16px solid #ffffff99;
+  border-bottom: 0 none;
+  cursor: pointer;
+  left: -42px;
+  top: -30px;
+  background-color: transparent;
+  color: white;
+  z-index: 5;
+}
+
+/* line 130, ../../../JS Array/scss/_classes.scss */
 .refresh-button {
   overflow: visible;
   position: absolute;
@@ -137,12 +155,12 @@ main, body {
   z-index: 3;
 }
 
-/* line 103, ../../../JS Array/scss/_classes.scss */
+/* line 140, ../../../JS Array/scss/_classes.scss */
 .refresh-button button:hover, .refresh-button button:focus {
   outline-style: none;
 }
 
-/* line 108, ../../../JS Array/scss/_classes.scss */
+/* line 145, ../../../JS Array/scss/_classes.scss */
 .refresh-button button {
   border: none;
   color: transparent;
@@ -152,7 +170,7 @@ main, body {
   height: 55px;
 }
 
-/* line 117, ../../../JS Array/scss/_classes.scss */
+/* line 154, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img {
   width: 40px;
   height: 40px;
@@ -162,14 +180,14 @@ main, body {
   transition: all 0.1s ease-in;
 }
 
-/* line 126, ../../../JS Array/scss/_classes.scss */
+/* line 163, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img:hover {
   scale: 1.05;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.1rem 0.1rem 0.2rem #33333333);
 }
 
-/* line 136, ../../../JS Array/scss/_classes.scss */
+/* line 173, ../../../JS Array/scss/_classes.scss */
 .assign-button {
   position: absolute;
   color: transparent;
@@ -179,12 +197,12 @@ main, body {
   z-index: 3;
 }
 
-/* line 145, ../../../JS Array/scss/_classes.scss */
+/* line 182, ../../../JS Array/scss/_classes.scss */
 .assign-button button:hover, .assign-button button:focus {
   outline-style: none;
 }
 
-/* line 150, ../../../JS Array/scss/_classes.scss */
+/* line 187, ../../../JS Array/scss/_classes.scss */
 .assign-button button {
   border: none;
   color: transparent;
@@ -193,7 +211,7 @@ main, body {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 158, ../../../JS Array/scss/_classes.scss */
+/* line 195, ../../../JS Array/scss/_classes.scss */
 .assign-button button img {
   width: 40px;
   height: 40px;
@@ -203,14 +221,14 @@ main, body {
   transition: all 0.1s ease-in;
 }
 
-/* line 167, ../../../JS Array/scss/_classes.scss */
+/* line 204, ../../../JS Array/scss/_classes.scss */
 .assign-button button img:hover {
   scale: 1.08;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
 }
 
-/* line 179, ../../../JS Array/scss/_classes.scss */
+/* line 216, ../../../JS Array/scss/_classes.scss */
 .back-button {
   position: absolute;
   color: transparent;
@@ -220,12 +238,12 @@ main, body {
   z-index: 3;
 }
 
-/* line 188, ../../../JS Array/scss/_classes.scss */
+/* line 225, ../../../JS Array/scss/_classes.scss */
 .back-button button:hover, .back-button button:focus {
   outline-style: none;
 }
 
-/* line 193, ../../../JS Array/scss/_classes.scss */
+/* line 230, ../../../JS Array/scss/_classes.scss */
 .back-button button {
   border: none;
   color: transparent;
@@ -234,7 +252,7 @@ main, body {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 201, ../../../JS Array/scss/_classes.scss */
+/* line 238, ../../../JS Array/scss/_classes.scss */
 .back-button button img {
   width: 40px;
   height: 40px;
@@ -244,19 +262,19 @@ main, body {
   transition: all 0.1s ease-in;
 }
 
-/* line 210, ../../../JS Array/scss/_classes.scss */
+/* line 247, ../../../JS Array/scss/_classes.scss */
 .back-button button img:hover {
   scale: 1.08;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
 }
 
-/* line 224, ../../../JS Array/scss/_classes.scss */
+/* line 261, ../../../JS Array/scss/_classes.scss */
 .clean-child-button button:hover, .clean-child-button button:focus {
   outline-style: none;
 }
 
-/* line 232, ../../../JS Array/scss/_classes.scss */
+/* line 269, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay {
   position: fixed;
   top: 0;
@@ -269,12 +287,12 @@ main, body {
   animation: fadeIn 0.1s ease-in;
 }
 
-/* line 243, ../../../JS Array/scss/_classes.scss */
+/* line 280, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay.show {
   display: block;
 }
 
-/* line 248, ../../../JS Array/scss/_classes.scss */
+/* line 285, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal {
   position: fixed;
   top: 50%;
@@ -291,19 +309,19 @@ main, body {
 }
 
 @media (min-width: 768px) {
-  /* line 248, ../../../JS Array/scss/_classes.scss */
+  /* line 285, ../../../JS Array/scss/_classes.scss */
   .custom-alert-modal {
     width: 90%;
     max-width: 500px;
   }
 }
 
-/* line 269, ../../../JS Array/scss/_classes.scss */
+/* line 306, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal.show {
   display: flex;
 }
 
-/* line 274, ../../../JS Array/scss/_classes.scss */
+/* line 311, ../../../JS Array/scss/_classes.scss */
 .custom-alert-content {
   display: flex;
   flex-direction: column;
@@ -313,7 +331,7 @@ main, body {
   position: relative;
 }
 
-/* line 283, ../../../JS Array/scss/_classes.scss */
+/* line 320, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn {
   position: absolute;
   top: 0.75rem;
@@ -332,7 +350,7 @@ main, body {
   transition: color 0.1s ease;
 }
 
-/* line 300, ../../../JS Array/scss/_classes.scss */
+/* line 337, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn:hover, .custom-alert-close-btn:focus {
   color: #000;
   outline: 2px solid #336baa;
@@ -340,7 +358,7 @@ main, body {
   border-radius: 0.25rem;
 }
 
-/* line 309, ../../../JS Array/scss/_classes.scss */
+/* line 346, ../../../JS Array/scss/_classes.scss */
 .custom-alert-message {
   font-size: clamp(0.875rem, 3vw, 1.5rem);
   color: #000011aa;
@@ -350,7 +368,7 @@ main, body {
   text-align: center;
 }
 
-/* line 319, ../../../JS Array/scss/_classes.scss */
+/* line 356, ../../../JS Array/scss/_classes.scss */
 .custom-alert-buttons {
   display: flex;
   justify-content: center;
@@ -360,7 +378,7 @@ main, body {
   overflow: visible;
 }
 
-/* line 330, ../../../JS Array/scss/_classes.scss */
+/* line 367, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn {
   background-color: #425d86;
   color: #fff0e8;
@@ -379,20 +397,20 @@ main, body {
   overflow: visible;
 }
 
-/* line 347, ../../../JS Array/scss/_classes.scss */
+/* line 384, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:hover {
   background-color: #304b74;
   scale: 1.02;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
-/* line 353, ../../../JS Array/scss/_classes.scss */
+/* line 390, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:focus {
   outline: 2px solid #336baa;
   outline-offset: 2px;
 }
 
-/* line 358, ../../../JS Array/scss/_classes.scss */
+/* line 395, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:active {
   scale: 0.98;
 }
@@ -409,7 +427,7 @@ main, body {
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -48%);
+    transform: translate(-50%, -20%);
   }
   to {
     opacity: 1;
@@ -601,7 +619,7 @@ main, body {
   background-repeat: no-repeat;
 }
 
-/* line 110, ../../../JS Array/scss/_addr-mngr.scss */
+/* line 109, ../../../JS Array/scss/_addr-mngr.scss */
 #address-manager-top #address-manager-wrapper #address-manager-list-wrapper {
   width: 90%;
   max-width: 1440px;
