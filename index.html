@@ -78,8 +78,6 @@
             <div class="refresh-button" id="image-manager-refresh-button-wrapper"><button title="Load a new random image" type="button"><img src="img/refresh-cw.png" alt="load new image"></button></div>
             <div class="assign-button" id="image-manager-assign-button-wrapper"><button title="Attach image to displayed address" type="button"><img src="img/assign.png" alt="attach image to address"></button></div>
             <div class="back-button" id="image-manager-back-button-wrapper"><button title="Go back to previous image." type="button"><img src="img/back.png" alt="Go back to previous image"></button></div>
-            <!-- <div id="image-manager-scissors-wrapper"><img id="image-manager-scissors-image" src="img/scissors.png" alt="scissors"></div> -->
-            <!-- <dialog id="address-not-selected-notification"><div id="address-not-selected-text">No email address has been selected.</div></dialog> -->
           </div>
         </div>
 
@@ -90,6 +88,7 @@
         </div>
 
         <div id="custom-alert-overlay" class="custom-alert-overlay"></div><!-- ALERT MESSAGE MODAL -->
+
         <div id="custom-alert-modal" class="custom-alert-modal">
           <div class="custom-alert-content">
             <button id="custom-alert-close-btn" class="custom-alert-close-btn" aria-label="Close alert">
@@ -99,6 +98,34 @@
             <div class="custom-alert-buttons">
               <button id="custom-alert-ok-btn" class="custom-alert-ok-btn">OK</button>
             </div>
+          </div>
+        </div>
+
+        <div id="custom-edit-modal" class="custom-edit-modal"><!-- EDIT DIALOGUE MODAL -->
+          <div class="custom-edit-content">
+
+            <div id="custom-edit-message" class="custom-edit-message"></div>
+
+            <div class="custom-edit-buttons">
+
+              <button id="custom-edit-close-btn" class="custom-alert-close-btn" aria-label="Close alert">
+                <span>&times;</span>
+              </button>
+
+              <button id="custom-edit-cancel-btn" class="custom-edit-cancel-btn" aria-label="Cancel">
+                <span>Cancel</span>
+              </button>
+
+              <button id="custom-edit-edit-btn" class="custom-edit-close-btn" aria-label="Edit this address">
+                <span>Edit</span>
+              </button>
+
+              <button id="custom-edit-delete-btn" class="custom-edit-close-btn" aria-label="Delete this address">
+                <span>Delete</span>
+              </button>
+
+            </div>
+
           </div>
         </div>
 

@@ -47,15 +47,85 @@ function showAlert(message) {
     document.addEventListener("keydown", handleEscapeKey);
 
 }
+
 $(window).on("load", function () {
 
 //  Initialise array
-    const imageLinks = [];
+    // const imageLinks = [];
+//--------------------------------------  TEST DATA  -----------------------------------
+
+    const imageLinks = Array.from([
+
+        {
+            "address":    "random@company.com",
+            "images": {
+                "image-1": {
+
+                    "UID":          "152",
+                    "url":          "https://picsum.photos/seed/vx7zk2p/500/280.webp"
+                }
+                ,
+                "image-2": {
+
+                    "UID":          "921",
+                    "url":          "https://picsum.photos/seed/s334u0i/500/280.webp"
+                }
+            }
+        }
+        ,
+        {
+            "address":    "info@institution.gov",
+            "images": {
+                "image-1": {
+
+                    "UID":          "516",
+                    "url":          "https://picsum.photos/seed/p4ecvz1/500/280.webp"
+                }
+                ,
+                "image-2": {
+
+                    "UID":          "360",
+                    "url":          "https://picsum.photos/seed/rmh1f3j/500/280.webp"
+                }
+                ,
+                "image-3": {
+
+                    "UID":          "1008",
+                    "url":          "https://picsum.photos/seed/797d8mz/500/280.webp"
+                }
+                ,
+            }
+
+        }
+        ,
+        {
+            "address":    "neil@home.com",
+            "images": {
+                "image-1": {
+
+                    "UID":          "914",
+                    "url":          "https://picsum.photos/seed/naicmff/500/280.webp"
+                }
+                ,
+                "image-2": {
+
+                    "UID":          "93",
+                    "url":          "https://picsum.photos/seed/q8evrm7/500/280.webp"
+                }
+                ,
+                "image-3": {
+
+                    "UID":          "368",
+                    "url":          "https://picsum.photos/seed/8qa00ap/500/280.webp"
+                }
+                ,
+            }
+
+        }
+    ]);
 
 // -------------------------- Initial Setup --------------------------------------------
-// This section performs initial setup of variables and section positions. It generates
-// a seed and displays the banner image, adding an img element with appropriate sizing
-// and effects parameters in the Lorum Picsum url.
+// This section performs initial setup of variables and section positions.
 // -------------------------------------------------------------------------------------
 // Get references.
 
@@ -219,8 +289,8 @@ $(window).on("load", function () {
 
                     // Adds event listener to listen for clicks on the 'X' button.
                     // This pseudo-element of the image wrapper is placed in the
-                    // top right corner on hover. Delimiting values are retrieved
-                    // and adjusted to determine if the button was actually clicked.
+                    // top right corner on hover. Mouse X and Y values are retrieved
+                    // and compared to determine if the click was over the button.
                     currentSpan.addEventListener("click", function (e) {
 
                         // Get the after pseudo-element from the span.
@@ -371,6 +441,7 @@ $(window).on("load", function () {
             let imageCount = 0;
             let buttonText = "";
             let newButton;
+            let newPseudoBtn;
 
             if (update === "new") {
 
@@ -398,6 +469,9 @@ $(window).on("load", function () {
 
                     // Gets the button just created.
                     newButton = document.getElementById(`btn${addressText}`);
+
+                    // Gets the div just created.
+                    newPseudoBtn = document.getElementById(`div${addressText}`);
 
                     // Add click event listener on new button. This functions to select that button.
                     newButton.addEventListener("click", (e) => {
@@ -431,7 +505,7 @@ $(window).on("load", function () {
 
                         } else {
 
-                            // At first no buttons are selected so no need to deselect a button.
+                            // At first no buttons are user selected so no need to deselect a button.
                             newlySelected.classList.remove("btn-not-selected");
                             newlySelected.classList.add("btn-selected");
 
@@ -442,6 +516,42 @@ $(window).on("load", function () {
                             populateGallery();
 
                     });
+
+                    // Adds click event listener to the edit button. This pseudo-element
+                    // of the address button wrapper is placed in the top right corner on hover.
+                    // 
+
+                    newPseudoBtn.addEventListener("click", function (e) {
+
+                        // Suppress any default behaviour.
+                        e.preventDefault();
+
+                        // Get the clicked div ID from the event object 
+                        const divID = e.target.id;
+
+                        // Making sure I'm dealing with a click on the div, not the child button.
+                        // This is only true if the visible pseudo element is clicked on.
+                        if (divID.substring(0,3) === "div") {
+
+                            // Get div element.
+                            const divElement = document.getElementById(divID);
+
+                            // Get address from ID.
+                            const thisAddress = divID.substring(3);
+
+                            // Get the index of the clicked object's address.
+                            const thisAddressIndex = imageLinks.findIndex(a => a.address === thisAddress);
+
+                            // Get the after pseudo-element from the div.
+                            const divAfter = getComputedStyle(divElement, ":after");
+
+                            if (divAfter) {
+
+                                console.log(`Edit Button Click Detected.`);
+
+                            }
+                        }
+                    })
 
                 }
 
@@ -472,6 +582,9 @@ $(window).on("load", function () {
 
                 // Gets the button just created.
                 newButton = document.getElementById(`btn${addressText}`);
+
+                // Gets the div just created.
+                newPseudoBtn = document.getElementById(`div${addressText}`);
 
                 // Add a click event listener on new button.
                 newButton.addEventListener("click", (e) => {
@@ -519,6 +632,38 @@ $(window).on("load", function () {
                     }
 
                 });
+
+                newPseudoBtn.addEventListener("click", function (e) {
+
+                    // Suppress any default behaviour.
+                    e.preventDefault();
+
+                    // Get the clicked div ID from the event object 
+                    const divID = e.target.id;
+
+                    // Making sure I'm dealing with a click on the div, not the child button.
+                    // This is only true if the visible pseudo element is clicked on.
+                    if (divID.substring(0,3) === "div") {
+
+                        // Get div element.
+                        const divElement = document.getElementById(divID);
+
+                        // Get address from ID.
+                        const thisAddress = divID.substring(3);
+
+                        // Get the index of the clicked object's address.
+                        const thisAddressIndex = imageLinks.findIndex(a => a.address === thisAddress);
+
+                        // Get the after pseudo-element from the div.
+                        const divAfter = getComputedStyle(divElement, ":after");
+
+                        if (divAfter) {
+
+                            console.log(`Edit Button Click Detected.`);
+
+                        }
+                    }
+                })
 
             // Updates the image counts on the buttons. Called by the assign button.
             } else if (update === "refreshImageCounts") {
