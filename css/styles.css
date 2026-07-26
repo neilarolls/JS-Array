@@ -35,7 +35,7 @@ main, body {
   height: fit-content;
 }
 
-/* line 3, ../../../JS Array/scss/_classes.scss */
+/* line 4, ../../../JS Array/scss/_classes.scss */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -48,7 +48,7 @@ main, body {
   border: 0;
 }
 
-/* line 17, ../../../JS Array/scss/_classes.scss */
+/* line 18, ../../../JS Array/scss/_classes.scss */
 .body-text-medium {
   font-size: clamp(1.125rem, calc(100vw / 60), 1.5rem);
   font-weight: 350;
@@ -58,13 +58,13 @@ main, body {
   text-shadow: 0 0 0.1rem #00000099;
 }
 
-/* line 27, ../../../JS Array/scss/_classes.scss */
+/* line 28, ../../../JS Array/scss/_classes.scss */
 .body-text-small {
   font-size: 0.875rem;
   text-shadow: none;
 }
 
-/* line 33, ../../../JS Array/scss/_classes.scss */
+/* line 34, ../../../JS Array/scss/_classes.scss */
 .btn-not-selected {
   width: 230px;
   height: 100px;
@@ -81,13 +81,13 @@ main, body {
 }
 
 @media (min-width: 480px) {
-  /* line 33, ../../../JS Array/scss/_classes.scss */
+  /* line 34, ../../../JS Array/scss/_classes.scss */
   .btn-not-selected {
     width: 250px;
   }
 }
 
-/* line 55, ../../../JS Array/scss/_classes.scss */
+/* line 56, ../../../JS Array/scss/_classes.scss */
 .btn-selected {
   width: 230px;
   height: 100px;
@@ -105,13 +105,13 @@ main, body {
 }
 
 @media (min-width: 480px) {
-  /* line 55, ../../../JS Array/scss/_classes.scss */
+  /* line 56, ../../../JS Array/scss/_classes.scss */
   .btn-selected {
     width: 250px;
   }
 }
 
-/* line 78, ../../../JS Array/scss/_classes.scss */
+/* line 79, ../../../JS Array/scss/_classes.scss */
 .address-manager-email-display {
   transition: scale 0.1s ease-in;
   height: 100px;
@@ -122,24 +122,24 @@ main, body {
 }
 
 @media (min-width: 480px) {
-  /* line 78, ../../../JS Array/scss/_classes.scss */
+  /* line 79, ../../../JS Array/scss/_classes.scss */
   .address-manager-email-display {
     width: 250px;
   }
 }
 
-/* line 92, ../../../JS Array/scss/_classes.scss */
+/* line 93, ../../../JS Array/scss/_classes.scss */
 .address-manager-email-display:hover {
   transition: scale 0.1s ease-in;
   scale: 1.04;
 }
 
-/* line 104, ../../../JS Array/scss/_classes.scss */
+/* line 105, ../../../JS Array/scss/_classes.scss */
 .address-manager-email-display:hover::after {
   display: inline;
 }
 
-/* line 110, ../../../JS Array/scss/_classes.scss */
+/* line 111, ../../../JS Array/scss/_classes.scss */
 .address-manager-email-display::after {
   position: relative;
   font-size: 1rem;
@@ -162,7 +162,7 @@ main, body {
   z-index: 5;
 }
 
-/* line 139, ../../../JS Array/scss/_classes.scss */
+/* line 140, ../../../JS Array/scss/_classes.scss */
 .refresh-button {
   overflow: visible;
   position: absolute;
@@ -173,12 +173,12 @@ main, body {
   z-index: 3;
 }
 
-/* line 149, ../../../JS Array/scss/_classes.scss */
+/* line 150, ../../../JS Array/scss/_classes.scss */
 .refresh-button button:hover, .refresh-button button:focus {
   outline-style: none;
 }
 
-/* line 154, ../../../JS Array/scss/_classes.scss */
+/* line 155, ../../../JS Array/scss/_classes.scss */
 .refresh-button button {
   border: none;
   color: transparent;
@@ -188,7 +188,7 @@ main, body {
   height: 55px;
 }
 
-/* line 163, ../../../JS Array/scss/_classes.scss */
+/* line 164, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img {
   width: 40px;
   height: 40px;
@@ -198,14 +198,14 @@ main, body {
   transition: all 0.1s ease-in;
 }
 
-/* line 172, ../../../JS Array/scss/_classes.scss */
+/* line 173, ../../../JS Array/scss/_classes.scss */
 .refresh-button button img:hover {
   scale: 1.05;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.1rem 0.1rem 0.2rem #33333333);
 }
 
-/* line 182, ../../../JS Array/scss/_classes.scss */
+/* line 183, ../../../JS Array/scss/_classes.scss */
 .assign-button {
   position: absolute;
   color: transparent;
@@ -215,12 +215,12 @@ main, body {
   z-index: 3;
 }
 
-/* line 191, ../../../JS Array/scss/_classes.scss */
+/* line 192, ../../../JS Array/scss/_classes.scss */
 .assign-button button:hover, .assign-button button:focus {
   outline-style: none;
 }
 
-/* line 196, ../../../JS Array/scss/_classes.scss */
+/* line 197, ../../../JS Array/scss/_classes.scss */
 .assign-button button {
   border: none;
   color: transparent;
@@ -229,7 +229,7 @@ main, body {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 204, ../../../JS Array/scss/_classes.scss */
+/* line 205, ../../../JS Array/scss/_classes.scss */
 .assign-button button img {
   width: 40px;
   height: 40px;
@@ -239,14 +239,14 @@ main, body {
   transition: all 0.1s ease-in;
 }
 
-/* line 213, ../../../JS Array/scss/_classes.scss */
+/* line 214, ../../../JS Array/scss/_classes.scss */
 .assign-button button img:hover {
   scale: 1.08;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
 }
 
-/* line 225, ../../../JS Array/scss/_classes.scss */
+/* line 226, ../../../JS Array/scss/_classes.scss */
 .back-button {
   position: absolute;
   color: transparent;
@@ -256,12 +256,12 @@ main, body {
   z-index: 3;
 }
 
-/* line 234, ../../../JS Array/scss/_classes.scss */
+/* line 235, ../../../JS Array/scss/_classes.scss */
 .back-button button:hover, .back-button button:focus {
   outline-style: none;
 }
 
-/* line 239, ../../../JS Array/scss/_classes.scss */
+/* line 240, ../../../JS Array/scss/_classes.scss */
 .back-button button {
   border: none;
   color: transparent;
@@ -270,7 +270,7 @@ main, body {
   filter: drop-shadow(0 0 0.05rem #111111);
 }
 
-/* line 247, ../../../JS Array/scss/_classes.scss */
+/* line 248, ../../../JS Array/scss/_classes.scss */
 .back-button button img {
   width: 40px;
   height: 40px;
@@ -280,19 +280,19 @@ main, body {
   transition: all 0.1s ease-in;
 }
 
-/* line 256, ../../../JS Array/scss/_classes.scss */
+/* line 257, ../../../JS Array/scss/_classes.scss */
 .back-button button img:hover {
   scale: 1.08;
   transition: all 0.1s ease-in;
   filter: drop-shadow(0.15rem 0.15rem 0.1rem #33333333);
 }
 
-/* line 270, ../../../JS Array/scss/_classes.scss */
+/* line 271, ../../../JS Array/scss/_classes.scss */
 .clean-child-button button:hover, .clean-child-button button:focus {
   outline-style: none;
 }
 
-/* line 278, ../../../JS Array/scss/_classes.scss */
+/* line 279, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay {
   position: fixed;
   top: 0;
@@ -305,12 +305,12 @@ main, body {
   animation: fadeIn 0.1s ease-in;
 }
 
-/* line 289, ../../../JS Array/scss/_classes.scss */
+/* line 290, ../../../JS Array/scss/_classes.scss */
 .custom-alert-overlay.show {
   display: block;
 }
 
-/* line 294, ../../../JS Array/scss/_classes.scss */
+/* line 295, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal {
   position: fixed;
   top: 50%;
@@ -327,19 +327,19 @@ main, body {
 }
 
 @media (min-width: 768px) {
-  /* line 294, ../../../JS Array/scss/_classes.scss */
+  /* line 295, ../../../JS Array/scss/_classes.scss */
   .custom-alert-modal {
     width: 90%;
     max-width: 500px;
   }
 }
 
-/* line 315, ../../../JS Array/scss/_classes.scss */
+/* line 316, ../../../JS Array/scss/_classes.scss */
 .custom-alert-modal.show {
   display: flex;
 }
 
-/* line 320, ../../../JS Array/scss/_classes.scss */
+/* line 321, ../../../JS Array/scss/_classes.scss */
 .custom-alert-content {
   display: flex;
   flex-direction: column;
@@ -349,7 +349,7 @@ main, body {
   position: relative;
 }
 
-/* line 329, ../../../JS Array/scss/_classes.scss */
+/* line 330, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn {
   position: absolute;
   top: 0.75rem;
@@ -368,7 +368,7 @@ main, body {
   transition: color 0.1s ease;
 }
 
-/* line 346, ../../../JS Array/scss/_classes.scss */
+/* line 347, ../../../JS Array/scss/_classes.scss */
 .custom-alert-close-btn:hover, .custom-alert-close-btn:focus {
   color: #000;
   outline: 2px solid #336baa;
@@ -376,7 +376,7 @@ main, body {
   border-radius: 0.25rem;
 }
 
-/* line 355, ../../../JS Array/scss/_classes.scss */
+/* line 356, ../../../JS Array/scss/_classes.scss */
 .custom-alert-message {
   font-size: clamp(0.875rem, 3vw, 1.5rem);
   color: #000011aa;
@@ -386,7 +386,7 @@ main, body {
   text-align: center;
 }
 
-/* line 365, ../../../JS Array/scss/_classes.scss */
+/* line 366, ../../../JS Array/scss/_classes.scss */
 .custom-alert-buttons {
   display: flex;
   justify-content: center;
@@ -396,7 +396,7 @@ main, body {
   overflow: visible;
 }
 
-/* line 376, ../../../JS Array/scss/_classes.scss */
+/* line 377, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn {
   background-color: #425d86;
   color: #fff0e8;
@@ -415,20 +415,20 @@ main, body {
   overflow: visible;
 }
 
-/* line 393, ../../../JS Array/scss/_classes.scss */
+/* line 394, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:hover {
   background-color: #304b74;
   scale: 1.02;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
-/* line 399, ../../../JS Array/scss/_classes.scss */
+/* line 400, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:focus {
   outline: 2px solid #336baa;
   outline-offset: 2px;
 }
 
-/* line 404, ../../../JS Array/scss/_classes.scss */
+/* line 405, ../../../JS Array/scss/_classes.scss */
 .custom-alert-ok-btn:active {
   scale: 0.98;
 }
