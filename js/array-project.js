@@ -48,7 +48,7 @@ function showAlert(message) {
 
 }
 
-$(window).on("load", function () {
+$(window).on("load", async function () {
 
 //  Initialise array
     // const imageLinks = [];
@@ -142,6 +142,7 @@ $(window).on("load", function () {
     const maxIMImageWidth = 740;
     const maxIMHeight = 555;
     let currentImageManagerSeed = "";
+    let currentImageManagerUID = "";
     let currentUniqueID = "";
     let selectedAddress = "";
     let updateIMDisplay = false;
@@ -280,11 +281,37 @@ $(window).on("load", function () {
                     currentImage.addEventListener("click", function (e) {
 
                         // Get Index of clicked image from event object. updateIMOnResize will change the image
-                        // seed to the value in gallerySeeds[] corresponding to the index.
-                        galleryIndex = Number(e.target.id.substring(6)) - 1;
+                        // seed to the value in gallerySeeds[] corresponding to the index. The currently displayed
+                        // image is pushed onto the undo stack if it isn't already displayed, keeping the undo stack cleaner.
+
+
+                        galleryIndex = Number(e.target.id.substring(6) - 1);
+
+                        if (currentImageManagerUID != galleryUniqueIDs[galleryIndex]) {
+
+                            prevIMSeeds.push(currentImageManagerSeed);
+
+                            currentImageManagerUID = galleryUniqueIDs[galleryIndex];
+
+                            if (prevIMSeeds.length > IMUndoLimit) {
+                                prevIMSeeds.shift();
+                            }
+
+console.log(`\ngalleryIndex: ${galleryIndex}`);
+console.log(`galleryUniqueIDs[galleryIndex]: ${galleryUniqueIDs[galleryIndex]}`);
+console.log(`currentImageManagerSeed: ${currentImageManagerSeed}`);
+console.log(`currentImageManagerUID: ${currentImageManagerUID}`);
+
+                        } else {
+
+                            galleryIndex = -1;
+
+                        }
 
                         updateIMOnResize();
 
+console.log(`galleryUniqueIDs[]: ${galleryUniqueIDs}`);
+console.log(`prevIMSeeds[]: ${prevIMSeeds}`);
                     });
 
                     // Adds event listener to listen for clicks on the 'X' button.
@@ -386,18 +413,18 @@ $(window).on("load", function () {
 
     async function isUniqueImage(imageString) {
 
-        console.log(`Function 'isUniqueImage' - selectedAddress: >${selectedAddress}<`);
+console.log(`Function 'isUniqueImage' - selectedAddress: >${selectedAddress}<`);
 
         // Assume the image is unique.
         let isUnique = true;
 
         // Get the unique ID for the seed passed in imageString.
         let imageStringUniqueID = await getUniqueID(imageString);
-        console.log(`Function 'isUniqueImage' - imageStringUniqueID: >${imageStringUniqueID}<`);
+console.log(`Function 'isUniqueImage' - imageStringUniqueID: >${imageStringUniqueID}<`);
 
         // If there are images in the gallery...
         let imagesInGallery = gallerySeeds.length;        
-        console.log(`Function 'isUniqueImage' - imagesInGallery: >${imagesInGallery}<`);
+console.log(`Function 'isUniqueImage' - imagesInGallery: >${imagesInGallery}<`);
 
 
         if (imagesInGallery > 0) {
@@ -407,14 +434,14 @@ $(window).on("load", function () {
 
                 // Get the indexed unique ID from the values stored when the gallery is populated.
                 let indexedGalleryUniqueID = await galleryUniqueIDs[i];
-                console.log(`Function 'isUniqueImage' - indexedGalleryUniqueID: >${indexedGalleryUniqueID}<`);
+console.log(`Function 'isUniqueImage' - indexedGalleryUniqueID: >${indexedGalleryUniqueID}<`);
 
                 // Test whether the ID's match.
                 if (indexedGalleryUniqueID === imageStringUniqueID) {
 
                     // The image is not unique.
                     isUnique = false;
-                    console.log("Function 'isUniqueImage' - Image not unique.")
+console.log("Function 'isUniqueImage' - Image not unique.")
                 }
 
             }
@@ -547,7 +574,7 @@ $(window).on("load", function () {
 
                             if (divAfter) {
 
-                                console.log(`Edit Button Click Detected.`);
+console.log(`Edit Button Click Detected.`);
 
                             }
                         }
@@ -659,7 +686,7 @@ $(window).on("load", function () {
 
                         if (divAfter) {
 
-                            console.log(`Edit Button Click Detected.`);
+console.log(`Edit Button Click Detected.`);
 
                         }
                     }
@@ -819,6 +846,8 @@ $(window).on("load", function () {
         return currentUniqueID;
     }
 
+    currentImageManagerUID = await getUniqueID(currentImageManagerSeed);
+
 // --------------------------------------------------------------------------------------------
 
 
@@ -884,7 +913,7 @@ $(window).on("load", function () {
     }, 20);
 
     // Adds event listener on the refresh button which replaces the image seed and image.
-    refreshButton.addEventListener("click", function (e) {
+    refreshButton.addEventListener("click", async function (e) {
 
         // Stop any automated behaviour.
         e.preventDefault();
@@ -924,10 +953,11 @@ $(window).on("load", function () {
 
         currentImageManagerSeed = newImageManagerSeed;
 
+        currentImageManagerUID = await getUniqueID(currentImageManagerSeed);
     });
 
     // Adds event listener on the back button which replaces the image seed and image with the most recent image that was skipped.
-    backButton.addEventListener("click", function (e) {
+    backButton.addEventListener("click", async function (e) {
 
         // Stop any automated behaviour.
         e.preventDefault();
@@ -962,10 +992,12 @@ $(window).on("load", function () {
 
             // Swap to the new seed value.
             currentImageManagerSeed = newImageManagerSeed;
+
+            currentImageManagerUID = await getUniqueID(currentImageManagerSeed);
         }
     });
 
-    function updateIMOnResize() {
+     async function updateIMOnResize() {
 
         // Set image dimensions. It displays a 16:9 image 70% of the page width.
         // Constrains to maxIMImageWidth to keep things sensible on large desktops.
@@ -991,6 +1023,10 @@ $(window).on("load", function () {
         if (galleryIndex != -1) {
 
             currentImageManagerSeed = gallerySeeds[galleryIndex];
+console.log(`currentImageManagerSeed: ${currentImageManagerSeed}`);
+
+            currentImageManagerUID = await getUniqueID(currentImageManagerSeed);
+console.log(`currentImageManagerUID: ${currentImageManagerUID}`);
 
             galleryIndex = -1;
       
@@ -1072,7 +1108,7 @@ $(window).on("load", function () {
         }
 
         
-            console.log(imageLinks);
+console.log(imageLinks);
     });
 
 });
